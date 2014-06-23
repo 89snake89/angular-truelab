@@ -4,12 +4,16 @@ node_js:
 branches:
   only:
     - master
+
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
 install:
   - npm install -g grunt-cli
   - npm install -g bower
   - npm install
   - bower install
-before_script:
-  - phantomjs --version
+
 script:
   - grunt karma:continuous

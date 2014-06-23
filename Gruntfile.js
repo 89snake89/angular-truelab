@@ -18,9 +18,31 @@ module.exports = function(grunt) {
             options : {
                 configFile: 'karma.conf.js'
             },
-            continuous : {
+            continuous: {
                 singleRun: true,
-                browsers: ['PhantomJS']
+                browsers: ['Firefox']
+            },
+            coverage : {
+                singleRun: true,
+                browsers: ['Firefox','Chrome'],
+                preprocessors : {
+                    'src/**/!(*spec).js' : 'coverage'
+                },
+                reporters: [
+                    'dots',
+                    'junit',
+                    'coverage'
+                ],
+                junitReporter: {
+                    'outputFile': '.tmp/test-out/test-results.xml'
+                },
+                coverageReporter : {
+                    reporters : [
+                        {type: 'html', dir : '.tmp/test-out/coverage/html/'},
+                        {type: 'cobertura', dir : '.tmp/test-out/coverage/xml/'}
+                    ],
+                    dir : '.tmp/test-out/coverage/'
+                }
             },
             unit: {
                 background: true
@@ -114,6 +136,5 @@ module.exports = function(grunt) {
         'docs',
         'gh-pages:docs'
     ]);
-
 
 };
