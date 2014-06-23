@@ -38,7 +38,7 @@ module.exports = function(grunt) {
                 src : ['.tmp/']
             },
             docs : {
-                src : ['docs/*','!docs/.git','!docs/.gitignore','!docs/.gitkeep']
+                src : ['docs/*','!docs/.git','!docs/.gitignore','!docs/.gitkeep','!docs/README.md']
             },
             dist : {
                 src : ['dist']
