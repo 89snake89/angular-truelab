@@ -24,7 +24,7 @@ dist
 #
 #
 
-# -- Bowe -- #
+# -- Bower -- #
 *bower_components
 
 # -- Npm -- #
