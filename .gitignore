@@ -2,6 +2,7 @@
 docs/*
 dist
 .tmp
+.grunt
 
 !.gitkeep
 
