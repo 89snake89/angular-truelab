@@ -18,7 +18,7 @@ module.exports = function(grunt) {
             options : {
                 configFile: 'karma.conf.js'
             },
-            continuous: {
+            continuous : {
                 singleRun: true,
                 browsers: ['PhantomJS']
             },
@@ -81,10 +81,13 @@ module.exports = function(grunt) {
             all: ['src/**/*.js','!src/**/*.spec.js']
         },
         'gh-pages': {
-            options: {
-                base: 'docs'
-            },
-            src: ['**']
+            docs : {
+                options : {
+                    base : 'docs',
+                    message: 'Updates docs'
+                },
+                src : ['**']
+            }
         }
     });
 
@@ -104,13 +107,13 @@ module.exports = function(grunt) {
         'ngmin',
         'concat',
         'uglify:dist'
-    ])
+    ]);
 
-    grunt.registerTask('publish-gh-pages', [
+    grunt.registerTask('publish-docs', [
         'build',
         'docs',
-        'gh-pages'
-    ])
+        'gh-pages:docs'
+    ]);
 
 
 };
