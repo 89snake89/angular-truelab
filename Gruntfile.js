@@ -10,6 +10,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-ngmin');
     grunt.loadNpmTasks('grunt-ngdocs');
+    grunt.loadNpmTasks('grunt-gh-pages');
 
     grunt.initConfig({
         pkg : grunt.file.readJSON('package.json'),
@@ -78,6 +79,12 @@ module.exports = function(grunt) {
                 html5Mode: false
             },
             all: ['src/**/*.js','!src/**/*.spec.js']
+        },
+        'gh-pages': {
+            options: {
+                base: 'docs'
+            },
+            src: ['**']
         }
     });
 
@@ -97,6 +104,12 @@ module.exports = function(grunt) {
         'ngmin',
         'concat',
         'uglify:dist'
+    ])
+
+    grunt.registerTask('publish-gh-pages', [
+        'build',
+        'docs',
+        'gh-pages'
     ])
 
 
