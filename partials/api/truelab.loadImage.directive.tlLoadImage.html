@@ -1,0 +1,123 @@
+<h1><code ng:non-bindable="">tlLoadImage</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">truelab.loadImage</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="truelab-loadimage-directive-page truelab-loadimage-directive-tlloadimage-page"><p>Append image only when is loaded, add css state classes on loading and on error
+to control visualization</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/api/truelab.loadImage.service:$tlLoadImage">$tlLoadImage</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/api/truelab.loadImage.service:$tlLoadImageOptions">$tlLoadImageOptions</a></code>
+</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<div class="usage">as attribute<pre class="prettyprint linenums">&lt;ANY tl-load-image="{expression}"
+     tl-load-image-options="{expression}"&gt;
+   ...
+&lt;/ANY&gt;</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tlLoadImage</td><td><a href="" class="label type-hint type-hint-expression">expression</a></td><td><div class="truelab-loadimage-directive-page truelab-loadimage-directive-tlloadimage-page"><ul>
+<li>the image src</li>
+</ul>
+</div></td></tr><tr><td>tlLoadImageOptions</td><td><a href="" class="label type-hint type-hint-expression">expression</a></td><td><div class="truelab-loadimage-directive-page truelab-loadimage-directive-tlloadimage-page"><ul>
+<li>directive options</li>
+</ul>
+</div></td></tr></tbody></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="truelab-loadimage-directive-page truelab-loadimage-directive-tlloadimage-page"><h4 id="example_source">Source</h4>
+<div source-edit="truelab.loadImageApp" source-edit-deps="angular.js script.js" source-edit-html="index.html-1" source-edit-css="style.css" source-edit-js="script.js-0" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div class="tabbable"><div class="tab-pane" title="index.html">
+<pre class="prettyprint linenums" ng-set-text="index.html-1" ng-html-wrap-loaded="truelab.loadImageApp angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-1">
+   
+    
+    <div>
+         <button type="button"
+                 class="btn btn-default"
+                 ng-click="prev()"
+                 ng-disabled="i <= 0"> previous </button>
+
+         <button type="button"
+                 class="btn btn-default"
+                 ng-click="next()"
+                 ng-disabled="i >= data.length - 1"> next </button>
+    </div>
+    <div tl-load-image="data[i].url"
+         tl-load-image-options="{ delay : 1000 }"
+         class="thumbnail">
+         <img alt="{{ data[i].alt }}"
+              title="{{ data[i].title }}" />
+    </div>
+
+    <hr><hr>
+
+    <div ng-repeat="image in data"
+         tl-load-image="image.url"
+         tl-load-image-options="{ delay : (($index + 1) * 2000) }" class="thumbnail">
+    </div>
+</script>
+</div>
+<div class="tab-pane" title="style.css">
+<pre class="prettyprint linenums" ng-set-text="style.css"></pre>
+<style type="text/css" id="style.css">
+        .tl-load-image {
+             max-width:200px;
+             min-height: 100px;
+             text-align:center;
+             margin: 0 auto;
+        }
+
+        .tl-load-image.loading {
+             background : #333;
+             color : #fff;
+        }
+
+         .tl-load-image.loading:before {
+             content : '...loading';
+         }
+
+        .tl-load-image.loading img {
+             display: none;
+        }
+    </style>
+</div>
+<div class="tab-pane" title="script.js">
+<pre class="prettyprint linenums" ng-set-text="script.js-0"></pre>
+<script type="text/ng-template" id="script.js-0">
+        angular
+             .module('truelab.loadImageApp', ['truelab.loadImage'])
+             .run(function ($rootScope) {
+
+                 $rootScope.i = 0;
+                 $rootScope.data = [{
+                     url : 'https://pbs.twimg.com/profile_images/2149314222/square.png',
+                     alt : 'angularJS logo',
+                     title : 'angularJS logo'
+                 },
+                 {
+                     url : 'http://static.grayghostvisuals.com/imgblog/grunt.png',
+                     alt : 'GruntJS Logo',
+                     title : 'GruntJS Logo'
+                 },
+                 {
+                     url : 'http://cordova.apache.org/images/cordova_bot.png',
+                     alt  : 'Cordova Logo',
+                     title : 'Cordova Logo'
+                 }];
+
+                 $rootScope.next = function () {
+                     $rootScope.i++;
+                 };
+
+                 $rootScope.prev = function () {
+                     $rootScope.i--;
+                 };
+             });
+    </script>
+</div>
+</div><h4 id="example_demo">Demo</h4>
+<div class="well doc-example-live animate-container" ng-embed-app="truelab.loadImageApp" ng-set-html="index.html-1" ng-eval-javascript="script.js-0"></div>
+</div></div>
+</div>
