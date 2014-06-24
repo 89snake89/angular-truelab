@@ -27,25 +27,31 @@ to control visualization</p>
 </div></td></tr></tbody></table></div>
 <h2 id="example">Example</h2>
 <div class="example"><div class="truelab-loadimage-directive-page truelab-loadimage-directive-tlloadimage-page"><h4 id="example_source">Source</h4>
-<div source-edit="truelab.loadImageApp" source-edit-deps="angular.js script.js" source-edit-html="index.html-1" source-edit-css="style.css" source-edit-js="script.js-0" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div source-edit="truelab.loadImageApp" source-edit-deps="angular.js script.js" source-edit-html="index.html-2" source-edit-css="style.css-1" source-edit-js="script.js-0" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-1" ng-html-wrap-loaded="truelab.loadImageApp angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-1">
+<pre class="prettyprint linenums" ng-set-text="index.html-2" ng-html-wrap-loaded="truelab.loadImageApp angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-2">
    
     
     <div>
+         <div class="form-group">
+            <label> Delay : </label>
+            <input type="number" ng-model="options.delay" class="form-control">
+         </div>
          <button type="button"
                  class="btn btn-default"
                  ng-click="prev()"
-                 ng-disabled="i <= 0"> previous </button>
+                 ng-disabled="i <= 0 || pending === true "> previous </button>
 
          <button type="button"
                  class="btn btn-default"
                  ng-click="next()"
-                 ng-disabled="i >= data.length - 1"> next </button>
+                 ng-disabled="i >= data.length - 1 || pending === true"> next </button>
+
+
     </div>
     <div tl-load-image="data[i].url"
-         tl-load-image-options="{ delay : 1000 }"
+         tl-load-image-options="options"
          class="thumbnail">
          <img alt="{{ data[i].alt }}"
               title="{{ data[i].title }}" />
@@ -60,13 +66,14 @@ to control visualization</p>
 </script>
 </div>
 <div class="tab-pane" title="style.css">
-<pre class="prettyprint linenums" ng-set-text="style.css"></pre>
-<style type="text/css" id="style.css">
+<pre class="prettyprint linenums" ng-set-text="style.css-1"></pre>
+<style type="text/css" id="style.css-1">
         .tl-load-image {
-             max-width:200px;
-             min-height: 100px;
+             width:200px;
+             height: 200px;
              text-align:center;
              margin: 0 auto;
+             overflow:hidden;
         }
 
         .tl-load-image.loading {
@@ -91,6 +98,10 @@ to control visualization</p>
              .run(function ($rootScope) {
 
                  $rootScope.i = 0;
+                 $rootScope.options = {
+                     delay : 200,
+                     eventId : 'myImage'
+                 };
                  $rootScope.data = [{
                      url : 'https://pbs.twimg.com/profile_images/2149314222/square.png',
                      alt : 'angularJS logo',
@@ -114,10 +125,18 @@ to control visualization</p>
                  $rootScope.prev = function () {
                      $rootScope.i--;
                  };
+
+                 $rootScope.$on('tlLoadImage:pending:myImage', function () {
+                     $rootScope.pending = true;
+                 });
+
+                 $rootScope.$on('tlLoadImage:finally:myImage', function () {
+                     $rootScope.pending = false;
+                 });
              });
     </script>
 </div>
 </div><h4 id="example_demo">Demo</h4>
-<div class="well doc-example-live animate-container" ng-embed-app="truelab.loadImageApp" ng-set-html="index.html-1" ng-eval-javascript="script.js-0"></div>
+<div class="well doc-example-live animate-container" ng-embed-app="truelab.loadImageApp" ng-set-html="index.html-2" ng-eval-javascript="script.js-0"></div>
 </div></div>
 </div>

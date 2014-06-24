@@ -19,7 +19,25 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "truelab.loadImage",
       "shortDescription": "Append image only when is loaded, add css state classes on loading and on error",
-      "keywords": "$rootscope add alt angular angularjs apache api append auto background btn btn-default button class classes color content control cordova css data delay directive display error fff function grayghostvisuals gruntjs http https i-- image img length loaded loadimage loadimageapp loading logo margin max-width min-height module ng-click ng-disabled ng-repeat options org png prev previous service src text-align thumbnail title tl-load-image tl-load-image-options tlloadimage tlloadimageoptions truelab twimg type url visualization"
+      "keywords": "$on $rootscope add alt angular angularjs apache api append auto background btn btn-default button class classes color content control cordova css data delay directive display error eventid false fff form-control form-group function grayghostvisuals gruntjs height http https i-- image img length loaded loadimage loadimageapp loading logo margin module myimage ng-click ng-disabled ng-model ng-repeat number options org overflow pending png prev previous service src text-align thumbnail title tl-load-image tl-load-image-options tlloadimage tlloadimageoptions true truelab twimg type url visualization width"
+    },
+    {
+      "section": "api",
+      "id": "truelab.loadImage.mock.service:$$image",
+      "shortName": "$$image",
+      "type": "service",
+      "moduleName": "truelab.loadImage.mock",
+      "shortDescription": "Mock implementation of truelab.loadImage.service:$$image",
+      "keywords": "$new api array callback calling error false flush function images implementation instantiated loadimage mock onerror onload property service true truelab undefined"
+    },
+    {
+      "section": "api",
+      "id": "truelab.loadImage.service:$$image",
+      "shortName": "$$image",
+      "type": "service",
+      "moduleName": "truelab.loadImage",
+      "shortDescription": "This a private service (note &#39;$$&#39; prefix) that wraps Image object constructor.",
+      "keywords": "$new api function image loadimage object prefix private service truelab window wraps"
     },
     {
       "section": "api",
@@ -28,7 +46,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "truelab.loadImage",
       "shortDescription": "A service that allows developers to load images with promise interface",
-      "keywords": "$q $rootscope $timeout $tlloadimage allows angular api btn btn-default catch class delay developers error false files finally function http image images interface jpg load loadimage loadimageapp loading module ng-click ng-show ng-src promise reject resolve service src true truelab undefined url wordpress"
+      "keywords": "$q $rootscope $timeout $tlloadimage allows angular api auto btn btn-default catch class delay developers error false files finally function height http image images interface jpg load loadimage loadimageapp loading margin module ng-click ng-show ng-src overflow promise reject resolve service src text-align thumbnail tl-load-image true truelab undefined url width wordpress"
     },
     {
       "section": "api",

@@ -10,8 +10,27 @@
  */
 angular.module('truelab.loadImage', ['ng'])
 
-    .factory('$$image', function ($window) {
-        return $window.Image;
+    /**
+     * @ngdoc service
+     * @name truelab.loadImage.service:$$image
+     *
+     * @description
+     * This a private service (note '$$' prefix) that wraps Image object constructor.
+     */
+    .factory('$$image', function () {
+        return {
+            /**
+             *
+             * @ngdoc function
+             * @name $$image#$new
+             * @methodOf truelab.loadImage.service:$$image
+             *
+             * @returns {HTMLImageElement} image - new window.Image object
+             */
+            $new : function () {
+                return new window.Image();
+            }
+        }
     })
 
    /**
@@ -49,10 +68,20 @@ angular.module('truelab.loadImage', ['ng'])
     *                      };
     *                  });
     *         </script>
+    *         <style>
+    *             .tl-load-image {
+    *                  width:200px;
+    *                  height: 200px;
+    *                  text-align:center;
+    *                  margin: 0 auto;
+    *                  overflow:hidden;
+    *             }
+    *         </style>
+    *         <a class="btn btn-default" ng-click="load()">load</a>
+    *
     *         <div ng-show="loading">loading...</div>
     *         <div ng-show="error">{{ error }}</div>
-    *         <div ng-show="image"><img ng-src="{{ image.src }}" /></div>
-    *         <a class="btn btn-default" ng-click="load()">load</a>
+    *         <div ng-show="image" class="tl-load-image"><img ng-src="{{ image.src }}" class="thumbnail"/></div>
     *
     *     </doc:source>
     * </doc:example>
@@ -77,7 +106,7 @@ angular.module('truelab.loadImage', ['ng'])
                 var self = this;
 
                 var deferred = $q.defer(),
-                    image = new $$image();
+                    image = $$image.$new();
 
                 image.onload = function () {
                     self.__fn(image, delay, deferred, 'resolve');
@@ -88,9 +117,6 @@ angular.module('truelab.loadImage', ['ng'])
                 };
 
                 image.src = src;
-
-                // test stuff
-                this.__image = image;
 
                 return deferred.promise;
             },
@@ -108,8 +134,7 @@ angular.module('truelab.loadImage', ['ng'])
 
                     deferred[method](image);
                 }
-            },
-            __image : undefined
+            }
         };
     })
 
@@ -168,6 +193,10 @@ angular.module('truelab.loadImage', ['ng'])
      *                  .run(function ($rootScope) {
      *
      *                      $rootScope.i = 0;
+     *                      $rootScope.options = {
+     *                          delay : 200,
+     *                          eventId : 'myImage'
+     *                      };
      *                      $rootScope.data = [{
      *                          url : 'https://pbs.twimg.com/profile_images/2149314222/square.png',
      *                          alt : 'angularJS logo',
@@ -191,14 +220,23 @@ angular.module('truelab.loadImage', ['ng'])
      *                      $rootScope.prev = function () {
      *                          $rootScope.i--;
      *                      };
+     *
+     *                      $rootScope.$on('tlLoadImage:pending:myImage', function () {
+     *                          $rootScope.pending = true;
+     *                      });
+     *
+     *                      $rootScope.$on('tlLoadImage:finally:myImage', function () {
+     *                          $rootScope.pending = false;
+     *                      });
      *                  });
      *         </script>
      *         <style>
      *             .tl-load-image {
-     *                  max-width:200px;
-     *                  min-height: 100px;
+     *                  width:200px;
+     *                  height: 200px;
      *                  text-align:center;
      *                  margin: 0 auto;
+     *                  overflow:hidden;
      *             }
      *
      *             .tl-load-image.loading {
@@ -215,18 +253,24 @@ angular.module('truelab.loadImage', ['ng'])
      *             }
      *         </style>
      *         <div>
+     *              <div class="form-group">
+     *                 <label> Delay : </label>
+     *                 <input type="number" ng-model="options.delay" class="form-control">
+     *              </div>
      *              <button type="button"
      *                      class="btn btn-default"
      *                      ng-click="prev()"
-     *                      ng-disabled="i <= 0"> previous </button>
+     *                      ng-disabled="i <= 0 || pending === true "> previous </button>
      *
      *              <button type="button"
      *                      class="btn btn-default"
      *                      ng-click="next()"
-     *                      ng-disabled="i >= data.length - 1"> next </button>
+     *                      ng-disabled="i >= data.length - 1 || pending === true"> next </button>
+     *
+     *
      *         </div>
      *         <div tl-load-image="data[i].url"
-     *              tl-load-image-options="{ delay : 1000 }"
+     *              tl-load-image-options="options"
      *              class="thumbnail">
      *              <img alt="{{ data[i].alt }}"
      *                   title="{{ data[i].title }}" />
@@ -245,10 +289,32 @@ angular.module('truelab.loadImage', ['ng'])
      */
     .directive('tlLoadImage', function ($tlLoadImage, $tlLoadImageOptions) {
 
-        function __copyAttributes($element, attributes) {
-            angular.forEach(attributes, function(attr) {
-                $element.attr(attr.name, attr.value);
+        /**
+         * @param $from
+         * @param $to
+         * @private
+         */
+        function __copyAttributes($from, $to, exclude) {
+            angular.forEach($from.prop('attributes'), function(attr) {
+                if(angular.isArray(exclude)) {
+                    if( exclude.indexOf(attr.name) < 0 ) {
+                        $to.attr(attr.name, attr.value);
+                    }
+                }else{
+                    $to.attr(attr.name, attr.value);
+                }
+
             });
+        }
+
+        /**
+         * @param   {string} event
+         * @param   {string} optionsEventId
+         * @returns {string}
+         * @private
+         */
+        function __eventName(event, optionsEventId) {
+            return ('tlLoadImage:' + event ) + (optionsEventId ? ':' + optionsEventId : '');
         }
 
         return {
@@ -257,8 +323,8 @@ angular.module('truelab.loadImage', ['ng'])
             scope : true,
             link : function (scope, element, attrs) {
                 var options        = scope.$eval(attrs.tlLoadImageOptions) || {},
-                    $imageElement  = element.children('img'),
-                    $imageElementAttributes = $imageElement.prop("attributes");
+                    $imageElement  = element.children('img');
+
 
                 options = angular.extend({}, $tlLoadImageOptions, options);
 
@@ -269,11 +335,13 @@ angular.module('truelab.loadImage', ['ng'])
                     if(angular.isObject(val)) {
                         options = angular.extend({}, $tlLoadImageOptions, val);
                     }
-                });
+                }, true);
 
                 scope.$watch(attrs['tlLoadImage'], function (val) {
 
                     if(val) {
+
+                        scope.$emit(__eventName('pending', options.eventId));
 
                         element
                             .removeClass(options.css.error)
@@ -285,7 +353,8 @@ angular.module('truelab.loadImage', ['ng'])
                             .then(function (image) {
 
                                 var $image = angular.element(image);
-                                __copyAttributes($image, $imageElementAttributes);
+
+                                __copyAttributes($imageElement, $image, ['src','ng-src','tl-load-image']);
 
                                 if(element.children('img').length > 0 ) {
 
@@ -302,6 +371,7 @@ angular.module('truelab.loadImage', ['ng'])
                             })
                             .finally(function () {
                                 element.removeClass(options.css.loading);
+                                scope.$emit(__eventName('finally', options.eventId));
                             })
                     }
                 });
