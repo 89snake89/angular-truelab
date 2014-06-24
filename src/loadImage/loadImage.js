@@ -139,7 +139,7 @@ angular.module('truelab.loadImage', ['ng'])
     })
 
     /**
-     * @ngdoc object
+     * @ngdoc service
      * @name truelab.loadImage.service:$tlLoadImageOptions
      *
      * @property {int} delay          - delay applied when loads images ```( default : 0 )```
@@ -151,9 +151,10 @@ angular.module('truelab.loadImage', ['ng'])
      * tlLoadImage directive default options, override this value to customize
      * all tlLoadImage directives.
      *
-     * ```
+     * ### Default object
+     * ```javascript
      * {
-     * delay : 0,
+     *   delay : 0,
      *   css : {
      *     base : 'tl-load-image',
      *     loading : 'loading',
@@ -181,8 +182,8 @@ angular.module('truelab.loadImage', ['ng'])
      * Append image only when is loaded, add css state classes on loading and on error
      * to control visualization
      *
-     * @param {expression} tlLoadImage - the image src
-     * @param {expression} tlLoadImageOptions - directive options
+     * @param {string} tlLoadImage - the image src
+     * @param {string} tlLoadImageOptions - an object for directive options
      *
      * @example
      * <doc:example module="truelab.loadImageApp">
