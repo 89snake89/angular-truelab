@@ -2,15 +2,8 @@
 
 module.exports = function(grunt) {
 
-
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-ngmin');
-    grunt.loadNpmTasks('grunt-ngdocs');
-    grunt.loadNpmTasks('grunt-gh-pages');
+    require('load-grunt-tasks')(grunt);
+    require('time-grunt')(grunt);
 
     grunt.initConfig({
         pkg : grunt.file.readJSON('package.json'),
@@ -70,14 +63,14 @@ module.exports = function(grunt) {
             all : {
                 expand: true,
                 cwd: 'src',
-                src: ['**/*.js','!**/*.spec.js'],
+                src: ['**/*.js','!**/*.spec.js','!**/*.mock.js'],
                 dest: '.tmp/src'
             }
         },
         concat: {
             dist: {
                 files: {
-                    'dist/angular-truelab.js': ['src/**/*.js','!src/**/*.spec.js'],
+                    'dist/angular-truelab.js': ['src/**/*.js','!src/**/*.spec.js','!src/**/*.mock.js'],
                     'dist/angular-truelab.min.js': ['.tmp/src/**/*.js']
                 }
             }
@@ -96,7 +89,7 @@ module.exports = function(grunt) {
             }
         },
         ngdocs: {
-            options :{
+            options : {
                 scripts: ['angular.js','dist/angular-truelab.js'],
                 html5Mode: false
             },

@@ -2,39 +2,19 @@
 
 describe('truelab.loadImage', function () {
 
-    var $$imageMock = function () {};
-
-    $$imageMock.prototype = {
-        src : undefined,
-        onload : angular.noop,
-        onerror : angular.noop,
-        flush : function (error) {
-            if(error) {
-                this.onerror.call(this);
-            }else{
-                this.onload.call(this);
-            }
-        }
-    };
-
-
-
     describe('$tlLoadImage', function () {
 
-        var $tlLoadImage, $timeoutMock, $rootScope;
+        var $tlLoadImage, $timeout, $rootScope, $$image;
 
         beforeEach(module('truelab.loadImage'));
+        beforeEach(module('truelab.loadImage.mock'));
 
-        beforeEach(function () {
-            module(function ($provide) {
-                $provide.value('$$image', $$imageMock);
-            });
-        });
 
-        beforeEach(inject(function (_$tlLoadImage_, _$timeout_, _$rootScope_) {
+        beforeEach(inject(function (_$tlLoadImage_, _$timeout_, _$rootScope_, _$$image_) {
             $tlLoadImage = _$tlLoadImage_;
-            $timeoutMock = _$timeout_;
+            $timeout = _$timeout_;
             $rootScope = _$rootScope_.$new();
+            $$image = _$$image_;
         }));
 
         it('should load an image', function () {
@@ -50,7 +30,7 @@ describe('truelab.loadImage', function () {
                     image = i;
                 });
 
-            $tlLoadImage.__image.flush();
+            $$image.flush();
             $rootScope.$digest();
 
             expect(image).toBeDefined();
@@ -70,7 +50,7 @@ describe('truelab.loadImage', function () {
                     rejected = i;
                 });
 
-            $tlLoadImage.__image.flush(true);
+            $$image.flush(true);
             $rootScope.$digest();
 
             expect(resolved).not.toBeDefined();
@@ -89,8 +69,8 @@ describe('truelab.loadImage', function () {
                     resolved = i;
                 });
 
-            $tlLoadImage.__image.flush();
-            $timeoutMock.flush();
+            $$image.flush();
+            $timeout.flush();
             $rootScope.$digest(); // flush $q
 
             expect(resolved).toBeDefined();
@@ -99,6 +79,7 @@ describe('truelab.loadImage', function () {
 
     });
 
+    // FIXME : ASYNC TEST FAILS
     describe('tlLoadImage directive', function () {
         var html = '<div tl-load-image="src" tl-load-image-options="options"><img title="{{ title }}" class="my-class"></div>',
             $compile, $rootScope,  $tlLoadImage, $timeoutMock, element, title = 'test',
@@ -141,7 +122,7 @@ describe('truelab.loadImage', function () {
                 expect(element.html()).toBe('');
             });
 
-            waits(3000); // wait window.Image loads
+            waits(4000); // wait window.Image loads
 
             runs(function () {
                 $timeoutMock.flush();
@@ -161,7 +142,7 @@ describe('truelab.loadImage', function () {
                 expect(element.html()).toBe('');
             });
 
-            waits(3000); // wait window.Image loads
+            waits(4000);
 
             runs(function () {
                 $timeoutMock.flush();
@@ -175,7 +156,6 @@ describe('truelab.loadImage', function () {
                 expect(element.find('img').attr('class')).toBe('my-class');
             });
         });
-
 
     });
 
