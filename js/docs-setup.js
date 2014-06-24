@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "truelab.loadImage",
       "shortDescription": "Append image only when is loaded, add css state classes on loading and on error",
-      "keywords": "$on $rootscope add alt angular angularjs apache api append auto background btn btn-default button class classes color content control cordova css data delay directive display error eventid false fff form-control form-group function grayghostvisuals gruntjs height http https i-- image img length loaded loadimage loadimageapp loading logo margin module myimage ng-click ng-disabled ng-model ng-repeat number options org overflow pending png prev previous service src text-align thumbnail title tl-load-image tl-load-image-options tlloadimage tlloadimageoptions true truelab twimg type url visualization width"
+      "keywords": "$on $rootscope add alt angular angularjs apache api append auto background btn btn-default button class classes color content control cordova css data delay directive display error eventid false fff form-control form-group function grayghostvisuals gruntjs height http https i-- image img length loaded loadimage loadimageapp loading logo margin module myimage ng-click ng-disabled ng-model ng-repeat number object options org overflow pending png prev previous service src text-align thumbnail title tl-load-image tl-load-image-options tlloadimage tlloadimageoptions true truelab twimg type url visualization width"
     },
     {
       "section": "api",
@@ -52,10 +52,10 @@ NG_DOCS={
       "section": "api",
       "id": "truelab.loadImage.service:$tlLoadImageOptions",
       "shortName": "$tlLoadImageOptions",
-      "type": "object",
+      "type": "service",
       "moduleName": "truelab.loadImage",
       "shortDescription": "tlLoadImage directive default options, override this value to customize",
-      "keywords": "api applied base class css customize default delay directive directives error images loadimage loading loads object options override service tl-load-image tlloadimage truelab truelab-loadimage-service--tlloadimageoptions-page truelab-loadimage-service-page"
+      "keywords": "api applied base class css customize default delay directive directives error images javascript loadimage loading loads object options override service tl-load-image tlloadimage truelab truelab-loadimage-service--tlloadimageoptions-page truelab-loadimage-service-page"
     }
   ],
   "apis": {
