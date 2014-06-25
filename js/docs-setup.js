@@ -5,6 +5,24 @@ NG_DOCS={
   "pages": [
     {
       "section": "api",
+      "id": "truelab._",
+      "shortName": "truelab._",
+      "type": "overview",
+      "moduleName": "truelab._",
+      "shortDescription": "truelab._ module simply wraps window._",
+      "keywords": "api module overview simply truelab window wraps"
+    },
+    {
+      "section": "api",
+      "id": "truelab._.service:_",
+      "shortName": "_",
+      "type": "service",
+      "moduleName": "truelab._",
+      "shortDescription": "it provides access to lodash or underscore library like an injectable",
+      "keywords": "access api constant http injectable library lodash service truelab underscore"
+    },
+    {
+      "section": "api",
       "id": "truelab.loadImage",
       "shortName": "truelab.loadImage",
       "type": "overview",
@@ -20,6 +38,15 @@ NG_DOCS={
       "moduleName": "truelab.loadImage",
       "shortDescription": "Append image only when is loaded, add css state classes on loading and on error",
       "keywords": "$on $rootscope add alt angular angularjs apache api append auto background btn btn-default button class classes color content control cordova css data delay directive display error eventid false fff form-control form-group function grayghostvisuals gruntjs height http https i-- image img length loaded loadimage loadimageapp loading logo margin module myimage ng-click ng-disabled ng-model ng-repeat number object options org overflow pending png prev previous service src text-align thumbnail title tl-load-image tl-load-image-options tlloadimage tlloadimageoptions true truelab twimg type url visualization width"
+    },
+    {
+      "section": "api",
+      "id": "truelab.loadImage.mock",
+      "shortName": "truelab.loadImage.mock",
+      "type": "overview",
+      "moduleName": "truelab.loadImage.mock",
+      "shortDescription": "Mock implementation of truelab.loadImage module",
+      "keywords": "api implementation loadimage mock module overview truelab"
     },
     {
       "section": "api",

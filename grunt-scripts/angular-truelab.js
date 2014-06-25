@@ -1,3 +1,26 @@
+
+/**
+ * @ngdoc overview
+ * @name truelab._
+ * @description
+ *
+ * `truelab._` module simply wraps window._
+ */
+angular
+    .module('truelab._', [])
+
+    /**
+     * @ngdoc service
+     * @name truelab._.service:_
+     * @kind constant
+     * @description
+     *
+     * it provides access to lodash or underscore library like an injectable
+     * ***constant***.
+     * {@link http://lodash.com/}
+     */
+    .constant('_', window._);
+
 'use strict';
 
 /**
@@ -30,7 +53,7 @@ angular.module('truelab.loadImage', ['ng'])
             $new : function () {
                 return new window.Image();
             }
-        }
+        };
     })
 
    /**
@@ -120,9 +143,18 @@ angular.module('truelab.loadImage', ['ng'])
 
                 return deferred.promise;
             },
+            loadAll : function (srcs) {
+                var promises = [],
+                    self = this;
+                angular.forEach(srcs, function (src) {
+                     promises.push(self.load(src));
+                });
+
+                return $q.all(promises);
+            },
             __fn : function (image, delay, deferred, method) {
 
-                if(angular.isDefined(delay) && delay != 0) {
+                if(angular.isDefined(delay) && delay !== 0) {
 
                     $timeout(function () {
 
@@ -332,13 +364,13 @@ angular.module('truelab.loadImage', ['ng'])
                 element.addClass(options.css.base);
                 element.children('img').remove();
 
-                scope.$watch(attrs['tlLoadImageOptions'], function (val) {
+                scope.$watch(attrs.tlLoadImageOptions, function (val) {
                     if(angular.isObject(val)) {
                         options = angular.extend({}, $tlLoadImageOptions, val);
                     }
                 }, true);
 
-                scope.$watch(attrs['tlLoadImage'], function (val) {
+                scope.$watch(attrs.tlLoadImage, function (val) {
 
                     if(val) {
 
@@ -373,11 +405,12 @@ angular.module('truelab.loadImage', ['ng'])
                             .finally(function () {
                                 element.removeClass(options.css.loading);
                                 scope.$emit(__eventName('finally', options.eventId));
-                            })
+                            });
                     }
+
                 });
             }
-        }
+        };
     });
 
 
