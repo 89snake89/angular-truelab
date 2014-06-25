@@ -1,4 +1,13 @@
+'use strict';
 
+/**
+ * @ngdoc overview
+ * @name truelab.loadImage.mock
+ * @description
+ *
+ * Mock implementation of {@link truelab.loadImage} module
+ *
+ */
 angular
     .module('truelab.loadImage.mock', [])
 
@@ -11,9 +20,9 @@ angular
      */
     .factory('$$image', function () {
 
-        var $$imageMock = function () {};
+        var ImageMock = function () {};
 
-        $$imageMock.prototype = {
+        ImageMock.prototype = {
             src : undefined,
             onload : angular.noop,
             onerror : angular.noop
@@ -21,13 +30,22 @@ angular
 
         return {
             /**
+             * @ngdoc property
+             * @name $$image#$$images
+             * @propertyOf truelab.loadImage.mock.service:$$image
+             *
+             * @description
+             * Array of images instantiated using {@link truelab.loadImage.mock.service:$$image#$new}.
+             */
+            $$images : [],
+            /**
              * @ngdoc function
              * @name $$image#$new
              * @methodOf truelab.loadImage.mock.service:$$image
              * @returns {$$imageMock} $$imageMock - new $$imageMock()
              */
             $new : function () {
-                var image = new $$imageMock();
+                var image = new ImageMock();
                 this.$$images.push(image);
                 return image;
             },
@@ -39,25 +57,26 @@ angular
              * @param {boolean} error - if true flush by calling onerror callback, if false or undefined
              * flush by calling onload callback
              */
-            flush : function (error) {
-                var image = this.$$images.shift();
+            flush : function (n, error) {
+                var image;
 
-                if(error) {
-                    image.onerror.call(image);
-                }else{
-                    image.onload.call(image);
+                for(var i = 0; i < ( n || 1 ); i++) {
+
+                    image = this.$$images.shift();
+
+                    if(error) {
+                        image.onerror.call(image);
+                    }else{
+                        image.onload.call(image);
+                    }
                 }
+
             },
-            /**
-             * @ngdoc property
-             * @name $$image#$$images
-             * @propertyOf truelab.loadImage.mock.service:$$image
-             *
-             * @description
-             * Array of images instantiated using {@link truelab.loadImage.mock.service:$$image#$new}.
-             */
-            $$images : []
-        }
-    })
+            reset : function () {
+                var self = this;
+                self.$$images = [];
+            }
+        };
+    });
 
 

@@ -12,15 +12,14 @@ describe('truelab.loadImage', function () {
 
         beforeEach(inject(function (_$tlLoadImage_, _$timeout_, _$rootScope_, _$$image_) {
             $tlLoadImage = _$tlLoadImage_;
-            $timeout = _$timeout_;
-            $rootScope = _$rootScope_.$new();
-            $$image = _$$image_;
+            $timeout     = _$timeout_;
+            $rootScope   = _$rootScope_.$new();
+            $$image      = _$$image_;
         }));
 
         it('should load an image', function () {
             expect($tlLoadImage.load).toBeDefined();
             var image;
-
 
             expect(image).not.toBeDefined();
 
@@ -50,7 +49,7 @@ describe('truelab.loadImage', function () {
                     rejected = i;
                 });
 
-            $$image.flush(true);
+            $$image.flush(1, true);
             $rootScope.$digest();
 
             expect(resolved).not.toBeDefined();
@@ -59,14 +58,14 @@ describe('truelab.loadImage', function () {
             expect(rejected.src).toBe('http://www.picturesnew.com/media/images/image-background.jpg');
         });
 
-        it('it use $timeout when delay param', function () {
+        it('should use $timeout when delay param is set', function () {
 
             var resolved;
 
             $tlLoadImage
                 .load('http://www.picturesnew.com/media/images/image-background.jpg', 1000)
-                .then(function (i) {
-                    resolved = i;
+                .then(function (image) {
+                    resolved = image;
                 });
 
             $$image.flush();
@@ -75,6 +74,26 @@ describe('truelab.loadImage', function () {
 
             expect(resolved).toBeDefined();
             expect(resolved.src).toBe('http://www.picturesnew.com/media/images/image-background.jpg');
+        });
+
+        it('should load multiple images', function () {
+            var resolved,
+                srcs = ['/1.jpg','/2.jpg','/3.jpg'];
+
+            expect(resolved).not.toBeDefined();
+
+            $tlLoadImage
+                .loadAll(srcs)
+                .then(function (images) {
+                    resolved = images;
+                });
+
+            $$image.flush(srcs.length);
+            $rootScope.$digest();
+
+            expect(resolved).toBeDefined();
+            expect(resolved).toBeArray();
+            expect(resolved[0].src).toBe(srcs[0]);
         });
 
     });

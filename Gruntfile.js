@@ -7,6 +7,32 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg : grunt.file.readJSON('package.json'),
+        jshint : {
+            src : {
+                options : {
+                    jshintrc : './.jshintrc'
+                },
+                files : {
+                    src : ['src/**/*.js','!src/**/*.spec.js']
+                }
+            },
+            test : {
+                options : {
+                    jshintrc : './.jshintrc-test'
+                },
+                files : {
+                    src : ['src/**/*.spec.js']
+                }
+            },
+            grunt : {
+                options : {
+                    jshintrc : './.jshintrc'
+                },
+                files : {
+                    src : ['./Gruntfile.js']
+                }
+            }
+        },
         karma : {
             options : {
                 configFile: 'karma.conf.js'
@@ -42,7 +68,15 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            //run unit tests with karma (server needs to be already running)
+            grunt : {
+                files: ['Gruntfile.js'],
+                tasks: ['jshint:grunt']
+            },
+            jshint : {
+                files: ['src/**/*.js'],
+                tasks: ['jshint']
+            },
+            //run unit tests with karma (server needs to be already running
             unit: {
                 files: ['src/**/*.js'],
                 tasks: ['karma:unit:run'] //NOTE the :run flag
@@ -127,6 +161,11 @@ module.exports = function(grunt) {
     grunt.registerTask('publish-docs', [
         'docs',
         'gh-pages:docs'
+    ]);
+
+    grunt.registerTask('travis', [
+        'jshint',
+        'karma:continuous'
     ]);
 
 };

@@ -16,4 +16,4 @@ install:
   - bower install
 
 script:
-  - grunt karma:continuous
+  - grunt travis
