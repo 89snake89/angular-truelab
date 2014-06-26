@@ -5,6 +5,8 @@
  * @name truelab.debounce
  * @description
  *
+ * # truelab.debounce
+ *
  * The `truelab.debounce` module
  *
  */

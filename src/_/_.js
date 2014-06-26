@@ -4,7 +4,9 @@
  * @name truelab._
  * @description
  *
- * `truelab._` module simply wraps window._
+ * # truelab._
+ *
+ * The `truelab._` module simply wraps window._
  */
 angular
     .module('truelab._', [])

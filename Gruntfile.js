@@ -113,8 +113,18 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dist/angular-truelab.js': ['src/index.js','src/**/*.js','!src/**/*.spec.js','!src/**/*.mock.js'],
-                    'dist/angular-truelab.min.js': ['.tmp/src/index.js','.tmp/src/**/*.js']
+                    'dist/angular-truelab.js': [
+                        'src/index.js',
+                        'src/**/*/index.js',
+                        'src/**/*.js',
+                        '!src/**/*.spec.js',
+                        '!src/**/*.mock.js'
+                    ],
+                    'dist/angular-truelab.min.js': [
+                        '.tmp/src/index.js',
+                        '.tmp/src/**/*/index.js',
+                        '.tmp/src/**/*.js'
+                    ]
                 }
             }
         },
@@ -145,10 +155,24 @@ module.exports = function(grunt) {
         ngdocs: {
             options : {
                 startPage: '/api/truelab',
-                scripts: ['angular.js','dist/angular-truelab.min.js'],
-                html5Mode: false
+                scripts: [
+                    'bower_components/jquery/dist/jquery.min.js',
+                    'angular.js',
+                    'dist/angular-truelab.min.js'
+                ],
+                html5Mode: true,
+                discussions: {
+                    shortName: 'angulartruelab',
+                    url: 'http://truelab.github.io/angular-truelab',
+                    dev: false
+                }
             },
-            all: ['src/**/*.js','!src/**/*.spec.js']
+            all: ['src/**/*.js','!src/**/*.spec.js','!src/**/*.mock.js'],
+            mocks :  {
+                title : 'Mocks Documentation',
+                src: ['src/**/*.mock.js'],
+                api : true
+            }
         },
         'gh-pages': {
             docs : {
@@ -161,8 +185,10 @@ module.exports = function(grunt) {
             dist : {
                 options : {
                     base: 'dist',
+                    branch : 'dist',
                     message : 'Update dist ' + banner
-                }
+                },
+                src : ['**']
             }
         }
     });
@@ -198,7 +224,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('publish-dist', [
         'jshint',
-        'karma:coverage',
+        'karma:continuous',
         'build',
         'gh-pages:dist'
     ]);

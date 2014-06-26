@@ -5,6 +5,8 @@
  * @name truelab.loadImage
  * @description
  *
+ * # truelab.loadImage
+ *
  * The `truelab.loadImage` module allow developers to load images like promises.
  *
  */

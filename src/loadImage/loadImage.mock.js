@@ -5,7 +5,8 @@
  * @name truelab.loadImage.mock
  * @description
  *
- * Mock implementation of {@link truelab.loadImage} module
+ * # truelab.loadImage.mock
+ * Mock implementation of {@link api/truelab.loadImage} module
  *
  */
 angular
@@ -16,7 +17,7 @@ angular
      * @name truelab.loadImage.mock.service:$$image
      *
      * @description
-     * Mock implementation of {@link truelab.loadImage.service:$$image}
+     * Mock implementation of {@link api/truelab.loadImage.service:$$image}
      */
     .factory('$$image', function () {
 
