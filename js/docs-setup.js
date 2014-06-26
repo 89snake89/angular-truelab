@@ -153,7 +153,7 @@ NG_DOCS={
     "api": true,
     "mocks": true
   },
-  "html5Mode": true,
+  "html5Mode": false,
   "startPage": "/api/truelab",
   "discussions": {
     "shortName": "angulartruelab",
