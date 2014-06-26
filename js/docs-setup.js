@@ -11,7 +11,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab",
       "shortDescription": "Angular truelab module",
-      "keywords": "angular api ecc loadimage module overview pack submodules truelab"
+      "keywords": "angular api ecc loadimage module overview packs submodules truelab"
     },
     {
       "section": "api",
