@@ -5,6 +5,15 @@ NG_DOCS={
   "pages": [
     {
       "section": "api",
+      "id": "truelab",
+      "shortName": "truelab",
+      "type": "overview",
+      "moduleName": "truelab",
+      "shortDescription": "Angular truelab module",
+      "keywords": "angular api ecc loadimage module overview pack submodules truelab"
+    },
+    {
+      "section": "api",
       "id": "truelab._",
       "shortName": "truelab._",
       "type": "overview",
@@ -20,6 +29,24 @@ NG_DOCS={
       "moduleName": "truelab._",
       "shortDescription": "it provides access to lodash or underscore library like an injectable",
       "keywords": "access api constant http injectable library lodash service truelab underscore"
+    },
+    {
+      "section": "api",
+      "id": "truelab.debounce",
+      "shortName": "truelab.debounce",
+      "type": "overview",
+      "moduleName": "truelab.debounce",
+      "shortDescription": "The truelab.debounce module",
+      "keywords": "api debounce module overview truelab"
+    },
+    {
+      "section": "api",
+      "id": "truelab.debounce.directive:debounce",
+      "shortName": "debounce",
+      "type": "directive",
+      "moduleName": "truelab.debounce",
+      "shortDescription": "Debounce ng-model change",
+      "keywords": "$scope angular api batman change class controller data debounce delay directive dynamic function hello input json min module ms ng-controller ng-model number placeholder row span4 span8 string superman text text2 text3 tl-debounce tldebounce tldebounceapp tldebounceappcontroller truelab type variable world write"
     },
     {
       "section": "api",
@@ -55,7 +82,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "truelab.loadImage.mock",
       "shortDescription": "Mock implementation of truelab.loadImage.service:$$image",
-      "keywords": "$new api array callback calling error false flush function images implementation instantiated loadimage mock onerror onload property service true truelab undefined"
+      "keywords": "$new api array callback calling false flush function images implementation instantiated loadimage mock onerror onload pending property reset service true truelab undefined"
     },
     {
       "section": "api",
@@ -73,7 +100,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "truelab.loadImage",
       "shortDescription": "A service that allows developers to load images with promise interface",
-      "keywords": "$q $rootscope $timeout $tlloadimage allows angular api auto btn btn-default catch class delay developers error false files finally function height http image images interface jpg load loadimage loadimageapp loading margin module ng-click ng-show ng-src overflow promise reject resolve service src text-align thumbnail tl-load-image true truelab undefined url width wordpress"
+      "keywords": "$q $rootscope $timeout $tlloadimage allows angular apache api auto btn btn-default catch class delay developers error false finally function height http image images interface load loadimage loadimageapp loading margin module ng-click ng-show ng-src org overflow png promise reject resolve service src text-align thumbnail tl-load-image true truelab undefined url width"
     },
     {
       "section": "api",
@@ -89,9 +116,9 @@ NG_DOCS={
     "api": true
   },
   "html5Mode": false,
-  "startPage": "/api",
+  "startPage": "/api/truelab",
   "scripts": [
     "angular.min.js",
-    "angular-truelab.js"
+    "angular-truelab.min.js"
   ]
 };
