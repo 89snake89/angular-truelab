@@ -55,7 +55,7 @@ angular.module('truelab.loadImage', ['ng'])
     *                         $rootScope.image = undefined;
     *                         $rootScope.error = undefined;
     *                         $tlLoadImage
-    *                              .load('http://anotherbloodyscienceblog.files.wordpress.com/2013/05/11.jpg', 1600)
+    *                              .load('http://cordova.apache.org/images/cordova_bot.png', 1600)
     *                              .then(function (image) {
     *                                  $rootScope.image = image;
     *                               })

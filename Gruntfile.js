@@ -5,8 +5,12 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
 
+    var banner = '/*! <%= bwr.name %> - v<%= bwr.version %> - ' +
+                  '<%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n';
+
     grunt.initConfig({
         pkg : grunt.file.readJSON('package.json'),
+        bwr : grunt.file.readJSON('bower.json'),
         jshint : {
             src : {
                 options : {
@@ -43,7 +47,7 @@ module.exports = function(grunt) {
             },
             coverage : {
                 singleRun: true,
-                browsers: ['Firefox','Chrome'],
+                browsers: ['Firefox','Chrome','PhantomJS'],
                 preprocessors : {
                     'src/**/!(*spec).js' : 'coverage'
                 },
@@ -90,7 +94,7 @@ module.exports = function(grunt) {
                 src : ['docs/*','!docs/.git','!docs/.gitignore','!docs/.gitkeep','!docs/README.md']
             },
             dist : {
-                src : ['dist']
+                src : ['dist/*','!dist/.git','!dist/.gitignore','!dist/.gitkeep','!dist/README.md']
             }
         },
         ngmin: {
@@ -102,18 +106,24 @@ module.exports = function(grunt) {
             }
         },
         concat: {
+            options : {
+                stripBanners : true,
+                banner: banner + ';(function( window, angular, undefined ){ \n',
+                footer: '}(window, angular));'
+            },
             dist: {
                 files: {
-                    'dist/angular-truelab.js': ['src/**/*.js','!src/**/*.spec.js','!src/**/*.mock.js'],
-                    'dist/angular-truelab.min.js': ['.tmp/src/**/*.js']
+                    'dist/angular-truelab.js': ['src/index.js','src/**/*.js','!src/**/*.spec.js','!src/**/*.mock.js'],
+                    'dist/angular-truelab.min.js': ['.tmp/src/index.js','.tmp/src/**/*.js']
                 }
             }
         },
         uglify: {
             options: {
                 preserveComments : false,
+                banner : banner,
                 mangle: {
-                    except: ['angular']
+                    except: ['window','angular','undefined']
                 }
             },
             dist: {
@@ -122,9 +132,20 @@ module.exports = function(grunt) {
                 }
             }
         },
+        copy : {
+            dist : {
+                expand: false,
+                cwd: './',
+                src: ['README.md','bower.json'],
+                dest: 'dist/',
+                flatten: true,
+                filter: 'isFile'
+            }
+        },
         ngdocs: {
             options : {
-                scripts: ['angular.js','dist/angular-truelab.js'],
+                startPage: '/api/truelab',
+                scripts: ['angular.js','dist/angular-truelab.min.js'],
                 html5Mode: false
             },
             all: ['src/**/*.js','!src/**/*.spec.js']
@@ -136,6 +157,12 @@ module.exports = function(grunt) {
                     message: 'Updates docs'
                 },
                 src : ['**']
+            },
+            dist : {
+                options : {
+                    base: 'dist',
+                    message : 'Update dist ' + banner
+                }
             }
         }
     });
@@ -143,6 +170,11 @@ module.exports = function(grunt) {
     grunt.registerTask('dev', [
         'karma:unit:start',
         'watch'
+    ]);
+
+    grunt.registerTask('check', [
+        'jshint',
+        'karma:coverage'
     ]);
 
     grunt.registerTask('docs', [
@@ -155,12 +187,20 @@ module.exports = function(grunt) {
         'clean:dist',
         'ngmin',
         'concat',
-        'uglify:dist'
+        'uglify:dist',
+        'copy:dist'
     ]);
 
     grunt.registerTask('publish-docs', [
         'docs',
         'gh-pages:docs'
+    ]);
+
+    grunt.registerTask('publish-dist', [
+        'jshint',
+        'karma:coverage',
+        'build',
+        'gh-pages:dist'
     ]);
 
     grunt.registerTask('travis', [

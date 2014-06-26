@@ -29,6 +29,7 @@
     "load-grunt-tasks": "~0.6.0",
     "time-grunt": "~0.3.2",
     "jasmine-expect": "~1.21.0",
-    "grunt-contrib-jshint": "~0.10.0"
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-copy": "~0.5.0"
   }
 }

@@ -54,7 +54,11 @@ angular
              * @name $$image#flush
              * @methodOf truelab.loadImage.mock.service:$$image
              *
-             * @param {boolean} error - if true flush by calling onerror callback, if false or undefined
+             * @description
+             * Flush pending images
+             *
+             * @param {boolean} [n] - flush for n (default : 1)
+             * @param {boolean} [error] - if true flush by calling onerror callback, if false or undefined
              * flush by calling onload callback
              */
             flush : function (n, error) {
@@ -72,6 +76,15 @@ angular
                 }
 
             },
+            /**
+             * @ngdoc function
+             * @name $$image#reset
+             * @methodOf truelab.loadImage.mock.service:$$image
+             *
+             * @description
+             *
+             * Reset mock service
+             */
             reset : function () {
                 var self = this;
                 self.$$images = [];
