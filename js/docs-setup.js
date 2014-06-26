@@ -1,6 +1,7 @@
 NG_DOCS={
   "sections": {
-    "api": "API Documentation"
+    "api": "API Documentation",
+    "mocks": "Mocks Documentation"
   },
   "pages": [
     {
@@ -18,7 +19,7 @@ NG_DOCS={
       "shortName": "truelab._",
       "type": "overview",
       "moduleName": "truelab._",
-      "shortDescription": "truelab._ module simply wraps window._",
+      "shortDescription": "truelab._",
       "keywords": "api module overview simply truelab window wraps"
     },
     {
@@ -36,7 +37,7 @@ NG_DOCS={
       "shortName": "truelab.debounce",
       "type": "overview",
       "moduleName": "truelab.debounce",
-      "shortDescription": "The truelab.debounce module",
+      "shortDescription": "truelab.debounce",
       "keywords": "api debounce module overview truelab"
     },
     {
@@ -50,11 +51,47 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "truelab.events",
+      "shortName": "truelab.events",
+      "type": "overview",
+      "moduleName": "truelab.events",
+      "shortDescription": "truelab.events",
+      "keywords": "api events module overview truelab"
+    },
+    {
+      "section": "api",
+      "id": "truelab.events.directive:tlClickout",
+      "shortName": "tlClickout",
+      "type": "directive",
+      "moduleName": "truelab.events",
+      "shortDescription": "The tlClickout directive allows you to specify custom behavior on element click out.",
+      "keywords": "$event allows angular api background behavior blue click color counter custom directive div element evaluate events expression fff height jquery module ng-init object padding tl-clickout tlclickout tlclickoutapp truelab utils"
+    },
+    {
+      "section": "api",
+      "id": "truelab.events.directive:tlFocusin",
+      "shortName": "tlFocusin",
+      "type": "directive",
+      "moduleName": "truelab.events",
+      "shortDescription": "The tlFocusin directive allows you to specify custom behavior on element focus in.",
+      "keywords": "$event allows angular api behavior counter custom directive element evaluate events expression focus module ng-init object placeholder text tl-focusin tlfocusin tlfocusinapp truelab type utils"
+    },
+    {
+      "section": "api",
+      "id": "truelab.events.directive:tlFocusout",
+      "shortName": "tlFocusout",
+      "type": "directive",
+      "moduleName": "truelab.events",
+      "shortDescription": "The tlFocusout directive allows you to specify custom behavior on element focus out.",
+      "keywords": "$event allows angular api behavior counter custom directive element evaluate events expression focus module ng-init object placeholder text tl-focusout tlfocusout tlfocusoutapp truelab type utils"
+    },
+    {
+      "section": "api",
       "id": "truelab.loadImage",
       "shortName": "truelab.loadImage",
       "type": "overview",
       "moduleName": "truelab.loadImage",
-      "shortDescription": "The truelab.loadImage module allow developers to load images like promises.",
+      "shortDescription": "truelab.loadImage",
       "keywords": "allow api developers images load loadimage module overview promises truelab"
     },
     {
@@ -65,24 +102,6 @@ NG_DOCS={
       "moduleName": "truelab.loadImage",
       "shortDescription": "Append image only when is loaded, add css state classes on loading and on error",
       "keywords": "$on $rootscope add alt angular angularjs apache api append auto background btn btn-default button class classes color content control cordova css data delay directive display error eventid false fff form-control form-group function grayghostvisuals gruntjs height http https i-- image img length loaded loadimage loadimageapp loading logo margin module myimage ng-click ng-disabled ng-model ng-repeat number object options org overflow pending png prev previous service src text-align thumbnail title tl-load-image tl-load-image-options tlloadimage tlloadimageoptions true truelab twimg type url visualization width"
-    },
-    {
-      "section": "api",
-      "id": "truelab.loadImage.mock",
-      "shortName": "truelab.loadImage.mock",
-      "type": "overview",
-      "moduleName": "truelab.loadImage.mock",
-      "shortDescription": "Mock implementation of truelab.loadImage module",
-      "keywords": "api implementation loadimage mock module overview truelab"
-    },
-    {
-      "section": "api",
-      "id": "truelab.loadImage.mock.service:$$image",
-      "shortName": "$$image",
-      "type": "service",
-      "moduleName": "truelab.loadImage.mock",
-      "shortDescription": "Mock implementation of truelab.loadImage.service:$$image",
-      "keywords": "$new api array callback calling false flush function images implementation instantiated loadimage mock onerror onload pending property reset service true truelab undefined"
     },
     {
       "section": "api",
@@ -110,14 +129,39 @@ NG_DOCS={
       "moduleName": "truelab.loadImage",
       "shortDescription": "tlLoadImage directive default options, override this value to customize",
       "keywords": "api applied base class css customize default delay directive directives error images javascript loadimage loading loads object options override service tl-load-image tlloadimage truelab truelab-loadimage-service--tlloadimageoptions-page truelab-loadimage-service-page"
+    },
+    {
+      "section": "mocks",
+      "id": "truelab.loadImage.mock",
+      "shortName": "truelab.loadImage.mock",
+      "type": "overview",
+      "moduleName": "truelab.loadImage.mock",
+      "shortDescription": "truelab.loadImage.mock",
+      "keywords": "api implementation loadimage mock mocks module overview truelab"
+    },
+    {
+      "section": "mocks",
+      "id": "truelab.loadImage.mock.service:$$image",
+      "shortName": "$$image",
+      "type": "service",
+      "moduleName": "truelab.loadImage.mock",
+      "shortDescription": "Mock implementation of api/truelab.loadImage.service:$$image",
+      "keywords": "$new api array callback calling false flush function images implementation instantiated loadimage mock mocks onerror onload pending property reset service true truelab undefined"
     }
   ],
   "apis": {
-    "api": true
+    "api": true,
+    "mocks": true
   },
-  "html5Mode": false,
+  "html5Mode": true,
   "startPage": "/api/truelab",
+  "discussions": {
+    "shortName": "angulartruelab",
+    "url": "http://truelab.github.io/angular-truelab",
+    "dev": false
+  },
   "scripts": [
+    "jquery.min.js",
     "angular.min.js",
     "angular-truelab.min.js"
   ]

@@ -18,7 +18,7 @@
     // before the base attribute is added, causing 404 and terribly slow loading of the docs app.
     (function() {
       var indexFile = (location.pathname.match(/\/(index[^\.]*\.html)/) || ['', ''])[1],
-          rUrl = /(#!\/|api|index[^\.]*\.html).*$/,
+          rUrl = /(#!\/|api|mocks|index[^\.]*\.html).*$/,
           baseUrl = location.href.replace(rUrl, indexFile),
           headEl = document.getElementsByTagName('head')[0],
           sync = true;
@@ -35,6 +35,8 @@
       addTag('script', {src: 'js/google-code-prettify.js'}, sync);
       addTag('script', {src: 'js/marked.js'}, sync);
 
+      
+        addTag('script', {src: 'grunt-scripts/jquery.min.js'}, sync);
       
         addTag('script', {src: 'js/angular.min.js'}, sync);
       
@@ -203,6 +205,11 @@
         <div id="loading" ng-show="loading">Loading...</div>
 
         <div ng-hide="loading" ng-include src="currentPage.partialUrl" onload="afterPartialLoaded()" autoscroll class="content slide-reveal"></div>
+
+        <div id="disqus" class="disqus">
+          <h2>Discussion</h2>
+          <div id="disqus_thread" class="content-panel-content"></div>
+        </div>
 
       </div>
     </div>
