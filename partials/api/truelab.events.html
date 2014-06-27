@@ -4,4 +4,29 @@
 </h1>
 <div><div class="truelab-events-page"><h2 id="truelabevents">truelab.events</h2>
 <p>The <code>truelab.events</code> module</p>
+<h4 id="truelabevents_directives">directives</h4>
+<ul>
+<li><a href="#/api/truelab.events.directive:tlClickout">tlClickout</a></li>
+<li><a href="#/api/truelab.events.directive:tlFocusout">tlFocusout</a></li>
+<li><a href="#/api/truelab.events.directive:tlFocusin">tlFocusin</a></li>
+</ul>
+<hr>
+<p>This module requires <strong><em>jQuery</em></strong> library.</p>
+<pre class="prettyprint linenums">
+&lt;!doctype html&gt;
+&lt;html ng-app="myApp"&gt;
+&lt;head&gt;
+  &lt;script src="js/jquery.min.js"&gt;&lt;/script&gt;&lt;!-- !!! jQuery extra-dependency --&gt;
+
+  &lt;script src="js/angular.js"&gt;&lt;/script&gt;
+  &lt;script src="js/angular-truelab.min.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // ...and add 'truelab._' as a dependency
+    var myApp = angular.module('myApp', ['truelab.events']);
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
 </div></div>

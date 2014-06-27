@@ -4,4 +4,27 @@
 </h1>
 <div><div class="truelab--page"><h2 id="truelab_">truelab._</h2>
 <p>The <code>truelab._</code> module simply wraps window._</p>
+<h4 id="truelab__constants">constants</h4>
+<ul>
+<li><a href="#/api/truelab._.service:_">_</a></li>
+</ul>
+<hr>
+<p>This module requires <strong><em>lodash</em></strong> or <strong><em>underscore</em></strong> library.</p>
+<pre class="prettyprint linenums">
+&lt;!doctype html&gt;
+&lt;html ng-app="myApp"&gt;
+&lt;head&gt;
+  &lt;script src="js/lodash.min.js"&gt;&lt;/script&gt;&lt;!-- !!! lodash extra-dependency --&gt;
+
+  &lt;script src="js/angular.js"&gt;&lt;/script&gt;
+  &lt;script src="js/angular-truelab.min.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // ...and add 'truelab._' as a dependency
+    var myApp = angular.module('myApp', ['truelab._']);
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
 </div></div>

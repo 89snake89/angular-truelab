@@ -11,7 +11,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab",
       "shortDescription": "truelab",
-      "keywords": "add angular api debounce dependency filters html included includes js loadimage main min module modules myapp ng-app overview src strings sub-modules truelab usage var"
+      "keywords": "add angular api debounce dependency filters html included includes js loadimage main min module modules myapp ng-app overview src strings sub-modules truelab var"
     },
     {
       "section": "api",
@@ -20,7 +20,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab._",
       "shortDescription": "truelab._",
-      "keywords": "api module overview simply truelab window wraps"
+      "keywords": "add angular api constants dependency extra-dependency html js library lodash min module myapp ng-app overview requires service simply src truelab var window wraps"
     },
     {
       "section": "api",
@@ -38,7 +38,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab.debounce",
       "shortDescription": "truelab.debounce",
-      "keywords": "api debounce module overview truelab"
+      "keywords": "api debounce directive directives module overview tldebounce truelab"
     },
     {
       "section": "api",
@@ -56,7 +56,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab.events",
       "shortDescription": "truelab.events",
-      "keywords": "api events module overview truelab"
+      "keywords": "add angular api dependency directive directives events extra-dependency html jquery js library min module myapp ng-app overview requires src tlclickout tlfocusin tlfocusout truelab var"
     },
     {
       "section": "api",
@@ -65,7 +65,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "truelab.events",
       "shortDescription": "The tlClickout directive allows you to specify custom behavior on element click out.",
-      "keywords": "$event allows angular api background behavior blue click color counter custom directive div element evaluate events expression fff height jquery module ng-init object padding tl-clickout tlclickout tlclickoutapp truelab"
+      "keywords": "$event allows angular api background behavior blue click color counter custom directive div element evaluate events expression fff height library module ng-init object padding requires tl-clickout tlclickout tlclickoutapp truelab"
     },
     {
       "section": "api",
@@ -92,7 +92,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab.loadImage",
       "shortDescription": "truelab.loadImage",
-      "keywords": "allow api developers images load loadimage module overview promises truelab"
+      "keywords": "$tlloadimage allow api developers directive directives images load loadimage module overview promises service services tlloadimage truelab"
     },
     {
       "section": "api",
@@ -137,7 +137,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab.strings.filters",
       "shortDescription": "truelab.strings.filters",
-      "keywords": "api filters module overview strings truelab"
+      "keywords": "api collection filter filters generic module overview strings tltruncate truelab"
     },
     {
       "section": "api",
