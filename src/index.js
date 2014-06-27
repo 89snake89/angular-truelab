@@ -15,6 +15,7 @@ angular
     .module('truelab', [
         'truelab._',
         'truelab.loadImage',
-        'truelab.debounce'
+        'truelab.debounce',
+        'truelab.strings.filters'
     ]);
 
