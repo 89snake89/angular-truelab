@@ -9,6 +9,10 @@
  *
  * The `truelab.debounce` module
  *
+ *  ### directives
+ *
+ *  - {@link truelab.debounce.directive:tlDebounce tlDebounce}
+ *
  */
 angular
     .module('truelab.debounce', [])

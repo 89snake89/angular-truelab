@@ -7,7 +7,9 @@
  *
  * # truelab.strings.filters
  *
- * The `truelab.strings.filters` module
+ * The `truelab.strings.filters` module contains a collection of generic strings filters like:
+ *
+ * - {@link truelab.strings.filters.filter:tlTruncate tlTruncate}
  *
  */
 angular

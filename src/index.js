@@ -34,8 +34,7 @@ angular
  *
  *   -  {@link truelab.strings.filters}
  *
- *
- * # Usage
+ * --------------
  *
  * <pre>
  * <!doctype html>
@@ -52,6 +51,6 @@ angular
  * </body>
  * </html>
  * </pre>
- * 
+ *
  */
 

@@ -10,6 +10,35 @@
  * # truelab.events
  *
  * The `truelab.events` module
+ *
+ * ### directives
+ *
+ *  - {@link truelab.events.directive:tlClickout tlClickout}
+ *  - {@link truelab.events.directive:tlFocusout tlFocusout}
+ *  - {@link truelab.events.directive:tlFocusin tlFocusin}
+ *
+ * ------------
+ *
+ * This module requires ***jQuery*** library.
+ *
+ *
+ * <pre>
+ * <!doctype html>
+ * <html ng-app="myApp">
+ * <head>
+ *   <script src="js/jquery.min.js"></script><!-- !!! jQuery extra-dependency -->
+ *
+ *   <script src="js/angular.js"></script>
+ *   <script src="js/angular-truelab.min.js"></script>
+ *   <script>
+ *     // ...and add 'truelab._' as a dependency
+ *     var myApp = angular.module('myApp', ['truelab.events']);
+ *   </script>
+ * </head>
+ * <body>
+ * </body>
+ * </html>
+ * </pre>
  */
 
 /**
@@ -89,10 +118,11 @@
     /**
      * @ngdoc directive
      * @name truelab.events.directive:tlClickout
-     * @require jQuery
      * @description
      *
      * The tlClickout directive allows you to specify custom behavior on element click out.
+     *
+     * This directive requires ***jQuery*** library.
      *
      * @param {expression} tlClickout Expression to evaluate upon click out. (Event object is available as $event)
      *

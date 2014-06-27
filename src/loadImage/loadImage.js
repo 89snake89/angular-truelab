@@ -9,6 +9,14 @@
  *
  * The `truelab.loadImage` module allow developers to load images like promises.
  *
+ * ### directives
+ *
+ *  - {@link truelab.loadImage.directive:tlLoadImage tlLoadImage}
+ *
+ * ### services
+ *
+ *  - {@link truelab.loadImage.service:$tlLoadImage $tlLoadImage}
+ *
  */
 angular.module('truelab.loadImage', ['ng'])
 
