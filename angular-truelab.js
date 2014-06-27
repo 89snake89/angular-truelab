@@ -1,4 +1,4 @@
-/*! angular-truelab - v0.0.0 - 2014-06-27 16:12 */
+/*! angular-truelab - v0.0.0 - 2014-06-27 16:38 */
 ;(function( window, angular, undefined ){ 
 'use strict';
 
@@ -302,7 +302,6 @@ angular
                 return function (scope, element, attrs) {
                     var fn = $parse(attrs[name]);
                     element.bind(event, function (e) {
-                        console.log('event');
                         scope.$apply(function() {
                             fn(scope, {$event: e });
                         });
