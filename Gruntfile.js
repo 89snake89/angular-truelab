@@ -200,12 +200,11 @@ module.exports = function(grunt) {
 
     grunt.registerTask('check', [
         'jshint',
-        'karma:coverage'
+        'karma:continuous'
     ]);
 
     grunt.registerTask('docs', [
         'clean:docs',
-        'build',
         'ngdocs'
     ]);
 
@@ -218,15 +217,23 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('publish-docs', [
+        'check',
+        'build',
         'docs',
         'gh-pages:docs'
     ]);
 
     grunt.registerTask('publish-dist', [
-        'jshint',
-        'karma:continuous',
+        'check',
         'build',
         'gh-pages:dist'
+    ]);
+
+    grunt.registerTask('publish', [
+        'check',
+        'build',
+        'docs',
+        'gh-pages'
     ]);
 
     grunt.registerTask('travis', [
