@@ -1,24 +1,59 @@
-/*! angular-truelab - v0.0.0 - 2014-06-27 03:19 */
+/*! angular-truelab - v0.0.0 - 2014-06-27 16:12 */
 ;(function( window, angular, undefined ){ 
 'use strict';
+
+angular
+    .module('truelab', [
+        'truelab._',
+        'truelab.loadImage',
+        'truelab.debounce',
+        'truelab.strings.filters'
+    ]);
 
 /**
  * @ngdoc overview
  * @name truelab
  *
- * @description
+ * @requires truelab._
+ * @requires truelab.loadImage
+ * @requires truelab.debounce
+ * @requires truelab.strings.filters
  *
- * # Angular truelab module
+ * @description
+ * # truelab
+ *
+ * ## The main module for truelab
+ * There are several sub-modules included with the truelab module, this module includes ALL sub-modules.
+ *
+ * The modules are:
+ *
+ *   -  {@link truelab._}
+ *
+ *   -  {@link truelab.loadImage}
+ *
+ *   -  {@link truelab.debounce}
+ *
+ *   -  {@link truelab.strings.filters}
+ *
  * ---------------------------------
  *
- * Packs all submodules truelab._, truelab.loadImage, ecc..
+ * @example
+ * <pre>
+ * <!doctype html>
+ * <html ng-app="myApp">
+ * <head>
+ *   <script src="js/angular.js"></script>
+ *   <script src="js/angular-truelab.min.js"></script>
+ *   <script>
+ *     // ...and add 'ui.router' as a dependency
+ *     var myApp = angular.module('myApp', ['truelab']);
+ *   </script>
+ * </head>
+ * <body>
+ * </body>
+ * </html>
+ * </pre>
  */
-angular
-    .module('truelab', [
-        'truelab._',
-        'truelab.loadImage',
-        'truelab.debounce'
-    ]);
 
 
 angular
@@ -517,7 +552,7 @@ angular.module('truelab.loadImage', ['ng'])
      * @name truelab.loadImage.service:$tlLoadImageOptions
      *
      * @property {int}    [delay=0]                   - delay applied when loads images
-     * @property {string} [css.base='tl-load-image''] - base css class
+     * @property {string} [css.base='tl-load-image'] - base css class
      * @property {string} [css.loading='loading']     - loading css class
      * @property {string} [css.error='error']         - error css class
      *
