@@ -47,7 +47,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "truelab.debounce",
       "shortDescription": "Debounce ng-model change",
-      "keywords": "$scope angular api batman change class controller data debounce delay directive dynamic function hello input json min module ms ng-controller ng-model number placeholder row span4 span8 string superman text text2 text3 tl-debounce tldebounce tldebounceapp tldebounceappcontroller truelab type variable world write"
+      "keywords": "$scope angular api batman change class controller data debounce delay directive dynamic function hello input json min module ms ng-controller ng-model number placeholder row span4 span8 string superman text text2 text3 tl-debounce tldebounceapp tldebounceappcontroller truelab type variable world write"
     },
     {
       "section": "api",
@@ -101,7 +101,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "truelab.loadImage",
       "shortDescription": "Append image only when is loaded, add css state classes on loading and on error",
-      "keywords": "$on $rootscope add alt angular angularjs apache api append auto background btn btn-default button class classes color content control cordova css data delay directive display error eventid false fff form-control form-group function grayghostvisuals gruntjs height http https i-- image img length loaded loadimage loadimageapp loading logo margin module myimage ng-click ng-disabled ng-model ng-repeat number object options org overflow pending png prev previous service src text-align thumbnail title tl-load-image tl-load-image-options tlloadimage tlloadimageoptions true truelab twimg type url visualization width"
+      "keywords": "$on $rootscope add alt angular angularjs apache api append auto background btn btn-default button class classes color content control cordova css data delay directive display error eventid false fff form-control form-group function grayghostvisuals gruntjs height http https i-- image img length loaded loadimage loadimageapp loading logo margin module myimage ng-click ng-disabled ng-model ng-repeat number object options org overflow pending png prev previous service src text-align thumbnail title tl-load-image tl-load-image-options tlloadimage true truelab twimg type url visualization width"
     },
     {
       "section": "api",
@@ -129,6 +129,24 @@ NG_DOCS={
       "moduleName": "truelab.loadImage",
       "shortDescription": "tlLoadImage directive default options, override this value to customize",
       "keywords": "api applied base class css customize default delay directive directives error images javascript loadimage loading loads object options override service tl-load-image tlloadimage truelab truelab-loadimage-service--tlloadimageoptions-page truelab-loadimage-service-page"
+    },
+    {
+      "section": "api",
+      "id": "truelab.strings.filters",
+      "shortName": "truelab.strings.filters",
+      "type": "overview",
+      "moduleName": "truelab.strings.filters",
+      "shortDescription": "truelab.strings.filters",
+      "keywords": "api filters module overview strings truelab"
+    },
+    {
+      "section": "api",
+      "id": "truelab.strings.filters.filter:tlTruncate",
+      "shortName": "tlTruncate",
+      "type": "filter",
+      "moduleName": "truelab.strings.filters",
+      "shortDescription": "Truncate a string if it&#39;s too long and add a suffix at the end",
+      "keywords": "$rootscope add angular api append desired example filter filters length long module mytext output string strings suffix text tltruncatefilterapp truelab truncate"
     },
     {
       "section": "mocks",
