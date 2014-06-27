@@ -18,6 +18,7 @@ angular
  * @requires truelab.strings.filters
  *
  * @description
+ *
  * # truelab
  *
  * ## The main module for truelab
@@ -33,9 +34,9 @@ angular
  *
  *   -  {@link truelab.strings.filters}
  *
- * ---------------------------------
  *
- * @example
+ * # Usage
+ *
  * <pre>
  * <!doctype html>
  * <html ng-app="myApp">
@@ -43,7 +44,7 @@ angular
  *   <script src="js/angular.js"></script>
  *   <script src="js/angular-truelab.min.js"></script>
  *   <script>
- *     // ...and add 'ui.router' as a dependency
+ *     // ...and add 'truelab' as a dependency
  *     var myApp = angular.module('myApp', ['truelab']);
  *   </script>
  * </head>
@@ -51,5 +52,6 @@ angular
  * </body>
  * </html>
  * </pre>
+ * 
  */
 
