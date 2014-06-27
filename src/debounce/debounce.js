@@ -15,7 +15,7 @@ angular
 
     /**
      * @ngdoc directive
-     * @name truelab.debounce.directive:debounce
+     * @name truelab.debounce.directive:tlDebounce
      * @function
      *
      * @description
