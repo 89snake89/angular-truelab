@@ -1,7 +1,7 @@
 /**
  * @name angular-truelab
  * @description angular-truelab - Truelab angular modules
- * @version v0.0.0 - 2014-06-27 17:17
+ * @version v0.0.0 - 2014-06-27 17:37
  * @link http://truelab.github.io/angular-truelab
  * @license MIT License, http://www.opensource.org/licenses/MIT
  **/
@@ -43,8 +43,7 @@ angular
  *
  *   -  {@link truelab.strings.filters}
  *
- *
- * # Usage
+ * --------------
  *
  * <pre>
  * <!doctype html>
@@ -61,7 +60,7 @@ angular
  * </body>
  * </html>
  * </pre>
- * 
+ *
  */
 
 
@@ -71,9 +70,36 @@ angular
  * @name truelab._
  * @description
  *
+ *
  * # truelab._
  *
  * The `truelab._` module simply wraps window._
+ *
+ * ### constants
+ *
+ *  - {@link truelab._.service:_ _}
+ *
+ * ------------
+ *
+ * This module requires ***lodash*** or ***underscore*** library.
+ *
+ * <pre>
+ * <!doctype html>
+ * <html ng-app="myApp">
+ * <head>
+ *   <script src="js/lodash.min.js"></script><!-- !!! lodash extra-dependency -->
+ *
+ *   <script src="js/angular.js"></script>
+ *   <script src="js/angular-truelab.min.js"></script>
+ *   <script>
+ *     // ...and add 'truelab._' as a dependency
+ *     var myApp = angular.module('myApp', ['truelab._']);
+ *   </script>
+ * </head>
+ * <body>
+ * </body>
+ * </html>
+ * </pre>
  */
 angular
     .module('truelab._', [])
@@ -85,7 +111,7 @@ angular
      * @description
      *
      * it provides access to lodash or underscore library like an injectable
-     * ***constant***.
+     *
      * {@link http://lodash.com/}
      */
     .constant('_', window._);
@@ -100,6 +126,10 @@ angular
  * # truelab.debounce
  *
  * The `truelab.debounce` module
+ *
+ *  ### directives
+ *
+ *  - {@link truelab.debounce.directive:tlDebounce tlDebounce}
  *
  */
 angular
@@ -261,6 +291,35 @@ angular
  * # truelab.events
  *
  * The `truelab.events` module
+ *
+ * ### directives
+ *
+ *  - {@link truelab.events.directive:tlClickout tlClickout}
+ *  - {@link truelab.events.directive:tlFocusout tlFocusout}
+ *  - {@link truelab.events.directive:tlFocusin tlFocusin}
+ *
+ * ------------
+ *
+ * This module requires ***jQuery*** library.
+ *
+ *
+ * <pre>
+ * <!doctype html>
+ * <html ng-app="myApp">
+ * <head>
+ *   <script src="js/jquery.min.js"></script><!-- !!! jQuery extra-dependency -->
+ *
+ *   <script src="js/angular.js"></script>
+ *   <script src="js/angular-truelab.min.js"></script>
+ *   <script>
+ *     // ...and add 'truelab._' as a dependency
+ *     var myApp = angular.module('myApp', ['truelab.events']);
+ *   </script>
+ * </head>
+ * <body>
+ * </body>
+ * </html>
+ * </pre>
  */
 
 /**
@@ -340,10 +399,11 @@ angular
     /**
      * @ngdoc directive
      * @name truelab.events.directive:tlClickout
-     * @require jQuery
      * @description
      *
      * The tlClickout directive allows you to specify custom behavior on element click out.
+     *
+     * This directive requires ***jQuery*** library.
      *
      * @param {expression} tlClickout Expression to evaluate upon click out. (Event object is available as $event)
      *
@@ -424,6 +484,14 @@ angular
  * # truelab.loadImage
  *
  * The `truelab.loadImage` module allow developers to load images like promises.
+ *
+ * ### directives
+ *
+ *  - {@link truelab.loadImage.directive:tlLoadImage tlLoadImage}
+ *
+ * ### services
+ *
+ *  - {@link truelab.loadImage.service:$tlLoadImage $tlLoadImage}
  *
  */
 angular.module('truelab.loadImage', ['ng'])
@@ -819,7 +887,9 @@ angular.module('truelab.loadImage', ['ng'])
  *
  * # truelab.strings.filters
  *
- * The `truelab.strings.filters` module
+ * The `truelab.strings.filters` module contains a collection of generic strings filters like:
+ *
+ * - {@link truelab.strings.filters.filter:tlTruncate tlTruncate}
  *
  */
 angular
