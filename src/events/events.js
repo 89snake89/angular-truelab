@@ -26,7 +26,7 @@
  * <doc:example module="truelab.tlFocusinApp">
  *     <doc:source>
  *         <script>
- *             angular.module('truelab.tlFocusinApp', ['truelab.utils.events']);
+ *             angular.module('truelab.tlFocusinApp', ['truelab.events']);
  *         </script>
  *         <input type="text" tl-focusin="counter = counter + 1" ng-init="counter = 0" placeholder="Focus in please..">
  *         <p>counter : {{ counter }}</p>
@@ -48,7 +48,7 @@
  * <doc:example module="truelab.tlFocusoutApp">
  *     <doc:source>
  *         <script>
- *             angular.module('truelab.tlFocusoutApp', ['truelab.utils.events']);
+ *             angular.module('truelab.tlFocusoutApp', ['truelab.events']);
  *         </script>
  *         <input type="text" tl-focusout="counter = counter - 1" ng-init="counter = 100" placeholder="Focus out please..">
  *         <p>counter : {{ counter }}</p>
@@ -100,7 +100,7 @@
      * <doc:example module="truelab.tlClickoutApp">
      *     <doc:source>
      *         <script>
-     *             angular.module('truelab.tlClickoutApp', ['truelab.utils.events']);
+     *             angular.module('truelab.tlClickoutApp', ['truelab.events']);
      *         </script>
      *         <style>
      *             div[tl-clickout] {

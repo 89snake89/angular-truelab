@@ -5,12 +5,23 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
 
-    var banner = '/*! <%= bwr.name %> - v<%= bwr.version %> - ' +
-                  '<%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n';
+    var config = {
+        meta : {
+            banner : '/**\n' +
+                ' * @name <%= bwr.name %>\n' +
+                ' * @description <%= bwr.description %>\n' +
+                ' * @version v<%= bwr.version %> - <%= buildtag %>\n' +
+                ' * @link <%= bwr.homepage %>\n' +
+                ' * @license MIT License, http://www.opensource.org/licenses/MIT\n' +
+                ' **/\n\n'
+        }
+    };
 
     grunt.initConfig({
         pkg : grunt.file.readJSON('package.json'),
         bwr : grunt.file.readJSON('bower.json'),
+        buildtag : grunt.template.today('yyyy-mm-dd HH:MM'),
+        meta : config.meta,
         jshint : {
             src : {
                 options : {
@@ -107,8 +118,8 @@ module.exports = function(grunt) {
         },
         concat: {
             options : {
-                stripBanners : true,
-                banner: banner + ';(function( window, angular, undefined ){ \n',
+                stripBanners : false,
+                banner: config.meta.banner + ';(function( window, angular, undefined ){ \n',
                 footer: '}(window, angular));'
             },
             dist: {
@@ -131,7 +142,7 @@ module.exports = function(grunt) {
         uglify: {
             options: {
                 preserveComments : false,
-                banner : banner,
+                banner : '<%= meta.banner %>',
                 mangle: {
                     except: ['window','angular','undefined']
                 }
@@ -179,7 +190,7 @@ module.exports = function(grunt) {
             docs : {
                 options : {
                     base : 'docs',
-                    message: 'Updates docs'
+                    message: 'Updates docs - <%= buildtag %>'
                 },
                 src : ['**']
             },
@@ -187,7 +198,7 @@ module.exports = function(grunt) {
                 options : {
                     base: 'dist',
                     branch : 'dist',
-                    message : 'Update dist ' + banner
+                    message : 'Updates dist - <%= buildtag %>'
                 },
                 src : ['**']
             }
@@ -210,6 +221,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('build', [
+        'clean:tmp',
         'clean:dist',
         'ngmin',
         'concat',
