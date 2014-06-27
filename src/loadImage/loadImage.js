@@ -98,8 +98,8 @@ angular.module('truelab.loadImage', ['ng'])
              * @methodOf truelab.loadImage.service:$tlLoadImage
              *
              *
-             * @param {string} src   - image url/path
-             * @param {int}    [delay] - a delay before resolve, reject (***optional***)
+             * @param {string} src     - image url/path
+             * @param {int}    [delay] - a delay before resolve, reject
              *
              * @returns {promise} promise - promise
              */
@@ -153,10 +153,10 @@ angular.module('truelab.loadImage', ['ng'])
      * @ngdoc service
      * @name truelab.loadImage.service:$tlLoadImageOptions
      *
-     * @property {int} delay          - delay applied when loads images ```( default : 0 )```
-     * @property {string} css.base    - base css class    ```(default : 'tl-load-image')```
-     * @property {string} css.loading - loading css class ```(default : 'loading')```
-     * @property {string} css.error   - error css class   ```(default : 'error')```
+     * @property {int}    [delay=0]                   - delay applied when loads images
+     * @property {string} [css.base='tl-load-image''] - base css class
+     * @property {string} [css.loading='loading']     - loading css class
+     * @property {string} [css.error='error']         - error css class
      *
      * @description
      * tlLoadImage directive default options, override this value to customize
@@ -194,7 +194,7 @@ angular.module('truelab.loadImage', ['ng'])
      * to control visualization
      *
      * @param {string} tlLoadImage - the image src
-     * @param {string} tlLoadImageOptions - an object for directive options
+     * @param {string} [tlLoadImageOptions=$tlLoadImageOptions] - an object for directive options {@link truelab.loadImage.service:$tlLoadImageOptions}
      *
      * @example
      * <doc:example module="truelab.loadImageApp">

@@ -160,7 +160,7 @@ module.exports = function(grunt) {
                     'angular.js',
                     'dist/angular-truelab.min.js'
                 ],
-                html5Mode: true,
+                html5Mode: false,
                 discussions: {
                     shortName: 'angulartruelab',
                     url: 'http://truelab.github.io/angular-truelab',

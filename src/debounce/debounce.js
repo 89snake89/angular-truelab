@@ -23,7 +23,7 @@ angular
      *
      * @element input
      *
-     * @param {int} tlDebounce - debounce delay in ms
+     * @param {int} [tlDebounce=1000] - debounce delay in ms
      *
      * @example
      * <doc:example module="truelab.tlDebounceApp">

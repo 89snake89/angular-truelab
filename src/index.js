@@ -9,7 +9,7 @@
  * # Angular truelab module
  * ---------------------------------
  *
- * pack all submodules truelab._, truelab.loadImage, ecc..
+ * Packs all submodules truelab._, truelab.loadImage, ecc..
  */
 angular
     .module('truelab', [
