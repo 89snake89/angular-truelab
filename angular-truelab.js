@@ -1,4 +1,4 @@
-/*! angular-truelab - v0.0.0 - 2014-06-26 18:25 */
+/*! angular-truelab - v0.0.0 - 2014-06-27 03:14 */
 ;(function( window, angular, undefined ){ 
 'use strict';
 
@@ -61,7 +61,7 @@ angular
      *
      * @element input
      *
-     * @param {int} tlDebounce - debounce delay in ms
+     * @param {int} [tlDebounce=1000] - debounce delay in ms
      *
      * @example
      * <doc:example module="truelab.tlDebounceApp">
@@ -461,8 +461,8 @@ angular.module('truelab.loadImage', ['ng'])
              * @methodOf truelab.loadImage.service:$tlLoadImage
              *
              *
-             * @param {string} src   - image url/path
-             * @param {int}    [delay] - a delay before resolve, reject (***optional***)
+             * @param {string} src     - image url/path
+             * @param {int}    [delay] - a delay before resolve, reject
              *
              * @returns {promise} promise - promise
              */
@@ -516,10 +516,10 @@ angular.module('truelab.loadImage', ['ng'])
      * @ngdoc service
      * @name truelab.loadImage.service:$tlLoadImageOptions
      *
-     * @property {int} delay          - delay applied when loads images ```( default : 0 )```
-     * @property {string} css.base    - base css class    ```(default : 'tl-load-image')```
-     * @property {string} css.loading - loading css class ```(default : 'loading')```
-     * @property {string} css.error   - error css class   ```(default : 'error')```
+     * @property {int}    [delay=0]                   - delay applied when loads images
+     * @property {string} [css.base='tl-load-image''] - base css class
+     * @property {string} [css.loading='loading']     - loading css class
+     * @property {string} [css.error='error']         - error css class
      *
      * @description
      * tlLoadImage directive default options, override this value to customize
@@ -557,7 +557,7 @@ angular.module('truelab.loadImage', ['ng'])
      * to control visualization
      *
      * @param {string} tlLoadImage - the image src
-     * @param {string} tlLoadImageOptions - an object for directive options
+     * @param {string} [tlLoadImageOptions=$tlLoadImageOptions] - an object for directive options {@link truelab.loadImage.service:$tlLoadImageOptions}
      *
      * @example
      * <doc:example module="truelab.loadImageApp">
@@ -754,6 +754,74 @@ angular.module('truelab.loadImage', ['ng'])
             }
         };
     });
+
+
+
+'use strict';
+
+/**
+ * @ngdoc overview
+ * @name truelab.strings.filters
+ * @description
+ *
+ * # truelab.strings.filters
+ *
+ * The `truelab.strings.filters` module
+ *
+ */
+angular
+    .module('truelab.strings.filters', [])
+
+    /**
+     * @ngdoc filter
+     * @name truelab.strings.filters.filter:tlTruncate
+     * @description
+     *
+     * Truncate a string if it's too long and add a suffix at the end
+     *
+     * @param {string} text            - string to truncate
+     * @param {int}    [length=10]     - the desired output length
+     * @param {string} [end='...']     - string to append at the end
+     *
+     * @example
+     * <doc:example module="truelab.tlTruncateFilterApp">
+     *    <doc:source>
+     *        <script>
+     *            angular
+     *              .module('truelab.tlTruncateFilterApp', ['truelab.strings.filters'])
+     *              .run(function ($rootScope) {
+     *                  $rootScope.myText = 'This is an example.';
+     *              })
+     *        </script>
+     *
+     *        <ul>
+     *            <li> {{myText|tlTruncate}} </li>
+     *            <li> {{myText|tlTruncate:6}} </li>
+     *            <li> {{myText|tlTruncate:12:' ->'}} </li>
+     *            <li> {{myText|tlTruncate:25 }} </li>
+     *        </ul>
+     *    </doc:source>
+     * </doc:example>
+     *
+     */
+    .filter('tlTruncate', function () {
+        return function (text, length, end) {
+
+            if(!angular.isString(text)) {
+                return text;
+            }
+
+            var l = angular.isNumber(length) ? length : 10,
+                e = angular.isString(end) ? end : '...';
+
+            if (text.length <= l || text.length - e.length <= l) {
+                return text;
+            }else {
+                return text.substring(0, l - e.length) + e;
+            }
+        };
+    });
+
 
 
 }(window, angular));
