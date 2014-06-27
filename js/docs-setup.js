@@ -10,8 +10,8 @@ NG_DOCS={
       "shortName": "truelab",
       "type": "overview",
       "moduleName": "truelab",
-      "shortDescription": "Angular truelab module",
-      "keywords": "angular api ecc loadimage module overview packs submodules truelab"
+      "shortDescription": "truelab",
+      "keywords": "add angular api debounce dependency filters html included includes js loadimage main min module modules myapp ng-app overview router src strings sub-modules truelab ui var"
     },
     {
       "section": "api",
@@ -163,8 +163,8 @@ NG_DOCS={
       "shortName": "$$image",
       "type": "service",
       "moduleName": "truelab.loadImage.mock",
-      "shortDescription": "Mock implementation of api/truelab.loadImage.service:$$image",
-      "keywords": "$new api array callback calling false flush function images implementation instantiated loadimage mock mocks onerror onload pending property reset service true truelab undefined"
+      "shortDescription": "Mock implementation of truelab.loadImage.$$image",
+      "keywords": "$new api array callback calling false flush function images implementation instantiated loadimage methods_ mock mocks onerror onload pending property reset service true truelab undefined"
     }
   ],
   "apis": {
