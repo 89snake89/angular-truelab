@@ -1,4 +1,4 @@
-/*! angular-truelab - v0.0.0 - 2014-06-27 03:14 */
+/*! angular-truelab - v0.0.0 - 2014-06-27 03:19 */
 ;(function( window, angular, undefined ){ 
 'use strict';
 
@@ -53,7 +53,7 @@ angular
 
     /**
      * @ngdoc directive
-     * @name truelab.debounce.directive:debounce
+     * @name truelab.debounce.directive:tlDebounce
      * @function
      *
      * @description
