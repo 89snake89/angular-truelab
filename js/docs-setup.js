@@ -65,7 +65,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "truelab.events",
       "shortDescription": "The tlClickout directive allows you to specify custom behavior on element click out.",
-      "keywords": "$event allows angular api background behavior blue click color counter custom directive div element evaluate events expression fff height jquery module ng-init object padding tl-clickout tlclickout tlclickoutapp truelab utils"
+      "keywords": "$event allows angular api background behavior blue click color counter custom directive div element evaluate events expression fff height jquery module ng-init object padding tl-clickout tlclickout tlclickoutapp truelab"
     },
     {
       "section": "api",
@@ -74,7 +74,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "truelab.events",
       "shortDescription": "The tlFocusin directive allows you to specify custom behavior on element focus in.",
-      "keywords": "$event allows angular api behavior counter custom directive element evaluate events expression focus module ng-init object placeholder text tl-focusin tlfocusin tlfocusinapp truelab type utils"
+      "keywords": "$event allows angular api behavior counter custom directive element evaluate events expression focus module ng-init object placeholder text tl-focusin tlfocusin tlfocusinapp truelab type"
     },
     {
       "section": "api",
@@ -83,7 +83,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "truelab.events",
       "shortDescription": "The tlFocusout directive allows you to specify custom behavior on element focus out.",
-      "keywords": "$event allows angular api behavior counter custom directive element evaluate events expression focus module ng-init object placeholder text tl-focusout tlfocusout tlfocusoutapp truelab type utils"
+      "keywords": "$event allows angular api behavior counter custom directive element evaluate events expression focus module ng-init object placeholder text tl-focusout tlfocusout tlfocusoutapp truelab type"
     },
     {
       "section": "api",
