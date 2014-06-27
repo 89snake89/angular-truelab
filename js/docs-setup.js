@@ -42,8 +42,8 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "truelab.debounce.directive:debounce",
-      "shortName": "debounce",
+      "id": "truelab.debounce.directive:tlDebounce",
+      "shortName": "tlDebounce",
       "type": "directive",
       "moduleName": "truelab.debounce",
       "shortDescription": "Debounce ng-model change",
