@@ -1,8 +1,9 @@
 {
   "name": "angular-truelab",
   "version": "0.0.0",
-  "description": "Truelab angular modules",
-  "main": "dist/angular-truelab.js",
+  "description": "angular-truelab - Truelab angular modules",
+  "homepage" : "http://truelab.github.io/angular-truelab",
+  "main": "angular-truelab.min.js",
   "keywords": [
     "AngularJS",
     "TrueLab",
@@ -14,6 +15,9 @@
   ],
   "license": "MIT",
   "private": true,
+  "authors" : [
+      "truelab <info@truelab.eu>"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
