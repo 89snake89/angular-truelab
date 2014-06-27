@@ -11,7 +11,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab",
       "shortDescription": "truelab",
-      "keywords": "add angular api debounce dependency filters html included includes js loadimage main min module modules myapp ng-app overview router src strings sub-modules truelab ui var"
+      "keywords": "add angular api debounce dependency filters html included includes js loadimage main min module modules myapp ng-app overview src strings sub-modules truelab usage var"
     },
     {
       "section": "api",
