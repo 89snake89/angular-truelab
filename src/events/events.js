@@ -70,7 +70,6 @@
                 return function (scope, element, attrs) {
                     var fn = $parse(attrs[name]);
                     element.bind(event, function (e) {
-                        console.log('event');
                         scope.$apply(function() {
                             fn(scope, {$event: e });
                         });
