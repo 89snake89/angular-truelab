@@ -160,6 +160,7 @@ module.exports = function(grunt) {
                     'angular.js',
                     'dist/angular-truelab.min.js'
                 ],
+                navTemplate: './ngdocs_assets/docnav.html',
                 html5Mode: false,
                 discussions: {
                     shortName: 'angulartruelab',

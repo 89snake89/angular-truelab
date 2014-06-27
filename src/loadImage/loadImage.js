@@ -154,7 +154,7 @@ angular.module('truelab.loadImage', ['ng'])
      * @name truelab.loadImage.service:$tlLoadImageOptions
      *
      * @property {int}    [delay=0]                   - delay applied when loads images
-     * @property {string} [css.base='tl-load-image''] - base css class
+     * @property {string} [css.base='tl-load-image'] - base css class
      * @property {string} [css.loading='loading']     - loading css class
      * @property {string} [css.error='error']         - error css class
      *

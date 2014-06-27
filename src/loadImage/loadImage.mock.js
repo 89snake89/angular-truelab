@@ -6,7 +6,7 @@
  * @description
  *
  * # truelab.loadImage.mock
- * Mock implementation of {@link api/truelab.loadImage} module
+ * Mock implementation of {@link api/truelab.loadImage truelab.loadImage} module
  *
  */
 angular
@@ -17,7 +17,7 @@ angular
      * @name truelab.loadImage.mock.service:$$image
      *
      * @description
-     * Mock implementation of {@link api/truelab.loadImage.service:$$image}
+     * Mock implementation of {@link api/truelab.loadImage.service:$$image truelab.loadImage.$$image}
      */
     .factory('$$image', function () {
 
@@ -36,7 +36,7 @@ angular
              * @propertyOf truelab.loadImage.mock.service:$$image
              *
              * @description
-             * Array of images instantiated using {@link truelab.loadImage.mock.service:$$image#$new}.
+             * Array of images instantiated using {@link truelab.loadImage.mock.service:$$image#methods_$new $$image.$new }.
              */
             $$images : [],
             /**

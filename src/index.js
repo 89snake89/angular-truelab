@@ -1,16 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name truelab
- *
- * @description
- *
- * # Angular truelab module
- * ---------------------------------
- *
- * Packs all submodules truelab._, truelab.loadImage, ecc..
- */
 angular
     .module('truelab', [
         'truelab._',
@@ -18,4 +7,49 @@ angular
         'truelab.debounce',
         'truelab.strings.filters'
     ]);
+
+/**
+ * @ngdoc overview
+ * @name truelab
+ *
+ * @requires truelab._
+ * @requires truelab.loadImage
+ * @requires truelab.debounce
+ * @requires truelab.strings.filters
+ *
+ * @description
+ * # truelab
+ *
+ * ## The main module for truelab
+ * There are several sub-modules included with the truelab module, this module includes ALL sub-modules.
+ *
+ * The modules are:
+ *
+ *   -  {@link truelab._}
+ *
+ *   -  {@link truelab.loadImage}
+ *
+ *   -  {@link truelab.debounce}
+ *
+ *   -  {@link truelab.strings.filters}
+ *
+ * ---------------------------------
+ *
+ * @example
+ * <pre>
+ * <!doctype html>
+ * <html ng-app="myApp">
+ * <head>
+ *   <script src="js/angular.js"></script>
+ *   <script src="js/angular-truelab.min.js"></script>
+ *   <script>
+ *     // ...and add 'ui.router' as a dependency
+ *     var myApp = angular.module('myApp', ['truelab']);
+ *   </script>
+ * </head>
+ * <body>
+ * </body>
+ * </html>
+ * </pre>
+ */
 
