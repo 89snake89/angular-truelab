@@ -14,6 +14,12 @@ module.exports = function(grunt) {
                 ' * @link <%= bwr.homepage %>\n' +
                 ' * @license MIT License, http://www.opensource.org/licenses/MIT\n' +
                 ' **/\n\n'
+        },
+        dirs : {
+            dist : 'dist',
+            docs : 'docs',
+            src  : 'src',
+            tmp  : '.tmp',
         }
     };
 
@@ -21,6 +27,7 @@ module.exports = function(grunt) {
         pkg : grunt.file.readJSON('package.json'),
         bwr : grunt.file.readJSON('bower.json'),
         buildtag : grunt.template.today('yyyy-mm-dd HH:MM'),
+        config : config,
         meta : config.meta,
         jshint : {
             src : {
@@ -28,7 +35,7 @@ module.exports = function(grunt) {
                     jshintrc : './.jshintrc'
                 },
                 files : {
-                    src : ['src/**/*.js','!src/**/*.spec.js']
+                    src : ['<%= config.dirs.src %>/**/*.js','!<%= config.dirs.src %>/**/*.spec.js']
                 }
             },
             test : {
@@ -36,7 +43,7 @@ module.exports = function(grunt) {
                     jshintrc : './.jshintrc-test'
                 },
                 files : {
-                    src : ['src/**/*.spec.js']
+                    src : ['<%= config.dirs.src %>/**/*.spec.js']
                 }
             },
             grunt : {
@@ -60,7 +67,7 @@ module.exports = function(grunt) {
                 singleRun: true,
                 browsers: ['Firefox','Chrome','PhantomJS'],
                 preprocessors : {
-                    'src/**/!(*spec).js' : 'coverage'
+                    '<%= config.dirs.src %>/**/!(*spec).js' : 'coverage'
                 },
                 reporters: [
                     'dots',
@@ -68,14 +75,14 @@ module.exports = function(grunt) {
                     'coverage'
                 ],
                 junitReporter: {
-                    'outputFile': '.tmp/test-out/test-results.xml'
+                    'outputFile': '<%= config.dirs.tmp %>/test-out/test-results.xml'
                 },
                 coverageReporter : {
                     reporters : [
-                        {type: 'html', dir : '.tmp/test-out/coverage/html/'},
-                        {type: 'cobertura', dir : '.tmp/test-out/coverage/xml/'}
+                        {type: 'html', dir : '<%= config.dirs.tmp %>/test-out/coverage/html/'},
+                        {type: 'cobertura', dir : '<%= config.dirs.tmp %>/test-out/coverage/xml/'}
                     ],
-                    dir : '.tmp/test-out/coverage/'
+                    dir : '<%= config.dirs.tmp %>/test-out/coverage/'
                 }
             },
             unit: {
@@ -88,32 +95,44 @@ module.exports = function(grunt) {
                 tasks: ['jshint:grunt']
             },
             jshint : {
-                files: ['src/**/*.js'],
+                files: ['<%= config.dirs.src %>/**/*.js'],
                 tasks: ['jshint']
             },
             //run unit tests with karma (server needs to be already running
             unit: {
-                files: ['src/**/*.js'],
+                files: ['<%= config.dirs.src %>/**/*.js'],
                 tasks: ['karma:unit:run'] //NOTE the :run flag
             }
         },
         clean : {
             tmp  : {
-                src : ['.tmp/']
+                src : ['<%= config.dirs.tmp %>/']
             },
             docs : {
-                src : ['docs/*','!docs/.git','!docs/.gitignore','!docs/.gitkeep','!docs/README.md']
+                src : [
+                    '<%= config.dirs.docs %>/*',
+                    '!<%= config.dirs.docs %>/.git',
+                    '!<%= config.dirs.docs %>/.gitignore',
+                    '!<%= config.dirs.docs %>/.gitkeep',
+                    '!<%= config.dirs.docs %>/README.md'
+                ]
             },
             dist : {
-                src : ['dist/*','!dist/.git','!dist/.gitignore','!dist/.gitkeep','!dist/README.md']
+                src : [
+                    '<%= config.dirs.dist %>/*',
+                    '!<%= config.dirs.dist %>/.git',
+                    '!<%= config.dirs.dist %>/.gitignore',
+                    '!<%= config.dirs.dist %>/.gitkeep',
+                    '!<%= config.dirs.dist %>/README.md'
+                ]
             }
         },
         ngmin: {
             all : {
                 expand: true,
-                cwd: 'src',
+                cwd: '<%= config.dirs.src %>',
                 src: ['**/*.js','!**/*.spec.js','!**/*.mock.js'],
-                dest: '.tmp/src'
+                dest: '<%= config.dirs.tmp %>/<%= config.dirs.src %>'
             }
         },
         concat: {
@@ -124,17 +143,17 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dist/angular-truelab.js': [
-                        'src/index.js',
-                        'src/**/*/index.js',
-                        'src/**/*.js',
-                        '!src/**/*.spec.js',
-                        '!src/**/*.mock.js'
+                    '<%= config.dirs.dist %>/<%= bwr.name %>.js': [
+                        '<%= config.dirs.src %>/index.js',
+                        '<%= config.dirs.src %>/**/*/index.js',
+                        '<%= config.dirs.src %>/**/*.js',
+                        '!<%= config.dirs.src %>/**/*.spec.js',
+                        '!<%= config.dirs.src %>/**/*.mock.js'
                     ],
-                    'dist/angular-truelab.min.js': [
-                        '.tmp/src/index.js',
-                        '.tmp/src/**/*/index.js',
-                        '.tmp/src/**/*.js'
+                    '<%= config.dirs.dist %>/<%= bwr.name %>.min.js': [
+                        '<%= config.dirs.tmp %>/<%= config.dirs.src %>/index.js',
+                        '<%= config.dirs.tmp %>/<%= config.dirs.src %>/**/*/index.js',
+                        '<%= config.dirs.tmp %>/<%= config.dirs.src %>/**/*.js'
                     ]
                 }
             }
@@ -149,7 +168,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dist/angular-truelab.min.js': ['dist/angular-truelab.min.js']
+                    '<%= config.dirs.dist %>/<%= bwr.name %>.min.js': ['<%= config.dirs.dist %>/<%= bwr.name %>.min.js']
                 }
             }
         },
@@ -158,7 +177,7 @@ module.exports = function(grunt) {
                 expand: false,
                 cwd: './',
                 src: ['README.md','bower.json'],
-                dest: 'dist/',
+                dest: '<%= config.dirs.dist %>/',
                 flatten: true,
                 filter: 'isFile'
             }
@@ -169,7 +188,7 @@ module.exports = function(grunt) {
                 scripts: [
                     'bower_components/jquery/dist/jquery.min.js',
                     'angular.js',
-                    'dist/angular-truelab.min.js'
+                    '<%= config.dirs.dist %>/<%= bwr.name %>.min.js'
                 ],
                 navTemplate: './ngdocs_assets/docnav.html',
                 html5Mode: false,
@@ -179,47 +198,86 @@ module.exports = function(grunt) {
                     dev: false
                 }
             },
-            all: ['src/**/*.js','!src/**/*.spec.js','!src/**/*.mock.js'],
+            all: [
+                '<%= config.dirs.src %>/**/*.js',
+                '!<%= config.dirs.src %>/**/*.spec.js',
+                '!<%= config.dirs.src %>/**/*.mock.js'
+            ],
             mocks :  {
                 title : 'Mocks Documentation',
-                src: ['src/**/*.mock.js'],
+                src: ['<%= config.dirs.src %>/**/*.mock.js'],
                 api : true
             }
         },
         'gh-pages': {
             docs : {
                 options : {
-                    base : 'docs',
+                    base : '<%= config.dirs.docs %>',
                     message: 'Updates docs - <%= buildtag %>'
                 },
                 src : ['**']
             },
             dist : {
                 options : {
-                    base: 'dist',
-                    branch : 'dist',
+                    base: '<%= config.dirs.dist %>',
+                    branch : '<%= config.dirs.dist %>',
                     message : 'Updates dist - <%= buildtag %>'
                 },
                 src : ['**']
             }
+        },
+        connect: {
+            docs: {
+              options: {
+                hostname : 'localhost',
+                port: 3333,
+                base: './<%= config.dirs.docs %>',
+                keepalive : true,
+                open : true
+              }
+            }
         }
     });
 
+    /**
+     * @name dev
+     * @description
+     *
+     * Start a keepalive karma server and watch files for changes
+     */
     grunt.registerTask('dev', [
         'karma:unit:start',
         'watch'
     ]);
 
+    /**
+     * @name check
+     * @description
+     *
+     * Hint js files, run continuous tests
+     */
     grunt.registerTask('check', [
         'jshint',
         'karma:continuous'
     ]);
 
+    /**
+     * @name docs
+     * @description
+     *
+     * Generate angular documentation
+     */
     grunt.registerTask('docs', [
         'clean:docs',
         'ngdocs'
     ]);
 
+    /**
+     * @name build
+     * @description
+     *
+     * Build a distribution version
+     */
     grunt.registerTask('build', [
         'clean:tmp',
         'clean:dist',
@@ -229,6 +287,12 @@ module.exports = function(grunt) {
         'copy:dist'
     ]);
 
+    /**
+     * @name publish-docs
+     * @description
+     *
+     * Publish documentation on github pages
+     */
     grunt.registerTask('publish-docs', [
         'check',
         'build',
@@ -236,12 +300,27 @@ module.exports = function(grunt) {
         'gh-pages:docs'
     ]);
 
+    /**
+     * @name publish-dist
+     * @description
+     *
+     * Build and push new distribution version
+     */
     grunt.registerTask('publish-dist', [
         'check',
         'build',
         'gh-pages:dist'
     ]);
 
+    /**
+     * @name publish
+     * @description
+     *
+     * Publish documentation and distribution
+     *
+     * @see publish-docs
+     * @see publish-dist
+     */
     grunt.registerTask('publish', [
         'check',
         'build',
@@ -249,6 +328,13 @@ module.exports = function(grunt) {
         'gh-pages'
     ]);
 
+    /**
+     * @name travis
+     * @description
+     *
+     * Travis-ci run this task when changes
+     * are detected on remote master branch
+     */
     grunt.registerTask('travis', [
         'jshint',
         'karma:continuous'
