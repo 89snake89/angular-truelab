@@ -58,8 +58,8 @@ angular
              * @description
              * Flush pending images
              *
-             * @param {boolean} [n] - flush for n (default : 1)
-             * @param {boolean} [error] - if true flush by calling onerror callback, if false or undefined
+             * @param {boolean} [n=1] - flush for n
+             * @param {boolean} [error=undefined] - if true flush by calling onerror callback, if false or undefined
              * flush by calling onload callback
              */
             flush : function (n, error) {
