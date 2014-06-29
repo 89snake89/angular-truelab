@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         pkg : grunt.file.readJSON('package.json'),
         bwr : grunt.file.readJSON('bower.json'),
         buildtag : grunt.template.today('yyyy-mm-dd HH:MM'),
-        config : config,å
+        config : config,
         jshint : {
             src : {
                 options : {
