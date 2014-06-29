@@ -19,7 +19,7 @@ module.exports = function(grunt) {
             dist : 'dist',
             docs : 'docs',
             src  : 'src',
-            tmp  : '.tmp',
+            tmp  : '.tmp'
         }
     };
 
@@ -27,8 +27,7 @@ module.exports = function(grunt) {
         pkg : grunt.file.readJSON('package.json'),
         bwr : grunt.file.readJSON('bower.json'),
         buildtag : grunt.template.today('yyyy-mm-dd HH:MM'),
-        config : config,
-        meta : config.meta,
+        config : config,å
         jshint : {
             src : {
                 options : {
@@ -110,20 +109,14 @@ module.exports = function(grunt) {
             },
             docs : {
                 src : [
-                    '<%= config.dirs.docs %>/*',
-                    '!<%= config.dirs.docs %>/.git',
-                    '!<%= config.dirs.docs %>/.gitignore',
-                    '!<%= config.dirs.docs %>/.gitkeep',
-                    '!<%= config.dirs.docs %>/README.md'
+                    '<%= config.dirs.docs %>/{*,.*}',
+                    '!<%= config.dirs.docs %>/{.gitkeep,.git,.gitignore,.gitkeep,README.md}'
                 ]
             },
             dist : {
                 src : [
-                    '<%= config.dirs.dist %>/*',
-                    '!<%= config.dirs.dist %>/.git',
-                    '!<%= config.dirs.dist %>/.gitignore',
-                    '!<%= config.dirs.dist %>/.gitkeep',
-                    '!<%= config.dirs.dist %>/README.md'
+                    '<%= config.dirs.dist %>/{*,.*}',
+                    '!<%= config.dirs.dist %>/{.gitkeep,.git,.gitignore,.gitkeep,README.md}'
                 ]
             }
         },
@@ -161,7 +154,7 @@ module.exports = function(grunt) {
         uglify: {
             options: {
                 preserveComments : false,
-                banner : '<%= meta.banner %>',
+                banner : '<%= config.meta.banner %>',
                 mangle: {
                     except: ['window','angular','undefined']
                 }
