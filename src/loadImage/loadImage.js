@@ -25,7 +25,7 @@ angular.module('truelab.loadImage', ['ng'])
      * @name truelab.loadImage.service:$$image
      *
      * @description
-     * This a private service (note '$$' prefix) that wraps Image object constructor.
+     * ***Private*** service (note '$$' prefix) that wraps Image object constructor.
      */
     .factory('$$image', function () {
         return {
