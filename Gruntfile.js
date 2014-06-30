@@ -187,7 +187,7 @@ module.exports = function(grunt) {
                             var parts = destPath.split('/'),
                                 filename = parts[parts.length - 1];
 
-                            return destBase + filename + '.min.js';
+                            return destBase + filename.replace('.js','.min.js')
                     }
                 })
             }

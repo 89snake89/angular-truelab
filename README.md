@@ -8,6 +8,7 @@ For docs, demos, api reference please visit [http://truelab.github.io/angular-tr
 
 [![Build Status](https://travis-ci.org/truelab/angular-truelab.png)](https://travis-ci.org/truelab/angular-truelab)
 [![dependencies](https://david-dm.org/truelab/angular-truelab.png)](https://david-dm.org/truelab/angular-truelab)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ## Install
 
@@ -25,6 +26,24 @@ and run :
 
 ```
 bower install
+```
+
+## Usage
+
+```html
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="js/angular.js"></script>
+  <script src="js/angular-truelab.min.js"></script>
+  <script>
+    // ...and add 'truelab' as a dependency
+    var myApp = angular.module('myApp', ['truelab']);
+  </script>
+</head>
+<body>
+</body>
+</html>
 ```
 
 
