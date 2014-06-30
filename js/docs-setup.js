@@ -11,7 +11,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab",
       "shortDescription": "truelab",
-      "keywords": "add angular api debounce dependency filters html included includes js loadimage main min module modules myapp ng-app overview src strings sub-modules truelab var"
+      "keywords": "add angular api countdown debounce dependency filters html included includes js loadimage main min module modules myapp ng-app overview src strings sub-modules truelab var"
     },
     {
       "section": "api",
@@ -30,6 +30,42 @@ NG_DOCS={
       "moduleName": "truelab._",
       "shortDescription": "it provides access to lodash or underscore library like an injectable",
       "keywords": "access api constant http injectable library lodash service truelab underscore"
+    },
+    {
+      "section": "api",
+      "id": "truelab.countdown",
+      "shortName": "truelab.countdown",
+      "type": "overview",
+      "moduleName": "truelab.countdown",
+      "shortDescription": "truelab.countdown",
+      "keywords": "$tlcountdown api countdown module overview service services truelab"
+    },
+    {
+      "section": "api",
+      "id": "truelab.countdown.service:$$TlCountdown",
+      "shortName": "$$TlCountdown",
+      "type": "service",
+      "moduleName": "truelab.countdown",
+      "shortDescription": "Private countdown service please see $tlCountdown",
+      "keywords": "$expired $lifecycle $log $running $timeout $tlcountdown api bool class countdown flag function lifecycle object sarcazzo service start truelab truelab-countdown-service--tlcountdown-page truelab-countdown-service-page"
+    },
+    {
+      "section": "api",
+      "id": "truelab.countdown.service:$$TlCountdownLifecycle",
+      "shortName": "$$TlCountdownLifecycle",
+      "type": "service",
+      "moduleName": "truelab.countdown",
+      "shortDescription": "Private countdown lifecycle service, please see $tlCountdown",
+      "keywords": "$tlcountdown api callback countdown expire expires fires fn function lifecycle register service start starts stops tick truelab"
+    },
+    {
+      "section": "api",
+      "id": "truelab.countdown.service:$tlCountdown",
+      "shortName": "$tlCountdown",
+      "type": "service",
+      "moduleName": "truelab.countdown",
+      "shortDescription": "This service allow developers to instantiate a new countdown object",
+      "keywords": "$expired $lifecycle $new $rootscope $running $seconds $tlcountdown $window acceptable alert allow angular api btn btn-default btn-primary callback callbacks class config configuration countdown developers duration expire expired expires false fired function functions instantiate lifecycle methods module ng-click ng-disabled ng-show object properties register return running seconds service start started starts stops tick ticks tlcountdownapp true truelab"
     },
     {
       "section": "api",
@@ -109,8 +145,8 @@ NG_DOCS={
       "shortName": "$$image",
       "type": "service",
       "moduleName": "truelab.loadImage",
-      "shortDescription": "This a private service (note &#39;$$&#39; prefix) that wraps Image object constructor.",
-      "keywords": "$new api function image loadimage object prefix private service truelab window wraps"
+      "shortDescription": "Private service (note &#39;$$&#39; prefix) that wraps Image object constructor.",
+      "keywords": "$new api function image loadimage object prefix service truelab window wraps"
     },
     {
       "section": "api",

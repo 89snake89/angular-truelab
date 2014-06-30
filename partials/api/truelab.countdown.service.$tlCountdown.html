@@ -1,0 +1,95 @@
+<h1><code ng:non-bindable="">$tlCountdown</code>
+<div><span class="hint">service in module <code ng:non-bindable="">truelab.countdown</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="truelab-countdown-service-page truelab-countdown-service--tlcountdown-page"><p>This service allow developers to instantiate a new countdown object</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/api/truelab.countdown.service:$$TlCountdown">$$TlCountdown</a></code>
+</li>
+</ul>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_$new">$new(config)</h3>
+<div class="$new"><div class="-tlcountdown-new-page"><p>Return a new countdown object, the <strong><em>config</em></strong> object
+has the following acceptable properties.</p>
+<ul>
+<li><strong><code>seconds</code></strong> - {int=} - duration in seconds</li>
+</ul>
+<hr>
+<p>The <strong><em>countdown</em></strong> object has the following methods/properties</p>
+<ul>
+<li><strong> <code>start</code> </strong>      - {function=}   - start the countdown</li>
+<li><strong> <code>stop</code> </strong>       - {function=}   - stop the countdown</li>
+<li><strong> <code>$running</code> </strong>   - {boolean=}    - true when running, false otherwise</li>
+<li><strong> <code>$expired</code> </strong>   - {boolean=}    - true when expired, false otherwise</li>
+<li><strong> <code>$lifecycle</code> </strong> - {$$TlCountdownLifecycle=} - a lifecycle object to register callbacks functions<ul>
+<li><strong> <code>start</code> </strong>  - {function=}   - register a callback function fired when countdown starts</li>
+<li><strong> <code>stop</code> </strong>   - {function=}   - register a callback function fired when countdown stops</li>
+<li><strong> <code>tick</code> </strong>   - {function=}   - register a callback function fired when countdown ticks</li>
+<li><strong> <code>expire</code> </strong> - {function=}   - register a callback function fired when countdown expires</li>
+</ul>
+</li>
+</ul>
+</div><h5 id="methods_$new_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>config</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="-tlcountdown-new-page"><ul>
+<li>configuration object</li>
+</ul>
+</div></td></tr></tbody></table><h5 id="methods_$new_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">$$TlCountdown</a></td><td><div class="-tlcountdown-new-page"><p>countdown - countdown</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="truelab-countdown-service-page truelab-countdown-service--tlcountdown-page"><h4 id="example_source">Source</h4>
+<div source-edit="tlCountdownApp" source-edit-deps="angular.js script.js" source-edit-html="index.html" source-edit-css="" source-edit-js="script.js" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div class="tabbable"><div class="tab-pane" title="index.html">
+<pre class="prettyprint linenums" ng-set-text="index.html" ng-html-wrap-loaded="tlCountdownApp angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html">
+  
+
+ <div>
+     <strong>{{ countdown.$seconds }} s</strong>
+     <small ng-show="countdown.$expired">expired !</small>
+     <hr>
+     <button class="btn btn-primary"
+        ng-click="countdown.start()"
+        ng-disabled="countdown.$running || countdown.$expired">
+         start
+     </button>
+     <button class="btn btn-default"
+        ng-click="countdown.stop()"
+        ng-disabled="!countdown.$running">
+         stop
+     </button>
+     <br>
+
+ </div>
+</script>
+</div>
+<div class="tab-pane" title="script.js">
+<pre class="prettyprint linenums" ng-set-text="script.js"></pre>
+<script type="text/ng-template" id="script.js">
+    angular
+        .module('tlCountdownApp', ['truelab.countdown'] )
+        .run(function ($rootScope, $window, $tlCountdown) {
+            $rootScope.countdown = $tlCountdown.$new({
+                seconds : 10
+            });
+
+            $rootScope
+                .countdown
+                .$lifecycle
+                .start(function () {
+                   $window.alert('Started!');
+                })
+               .expire(function () {
+                   $window.alert('Expired!');
+               });
+         });
+ </script>
+</div>
+</div><h4 id="example_demo">Demo</h4>
+<div class="well doc-example-live animate-container" ng-embed-app="tlCountdownApp" ng-set-html="index.html" ng-eval-javascript="script.js"></div>
+</div></div>
+</div>
