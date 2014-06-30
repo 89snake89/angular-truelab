@@ -1,6 +1,6 @@
 # -- angular-truelab repo -- #
 docs/*
-dist
+dist/*
 .tmp
 .grunt
 

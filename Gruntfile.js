@@ -13,7 +13,9 @@ module.exports = function(grunt) {
                 ' * @version v<%= bwr.version %> - <%= buildtag %>\n' +
                 ' * @link <%= bwr.homepage %>\n' +
                 ' * @license MIT License, http://www.opensource.org/licenses/MIT\n' +
-                ' **/\n\n'
+                ' **/\n\n',
+            closureTop : ';(function( window, angular, undefined ){\n',
+            closureBottom : '\n}(window, angular));'
         },
         dirs : {
             dist : 'dist',
@@ -131,10 +133,12 @@ module.exports = function(grunt) {
         concat: {
             options : {
                 stripBanners : false,
-                banner: config.meta.banner + ';(function( window, angular, undefined ){ \n',
-                footer: '}(window, angular));'
             },
-            dist: {
+            'dist-expanded': {
+                options : {
+                    banner : config.meta.banner + config.meta.closureTop,
+                    footer : config.meta.closureBottom
+                },
                 files: {
                     '<%= config.dirs.dist %>/<%= bwr.name %>.js': [
                         '<%= config.dirs.src %>/index.js',
@@ -142,7 +146,11 @@ module.exports = function(grunt) {
                         '<%= config.dirs.src %>/**/*.js',
                         '!<%= config.dirs.src %>/**/*.spec.js',
                         '!<%= config.dirs.src %>/**/*.mock.js'
-                    ],
+                    ]
+                }
+            },
+            'dist-compressed' : {
+                files : {
                     '<%= config.dirs.dist %>/<%= bwr.name %>.min.js': [
                         '<%= config.dirs.tmp %>/<%= config.dirs.src %>/index.js',
                         '<%= config.dirs.tmp %>/<%= config.dirs.src %>/**/*/index.js',
@@ -154,7 +162,8 @@ module.exports = function(grunt) {
         uglify: {
             options: {
                 preserveComments : false,
-                banner : '<%= config.meta.banner %>',
+                banner : '<%= config.meta.banner %><%= config.meta.closureTop %>',
+                footer : '<%= config.meta.closureBottom %>',
                 mangle: {
                     except: ['window','angular','undefined']
                 }
@@ -163,6 +172,24 @@ module.exports = function(grunt) {
                 files: {
                     '<%= config.dirs.dist %>/<%= bwr.name %>.min.js': ['<%= config.dirs.dist %>/<%= bwr.name %>.min.js']
                 }
+            },
+            'dist-modules' : {
+                files: grunt.file.expandMapping(
+                    [
+                        config.dirs.src + '/**/*.js',
+                        '!' + config.dirs.src + '/**/*spec.js',
+                        '!' + config.dirs.src + '/**/*mock.js',
+                        '!' + config.dirs.src + '/index.js'
+                    ],
+                    config.dirs.dist + '/' + config.dirs.src +'/',
+                    {
+                        rename: function(destBase, destPath) {
+                            var parts = destPath.split('/'),
+                                filename = parts[parts.length - 1];
+
+                            return destBase + filename + '.min.js';
+                    }
+                })
             }
         },
         copy : {
@@ -171,6 +198,14 @@ module.exports = function(grunt) {
                 cwd: './',
                 src: ['README.md','bower.json'],
                 dest: '<%= config.dirs.dist %>/',
+                flatten: true,
+                filter: 'isFile'
+            },
+            'dist-modules' : {
+                expand: true,
+                cwd: './<%= config.dirs.src %>/',
+                src: ['**/*.js','!**/*.spec.js','!**/*.mock.js','!index.js'],
+                dest: '<%= config.dirs.dist %>/<%= config.dirs.src %>/',
                 flatten: true,
                 filter: 'isFile'
             }
@@ -276,8 +311,9 @@ module.exports = function(grunt) {
         'clean:dist',
         'ngmin',
         'concat',
-        'uglify:dist',
-        'copy:dist'
+        'uglify',
+        'copy:dist',
+        'copy:dist-modules'
     ]);
 
     /**
