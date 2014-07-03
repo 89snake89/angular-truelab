@@ -66,9 +66,9 @@ module.exports = function(grunt) {
             },
             coverage : {
                 singleRun: true,
-                browsers: ['Firefox','Chrome','PhantomJS'],
+                browsers: ['Chrome'],
                 preprocessors : {
-                    '<%= config.dirs.src %>/**/!(*spec).js' : 'coverage'
+                    'src/**/!(*spec|*mock).js' : 'coverage'
                 },
                 reporters: [
                     'dots',
@@ -193,6 +193,14 @@ module.exports = function(grunt) {
             }
         },
         copy : {
+            coverage : {
+                expand : true,
+                cwd: '<%= karma.coverage.coverageReporter.reporters[0].dir %>',
+                src: ['**'],
+                dest: '<%= config.dirs.docs %>/coverage/',
+                flatten: false,
+                filter: 'isFile'
+            },
             dist : {
                 expand: false,
                 cwd: './',

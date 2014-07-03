@@ -7,7 +7,7 @@ For docs, demos, api reference please visit [http://truelab.github.io/angular-tr
 
 
 [![Build Status](https://travis-ci.org/truelab/angular-truelab.png)](https://travis-ci.org/truelab/angular-truelab)
-[![dependencies](https://david-dm.org/truelab/angular-truelab.png)](https://david-dm.org/truelab/angular-truelab)
+[![devDependency Status](https://david-dm.org/truelab/angular-truelab/dev-status.svg)](https://david-dm.org/truelab/angular-truelab#info=devDependencies)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ## Install

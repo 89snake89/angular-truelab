@@ -2,9 +2,12 @@
 
 describe('truelab.loadImage', function () {
 
+    var  imagesSrc = ['http://i2.cdn.turner.com/cnn/dam/assets/130823083002-03-batman-restricted-horizontal-gallery.jpg'];
+
     describe('$tlLoadImage', function () {
 
         var $tlLoadImage, $timeout, $rootScope, $$image;
+
 
         beforeEach(module('truelab.loadImage'));
         beforeEach(module('truelab.loadImage.mock'));
@@ -24,7 +27,7 @@ describe('truelab.loadImage', function () {
             expect(image).not.toBeDefined();
 
             $tlLoadImage
-                .load('http://www.picturesnew.com/media/images/image-background.jpg')
+                .load(imagesSrc[0])
                 .then(function (i) {
                     image = i;
                 });
@@ -33,7 +36,7 @@ describe('truelab.loadImage', function () {
             $rootScope.$digest();
 
             expect(image).toBeDefined();
-            expect(image.src).toBe('http://www.picturesnew.com/media/images/image-background.jpg');
+            expect(image.src).toBe(imagesSrc[0]);
         });
 
         it('should catch on load image error', function () {
@@ -41,7 +44,7 @@ describe('truelab.loadImage', function () {
             var resolved, rejected;
 
             $tlLoadImage
-                .load('http://www.picturesnew.com/media/images/image-background.jpg')
+                .load(imagesSrc[0])
                 .then(function (i) {
                     resolved = i;
                 })
@@ -55,7 +58,7 @@ describe('truelab.loadImage', function () {
             expect(resolved).not.toBeDefined();
 
             expect(rejected).toBeDefined();
-            expect(rejected.src).toBe('http://www.picturesnew.com/media/images/image-background.jpg');
+            expect(rejected.src).toBe(imagesSrc[0]);
         });
 
         it('should use $timeout when delay param is set', function () {
@@ -63,7 +66,7 @@ describe('truelab.loadImage', function () {
             var resolved;
 
             $tlLoadImage
-                .load('http://www.picturesnew.com/media/images/image-background.jpg', 1000)
+                .load(imagesSrc[0], 1000)
                 .then(function (image) {
                     resolved = image;
                 });
@@ -73,7 +76,7 @@ describe('truelab.loadImage', function () {
             $rootScope.$digest(); // flush $q
 
             expect(resolved).toBeDefined();
-            expect(resolved.src).toBe('http://www.picturesnew.com/media/images/image-background.jpg');
+            expect(resolved.src).toBe(imagesSrc[0]);
         });
 
         it('should load multiple images', function () {
@@ -102,7 +105,7 @@ describe('truelab.loadImage', function () {
     describe('tlLoadImage directive', function () {
         var html = '<div tl-load-image="src" tl-load-image-options="options"><img title="{{ title }}" class="my-class"></div>',
             $compile, $rootScope,  $tlLoadImage, $timeoutMock, element, title = 'test',
-            src = 'http://www.picturesnew.com/media/images/image-background.jpg',
+            src = imagesSrc[0],
             options = {
                 delay : 3000,
                 css : {
