@@ -95,14 +95,16 @@ module.exports = function(grunt) {
                 files: ['Gruntfile.js'],
                 tasks: ['jshint:grunt']
             },
-            jshint : {
+            /*
+             * jshint
+             * run unit tests with karma (server needs to be already running)
+             * build minified
+             * generate docs
+             *
+             */
+            js: {
                 files: ['<%= config.dirs.src %>/**/*.js'],
-                tasks: ['jshint']
-            },
-            //run unit tests with karma (server needs to be already running
-            unit: {
-                files: ['<%= config.dirs.src %>/**/*.js'],
-                tasks: ['karma:unit:run'] //NOTE the :run flag
+                tasks: ['jshint', 'karma:unit:run', 'build', 'docs'] //NOTE the :run flag
             }
         },
         clean : {
