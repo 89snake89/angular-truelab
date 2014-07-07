@@ -47,6 +47,20 @@ describe('truelab.strings.filters', function () {
             expect( tlTruncateFilter(string, length, suffix) ).toEqual(expected);
         });
     });
+
+    describe('tlFirstUpperFilter', function () {
+        var tlFirstUpperFilter;
+
+        beforeEach(inject(function(_tlFirstUpperFilter_) {
+            tlFirstUpperFilter = _tlFirstUpperFilter_;
+        }));
+
+        it('Must works', function () {
+            expect(tlFirstUpperFilter('hello')).toBe('Hello');
+            expect(tlFirstUpperFilter('hello world, hello man')).toBe('Hello world, hello man');
+            expect(tlFirstUpperFilter('hello world, hello man', true)).toBe('Hello World, Hello Man');
+        });
+    });
 });
 
 
