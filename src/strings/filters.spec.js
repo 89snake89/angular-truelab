@@ -11,23 +11,22 @@ describe('truelab.strings.filters', function () {
     describe('tlTruncateFilter', function () {
         var tlTruncateFilter;
 
-
         beforeEach(inject(function(_tlTruncateFilter_) {
             tlTruncateFilter = _tlTruncateFilter_;
         }));
 
-        it('Must be a function', function () {
+        it('should be a function', function () {
             expect(tlTruncateFilter).toBeFunction();
         });
 
-        it('Must return the same value if is not a string', function () {
+        it('should return the same value if is not a string', function () {
             var string = [],
                 expected = string;
 
             expect( tlTruncateFilter(string) ).toEqual(expected);
         });
 
-        it('Must truncate a string if it\'s to long and add a suffix at the end', function () {
+        it('should truncate a string if it\'s to long and add a suffix at the end', function () {
             var string = 'A long Long string that works... with me!',
                 truncatedText = 'A long',
                 suffix = '¥¥¥',
@@ -37,7 +36,7 @@ describe('truelab.strings.filters', function () {
             expect( tlTruncateFilter(string, length, suffix) ).toEqual(expected);
         });
 
-        it('Must use the default options if provided are invalid', function () {
+        it('should use the default options if provided are invalid', function () {
             var string = 'A long Long string that works... with me!',
                 truncatedText = 'A long ',
                 suffix = 777,
@@ -55,10 +54,17 @@ describe('truelab.strings.filters', function () {
             tlFirstUpperFilter = _tlFirstUpperFilter_;
         }));
 
-        it('Must works', function () {
+        it('should return the same value if value is not a string', function () {
+            expect(tlFirstUpperFilter([1 ,'mix'])).toEqual([1 ,'mix']);
+        });
+
+        it('should convert the first letter to uppercase', function () {
             expect(tlFirstUpperFilter('hello')).toBe('Hello');
             expect(tlFirstUpperFilter('hello world, hello man')).toBe('Hello world, hello man');
-            expect(tlFirstUpperFilter('hello world, hello man', true)).toBe('Hello World, Hello Man');
+        });
+
+        it('should convert the first letter of each word to uppercase', function () {
+            expect(tlFirstUpperFilter('hello world, hello man €‘', true)).toBe('Hello World, Hello Man €‘');
         });
     });
 });

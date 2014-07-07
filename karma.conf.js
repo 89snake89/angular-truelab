@@ -8,7 +8,7 @@ module.exports = function(config){
             // third-party
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
-            'bower_components/lodash',
+            'bower_components/lodash/dist/lodash.js',
 
             // test helpers
             'node_modules/jasmine-expect/dist/jasmine-matchers.js',

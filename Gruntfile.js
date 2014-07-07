@@ -225,6 +225,7 @@ module.exports = function(grunt) {
                 startPage: '/api/truelab',
                 scripts: [
                     'bower_components/jquery/dist/jquery.min.js',
+                    'bower_components/lodash/dist/lodash.min.js',
                     'angular.js',
                     '<%= config.dirs.dist %>/<%= bwr.name %>.min.js'
                 ],
