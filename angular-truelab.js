@@ -1,7 +1,7 @@
 /**
  * @name angular-truelab
  * @description angular-truelab - Truelab angular modules
- * @version v0.0.0 - 2014-07-03 14:57
+ * @version v0.0.0 - 2014-07-07 08:52
  * @link http://truelab.github.io/angular-truelab
  * @license MIT License, http://www.opensource.org/licenses/MIT
  **/
@@ -1309,6 +1309,67 @@ angular
             }else {
                 return text.substring(0, l - e.length) + e;
             }
+        };
+    })
+
+    /**
+     * @ngdoc filter
+     * @name truelab.strings.filters.filter:tlFirstUpper
+     * @description
+     *
+     * First letter to uppercase
+     *
+     * @param {string} text            - text to capitalize
+     * @param {bool}   [each=false]    - if true capitalize first letter in each word
+     *
+     * @example
+     * <doc:example module="truelab.tlFirstUpperFilterApp">
+     *    <doc:source>
+     *        <script>
+     *            angular
+     *              .module('truelab.tlFirstUpperFilterApp', ['truelab.strings.filters'])
+     *              .run(function ($rootScope) {
+     *                  $rootScope.myText = 'this is an example.';
+     *              })
+     *        </script>
+     *
+     *        <ul>
+     *            <li> {{myText|tlFirstUpper}} </li>
+     *            <li> {{myText|tlFirstUpper:true}} </li>
+     *        </ul>
+     *    </doc:source>
+     * </doc:example>
+     *
+     */
+    .filter('tlFirstUpper', function () {
+
+        function __capitalizeFirstLetter(text) {
+            var t = text.toLowerCase();
+            return t.charAt(0).toUpperCase() + t.slice(1);
+        }
+
+        return function (text, each) {
+
+            each = each || false;
+
+            if(!angular.isString(text)) {
+                return text;
+            }
+
+            if(each) {
+
+               var words = text.split(' '),
+                   ws = [];
+
+               angular.forEach(words, function (text) {
+                   ws.push(__capitalizeFirstLetter(text));
+               });
+
+               return ws.join(' ');
+            }
+
+            var t = __capitalizeFirstLetter(text);
+            return t;
         };
     });
 
