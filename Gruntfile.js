@@ -289,12 +289,12 @@ module.exports = function(grunt) {
     ]);
 
     /**
-     * @name check
+     * @name test
      * @description
      *
      * Hint js files, run continuous tests
      */
-    grunt.registerTask('check', [
+    grunt.registerTask('test', [
         'jshint',
         'karma:continuous'
     ]);
