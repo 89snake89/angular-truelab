@@ -3,17 +3,19 @@
 /**
  * @ngdoc overview
  * @name truelab.strings.filters
+ * @requires truelab._
  * @description
  *
  * # truelab.strings.filters
  *
  * The `truelab.strings.filters` module contains a collection of generic strings filters like:
  *
+ * - {@link truelab.strings.filters.filter:tlFirstUpper tlFirstUpper}
  * - {@link truelab.strings.filters.filter:tlTruncate tlTruncate}
  *
  */
 angular
-    .module('truelab.strings.filters', [])
+    .module('truelab.strings.filters', ['truelab._'])
 
     /**
      * @ngdoc filter
@@ -72,8 +74,8 @@ angular
      *
      * First letter to uppercase
      *
-     * @param {string} text            - text to capitalize
-     * @param {bool}   [each=false]    - if true capitalize first letter in each word
+     * @param {string}  text         - text to capitalize
+     * @param {boolean} [each=false] - if true capitalize first letter in each word
      *
      * @example
      * <doc:example module="truelab.tlFirstUpperFilterApp">
@@ -94,7 +96,7 @@ angular
      * </doc:example>
      *
      */
-    .filter('tlFirstUpper', function () {
+    .filter('tlFirstUpper', function (_) {
 
         function __capitalizeFirstLetter(text) {
             var t = text.toLowerCase();
@@ -102,6 +104,7 @@ angular
         }
 
         return function (text, each) {
+            var t;
 
             each = each || false;
 
@@ -109,19 +112,15 @@ angular
                 return text;
             }
 
-            if(each) {
+            if(!each) {
+               t = __capitalizeFirstLetter(text);
 
-               var words = text.split(' '),
-                   ws = [];
-
-               angular.forEach(words, function (text) {
-                   ws.push(__capitalizeFirstLetter(text));
-               });
-
-               return ws.join(' ');
+            }else{
+               t = _.map(text.split(' '), function (text) {
+                   return __capitalizeFirstLetter(text);
+               }).join(' ');
             }
 
-            var t = __capitalizeFirstLetter(text);
             return t;
         };
     });
