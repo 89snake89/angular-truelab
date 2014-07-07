@@ -173,7 +173,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab.strings.filters",
       "shortDescription": "truelab.strings.filters",
-      "keywords": "api collection filter filters generic module overview strings tltruncate truelab"
+      "keywords": "api collection filter filters generic module overview strings tlfirstupper tltruncate truelab"
     },
     {
       "section": "api",
@@ -225,6 +225,7 @@ NG_DOCS={
   },
   "scripts": [
     "jquery.min.js",
+    "lodash.min.js",
     "angular.min.js",
     "angular-truelab.min.js"
   ]
