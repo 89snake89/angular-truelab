@@ -177,6 +177,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "truelab.strings.filters.filter:tlFirstUpper",
+      "shortName": "tlFirstUpper",
+      "type": "filter",
+      "moduleName": "truelab.strings.filters",
+      "shortDescription": "First letter to uppercase",
+      "keywords": "$rootscope angular api capitalize example filter filters letter module mytext strings text tlfirstupperfilterapp true truelab uppercase word"
+    },
+    {
+      "section": "api",
       "id": "truelab.strings.filters.filter:tlTruncate",
       "shortName": "tlTruncate",
       "type": "filter",

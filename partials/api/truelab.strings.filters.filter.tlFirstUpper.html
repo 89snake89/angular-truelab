@@ -1,0 +1,50 @@
+<h1><code ng:non-bindable="">tlFirstUpper</code>
+<div><span class="hint">filter in module <code ng:non-bindable="">truelab.strings.filters</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="truelab-strings-filters-filter-page truelab-strings-filters-filter-tlfirstupper-page"><p>First letter to uppercase</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage"><h3 id="usage_in-html-template-binding">In HTML Template Binding</h3>
+<div class="in-html-template-binding"><code ng:non-bindable=""><span>{{</span> tlFirstUpper_expression | tlFirstUpper:each <span>}}</span></code>
+</div>
+<h3 id="usage_in-javascript">In JavaScript</h3>
+<div class="in-javascript"><code ng:non-bindable="">$filter('tlFirstUpper')(text, each)</code>
+</div>
+<h4 id="usage_in-javascript_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>text</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="truelab-strings-filters-filter-page truelab-strings-filters-filter-tlfirstupper-page"><ul>
+<li>text to capitalize</li>
+</ul>
+</div></td></tr><tr><td>each</td><td><a href="" class="label type-hint type-hint-bool">bool</a></td><td><div class="truelab-strings-filters-filter-page truelab-strings-filters-filter-tlfirstupper-page"><ul>
+<li>if true capitalize first letter in each word</li>
+</ul>
+</div> <p><em>(default: false)</em></p></td></tr></tbody></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="truelab-strings-filters-filter-page truelab-strings-filters-filter-tlfirstupper-page"><h4 id="example_source">Source</h4>
+<div source-edit="truelab.tlFirstUpperFilterApp" source-edit-deps="angular.js script.js" source-edit-html="index.html-17" source-edit-css="" source-edit-js="script.js-16" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div class="tabbable"><div class="tab-pane" title="index.html">
+<pre class="prettyprint linenums" ng-set-text="index.html-17" ng-html-wrap-loaded="truelab.tlFirstUpperFilterApp angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-17">
+    
+
+    <ul>
+        <li> {{myText|tlFirstUpper}} </li>
+        <li> {{myText|tlFirstUpper:true}} </li>
+    </ul>
+</script>
+</div>
+<div class="tab-pane" title="script.js">
+<pre class="prettyprint linenums" ng-set-text="script.js-16"></pre>
+<script type="text/ng-template" id="script.js-16">
+        angular
+          .module('truelab.tlFirstUpperFilterApp', ['truelab.strings.filters'])
+          .run(function ($rootScope) {
+              $rootScope.myText = 'this is an example.';
+          })
+    </script>
+</div>
+</div><h4 id="example_demo">Demo</h4>
+<div class="well doc-example-live animate-container" ng-embed-app="truelab.tlFirstUpperFilterApp" ng-set-html="index.html-17" ng-eval-javascript="script.js-16"></div>
+</div></div>
+</div>
