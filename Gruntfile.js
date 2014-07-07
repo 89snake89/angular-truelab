@@ -333,7 +333,7 @@ module.exports = function(grunt) {
      * Publish documentation on github pages
      */
     grunt.registerTask('publish-docs', [
-        'check',
+        'test',
         'build',
         'docs',
         'gh-pages:docs'
@@ -346,7 +346,7 @@ module.exports = function(grunt) {
      * Build and push new distribution version
      */
     grunt.registerTask('publish-dist', [
-        'check',
+        'test',
         'build',
         'gh-pages:dist'
     ]);
@@ -361,7 +361,7 @@ module.exports = function(grunt) {
      * @see publish-dist
      */
     grunt.registerTask('publish', [
-        'check',
+        'test',
         'build',
         'docs',
         'gh-pages'
