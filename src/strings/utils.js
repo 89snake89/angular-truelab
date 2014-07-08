@@ -6,7 +6,7 @@ angular
     /**
      * @ngdoc service
      * @name truelab.strings.service:$tlStringUtils
-     * @requires _
+     * @requires truelab._.service:_
      * @description
      *
      * A service that allows developers to manipulate strings
