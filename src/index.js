@@ -39,19 +39,23 @@ angular
  *   -  {@link truelab.strings}
  *
  * --------------
+ * ## Usage
  *
  * <pre>
  * <!doctype html>
  * <html ng-app="myApp">
- * <head>
- *   <script src="js/angular.js"></script>
+ * <head></head>
+ * <body>
+ *   <script src="js/jquery.min.js"></script><!-- !!! includes jquery !!! -->
+ *   <script src="js/lodash.min.js"></script><!-- !!! includes lodash !!! -->
+ *
+ *   <script src="js/angular.min.js"></script>
  *   <script src="js/angular-truelab.min.js"></script>
+ *
  *   <script>
  *     // ...and add 'truelab' as a dependency
  *     var myApp = angular.module('myApp', ['truelab']);
  *   </script>
- * </head>
- * <body>
  * </body>
  * </html>
  * </pre>
