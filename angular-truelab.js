@@ -1,7 +1,7 @@
 /**
  * @name angular-truelab
  * @description angular-truelab - Truelab angular modules
- * @version v0.0.0 - 2014-07-08 01:01
+ * @version v0.0.0 - 2014-07-08 10:18
  * @link http://truelab.github.io/angular-truelab
  * @license MIT License, http://www.opensource.org/licenses/MIT
  **/
@@ -15,7 +15,7 @@ angular
         'truelab.loadImage',
         'truelab.debounce',
         'truelab.countdown',
-        'truelab.strings.filters'
+        'truelab.strings'
     ]);
 
 /**
@@ -26,7 +26,7 @@ angular
  * @requires truelab.loadImage
  * @requires truelab.debounce
  * @requires truelab.countdown
- * @requires truelab.strings.filters
+ * @requires truelab.strings
  *
  * @description
  *
@@ -45,7 +45,7 @@ angular
  *
  *   -  {@link truelab.countdown}
  *
- *   -  {@link truelab.strings.filters}
+ *   -  {@link truelab.strings}
  *
  * --------------
  *
@@ -66,6 +66,31 @@ angular
  * </pre>
  *
  */
+
+
+/**
+ * @ngdoc overview
+ * @name truelab.strings
+ * @requires truelab._
+ * @description
+ *
+ * # truelab.strings
+ *
+ * ### filters
+ *
+ * - {@link truelab.strings.filter:tlFirstUpper tlFirstUpper}
+ * - {@link truelab.strings.filter:tlTruncate tlTruncate}
+ *
+ * ### services
+ *
+ * - {@link truelab.strings.service:$tlStringUtils $tlStringUtils}
+ */
+angular
+    .module('truelab.strings', ['truelab._']);
+
+
+
+
 
 
 'use strict';
@@ -1247,26 +1272,12 @@ angular.module('truelab.loadImage', ['ng'])
 
 'use strict';
 
-/**
- * @ngdoc overview
- * @name truelab.strings.filters
- * @requires truelab._
- * @description
- *
- * # truelab.strings.filters
- *
- * The `truelab.strings.filters` module contains a collection of generic strings filters like:
- *
- * - {@link truelab.strings.filters.filter:tlFirstUpper tlFirstUpper}
- * - {@link truelab.strings.filters.filter:tlTruncate tlTruncate}
- *
- */
 angular
-    .module('truelab.strings.filters', ['truelab._'])
+    .module('truelab.strings')
 
     /**
      * @ngdoc filter
-     * @name truelab.strings.filters.filter:tlTruncate
+     * @name truelab.strings.filter:tlTruncate
      * @description
      *
      * Truncate a string if it's too long and add a suffix at the end
@@ -1280,7 +1291,7 @@ angular
      *    <doc:source>
      *        <script>
      *            angular
-     *              .module('truelab.tlTruncateFilterApp', ['truelab.strings.filters'])
+     *              .module('truelab.tlTruncateFilterApp', ['truelab.strings'])
      *              .run(function ($rootScope) {
      *                  $rootScope.myText = 'This is an example.';
      *              })
@@ -1296,40 +1307,28 @@ angular
      * </doc:example>
      *
      */
-    .filter('tlTruncate', function () {
+    .filter('tlTruncate', function ($tlStringUtils) {
         return function (text, length, end) {
-
-            if(!angular.isString(text)) {
-                return text;
-            }
-
-            var l = angular.isNumber(length) ? length : 10,
-                e = angular.isString(end) ? end : '...';
-
-            if (text.length <= l || text.length - e.length <= l) {
-                return text;
-            }else {
-                return text.substring(0, l - e.length) + e;
-            }
+            return $tlStringUtils.truncate(text, length, end);
         };
     })
 
     /**
      * @ngdoc filter
-     * @name truelab.strings.filters.filter:tlFirstUpper
+     * @name truelab.strings.filter:tlFirstUpper
      * @description
      *
      * First letter to uppercase
      *
      * @param {string}  text         - text to capitalize
-     * @param {boolean} [each=false] - if true capitalize first letter in each word
+     * @param {boolean} [each=false] - if true capitalize first letter of each word
      *
      * @example
      * <doc:example module="truelab.tlFirstUpperFilterApp">
      *    <doc:source>
      *        <script>
      *            angular
-     *              .module('truelab.tlFirstUpperFilterApp', ['truelab.strings.filters'])
+     *              .module('truelab.tlFirstUpperFilterApp', ['truelab.strings'])
      *              .run(function ($rootScope) {
      *                  $rootScope.myText = 'this is an example.';
      *              })
@@ -1343,35 +1342,105 @@ angular
      * </doc:example>
      *
      */
-    .filter('tlFirstUpper', function (_) {
-
-        function __capitalizeFirstLetter(text) {
-            var t = text.toLowerCase();
-            return t.charAt(0).toUpperCase() + t.slice(1);
-        }
-
+    .filter('tlFirstUpper', function ($tlStringUtils) {
         return function (text, each) {
-            var t;
-
-            each = each || false;
-
-            if(!angular.isString(text)) {
-                return text;
-            }
-
-            if(!each) {
-               t = __capitalizeFirstLetter(text);
-
-            }else{
-               t = _.map(text.split(' '), function (text) {
-                   return __capitalizeFirstLetter(text);
-               }).join(' ');
-            }
-
-            return t;
+           return $tlStringUtils.firstUpper(text, each);
         };
     });
 
+
+
+
+'use strict';
+
+angular
+    .module('truelab.strings')
+
+    /**
+     * @ngdoc service
+     * @name truelab.strings.service:$tlStringUtils
+     * @requires _
+     * @description
+     *
+     * A service that allows developers to manipulate strings
+     *
+     */
+    .factory('$tlStringUtils', function (_) {
+
+        return {
+            /**
+             *
+             * @ngdoc function
+             * @name $tlStringUtils#truncate
+             * @methodOf truelab.strings.service:$tlStringUtils
+             *
+             *
+             * @param {string} text            - string to truncate
+             * @param {int}    [length=10]     - the desired output length
+             * @param {string} [end='...']     - string to append at the end
+             *
+             * @returns {string} text - truncated text
+             */
+            truncate : function (text, length, end) {
+
+                if(!angular.isString(text)) {
+                    return text;
+                }
+
+                var l = angular.isNumber(length) ? length : 10,
+                    e = angular.isString(end) ? end : '...';
+
+                if (text.length <= l || text.length - e.length <= l) {
+                    return text;
+                }else {
+                    return text.substring(0, l - e.length) + e;
+                }
+            },
+            /**
+             *
+             * @ngdoc function
+             * @name $tlStringUtils#firstUpper
+             * @methodOf truelab.strings.service:$tlStringUtils
+             *
+             * @description
+             *
+             * Covert first letter to uppercase
+             *
+             * @param {string}  text         - text to capitalize
+             * @param {boolean} [each=false] - if true capitalize first letter of each word
+             *
+             * @returns {string} text - uppercase text
+             */
+            firstUpper : function (text, each) {
+
+                if(!angular.isString(text) || text === '') {
+                    return text;
+                }
+
+                var capitalizeFirstLetter = function (text) {
+                    var t = text.toLowerCase();
+                    return t.charAt(0).toUpperCase() + t.slice(1);
+                };
+
+                var t, options = {
+                    each : each || false
+                };
+
+                if(!options.each) {
+
+                    t = capitalizeFirstLetter(text);
+
+                }else{
+
+                    t = _.map(text.split(' '), function (text) {
+                        return capitalizeFirstLetter(text);
+                    }).join(' ');
+                }
+
+                return t;
+            }
+        };
+    });
 
 
 
