@@ -47,7 +47,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "truelab.countdown",
       "shortDescription": "Private countdown service please see $tlCountdown",
-      "keywords": "$expired $lifecycle $log $running $timeout $tlcountdown api bool class countdown flag function lifecycle object sarcazzo service start truelab truelab-countdown-service--tlcountdown-page truelab-countdown-service-page"
+      "keywords": "$expired $lifecycle $log $running $timeout $tlcountdown api bool class countdown flag function lifecycle object service start truelab truelab-countdown-service--tlcountdown-page truelab-countdown-service-page"
     },
     {
       "section": "api",
