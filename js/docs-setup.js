@@ -182,7 +182,7 @@ NG_DOCS={
       "type": "filter",
       "moduleName": "truelab.strings",
       "shortDescription": "First letter to uppercase",
-      "keywords": "$rootscope angular api capitalize example filter letter module mytext strings text tlfirstupperfilterapp true truelab uppercase word"
+      "keywords": "$rootscope angular api capitalize example filter letter module mytext service strings text tlfirstupperfilterapp true truelab uppercase word"
     },
     {
       "section": "api",
@@ -191,7 +191,7 @@ NG_DOCS={
       "type": "filter",
       "moduleName": "truelab.strings",
       "shortDescription": "Truncate a string if it&#39;s too long and add a suffix at the end",
-      "keywords": "$rootscope add angular api append desired example filter length long module mytext output string strings suffix text tltruncatefilterapp truelab truncate"
+      "keywords": "$rootscope add angular api append desired example filter length long module mytext output service string strings suffix text tltruncatefilterapp truelab truncate"
     },
     {
       "section": "api",
