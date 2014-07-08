@@ -11,7 +11,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab",
       "shortDescription": "truelab",
-      "keywords": "add angular api countdown debounce dependency filters html included includes js loadimage main min module modules myapp ng-app overview src strings sub-modules truelab var"
+      "keywords": "add angular api countdown debounce dependency html included includes js loadimage main min module modules myapp ng-app overview src strings sub-modules truelab var"
     },
     {
       "section": "api",
@@ -168,30 +168,39 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "truelab.strings.filters",
-      "shortName": "truelab.strings.filters",
+      "id": "truelab.strings",
+      "shortName": "truelab.strings",
       "type": "overview",
-      "moduleName": "truelab.strings.filters",
-      "shortDescription": "truelab.strings.filters",
-      "keywords": "api collection filter filters generic module overview strings tlfirstupper tltruncate truelab"
+      "moduleName": "truelab.strings",
+      "shortDescription": "truelab.strings",
+      "keywords": "$tlstringutils api filter filters overview service services strings tlfirstupper tltruncate truelab"
     },
     {
       "section": "api",
-      "id": "truelab.strings.filters.filter:tlFirstUpper",
+      "id": "truelab.strings.filter:tlFirstUpper",
       "shortName": "tlFirstUpper",
       "type": "filter",
-      "moduleName": "truelab.strings.filters",
+      "moduleName": "truelab.strings",
       "shortDescription": "First letter to uppercase",
-      "keywords": "$rootscope angular api capitalize example filter filters letter module mytext strings text tlfirstupperfilterapp true truelab uppercase word"
+      "keywords": "$rootscope angular api capitalize example filter letter module mytext strings text tlfirstupperfilterapp true truelab uppercase word"
     },
     {
       "section": "api",
-      "id": "truelab.strings.filters.filter:tlTruncate",
+      "id": "truelab.strings.filter:tlTruncate",
       "shortName": "tlTruncate",
       "type": "filter",
-      "moduleName": "truelab.strings.filters",
+      "moduleName": "truelab.strings",
       "shortDescription": "Truncate a string if it&#39;s too long and add a suffix at the end",
-      "keywords": "$rootscope add angular api append desired example filter filters length long module mytext output string strings suffix text tltruncatefilterapp truelab truncate"
+      "keywords": "$rootscope add angular api append desired example filter length long module mytext output string strings suffix text tltruncatefilterapp truelab truncate"
+    },
+    {
+      "section": "api",
+      "id": "truelab.strings.service:$tlStringUtils",
+      "shortName": "$tlStringUtils",
+      "type": "service",
+      "moduleName": "truelab.strings",
+      "shortDescription": "A service that allows developers to manipulate strings",
+      "keywords": "$tlstringutils allows api append capitalize covert desired developers firstupper function length letter manipulate output service string strings text true truelab truncate truncated uppercase word"
     },
     {
       "section": "mocks",
