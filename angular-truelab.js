@@ -1,7 +1,7 @@
 /**
  * @name angular-truelab
  * @description angular-truelab - Truelab angular modules
- * @version v0.0.0 - 2014-07-08 10:18
+ * @version v0.0.0 - 2014-07-08 10:22
  * @link http://truelab.github.io/angular-truelab
  * @license MIT License, http://www.opensource.org/licenses/MIT
  **/
@@ -355,8 +355,6 @@ angular
      * @property {$$TlCountdownLifecycle} $lifecycle - A lifecycle object
      * @property {boolean} $running   - bool flag
      * @property {boolean} $expired   - bool flag
-     *
-     * @method sarcazzo - sarcazzo
      *
      * @description
      *

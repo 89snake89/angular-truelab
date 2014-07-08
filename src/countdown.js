@@ -208,8 +208,6 @@ angular
      * @property {boolean} $running   - bool flag
      * @property {boolean} $expired   - bool flag
      *
-     * @method sarcazzo - sarcazzo
-     *
      * @description
      *
      * ***Private*** countdown service please see {@link truelab.countdown.service:$tlCountdown $tlCountdown}
