@@ -6,6 +6,7 @@ angular
     /**
      * @ngdoc filter
      * @name truelab.strings.filter:tlTruncate
+     * @requires truelab.strings.service:$tlStringUtils
      * @description
      *
      * Truncate a string if it's too long and add a suffix at the end
@@ -44,6 +45,7 @@ angular
     /**
      * @ngdoc filter
      * @name truelab.strings.filter:tlFirstUpper
+     * @requires truelab.strings.service:$tlStringUtils
      * @description
      *
      * First letter to uppercase
