@@ -22,6 +22,13 @@ describe('truelab.strings:$tlStringUtils', function () {
             expect( $tlStringUtils.truncate(string) ).toEqual(expected);
         });
 
+        it('should return the same value if truncate effect is not applicable', function () {
+            var string = 'hello',
+                expected = 'hello';
+
+            expect( $tlStringUtils.truncate(string, 3, '...') ).toEqual(expected);
+        });
+
         it('should truncate a string if it\'s to long and add a suffix at the end', function () {
             var string = 'A long Long string that works... with me!',
                 truncatedText = 'A long',
