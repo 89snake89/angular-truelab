@@ -1,7 +1,7 @@
 /**
  * @name angular-truelab
  * @description angular-truelab - Truelab angular modules
- * @version v0.0.0 - 2014-07-08 10:37
+ * @version v0.0.0 - 2014-07-08 10:43
  * @link http://truelab.github.io/angular-truelab
  * @license MIT License, http://www.opensource.org/licenses/MIT
  **/
@@ -1280,6 +1280,7 @@ angular
     /**
      * @ngdoc filter
      * @name truelab.strings.filter:tlTruncate
+     * @requires truelab.strings.service:$tlStringUtils
      * @description
      *
      * Truncate a string if it's too long and add a suffix at the end
@@ -1318,6 +1319,7 @@ angular
     /**
      * @ngdoc filter
      * @name truelab.strings.filter:tlFirstUpper
+     * @requires truelab.strings.service:$tlStringUtils
      * @description
      *
      * First letter to uppercase
