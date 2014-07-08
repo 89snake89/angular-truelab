@@ -174,24 +174,6 @@ module.exports = function(grunt) {
                 files: {
                     '<%= config.dirs.dist %>/<%= bwr.name %>.min.js': ['<%= config.dirs.dist %>/<%= bwr.name %>.min.js']
                 }
-            },
-            'dist-modules' : {
-                files: grunt.file.expandMapping(
-                    [
-                        config.dirs.src + '/**/*.js',
-                        '!' + config.dirs.src + '/**/*spec.js',
-                        '!' + config.dirs.src + '/**/*mock.js',
-                        '!' + config.dirs.src + '/index.js'
-                    ],
-                    config.dirs.dist + '/' + config.dirs.src +'/',
-                    {
-                        rename: function(destBase, destPath) {
-                            var parts = destPath.split('/'),
-                                filename = parts[parts.length - 1];
-
-                            return destBase + filename.replace('.js','.min.js');
-                    }
-                })
             }
         },
         copy : {
@@ -208,14 +190,6 @@ module.exports = function(grunt) {
                 cwd: './',
                 src: ['README.md','bower.json'],
                 dest: '<%= config.dirs.dist %>/',
-                flatten: true,
-                filter: 'isFile'
-            },
-            'dist-modules' : {
-                expand: true,
-                cwd: './<%= config.dirs.src %>/',
-                src: ['**/*.js','!**/*.spec.js','!**/*.mock.js','!index.js'],
-                dest: '<%= config.dirs.dist %>/<%= config.dirs.src %>/',
                 flatten: true,
                 filter: 'isFile'
             }
@@ -323,8 +297,7 @@ module.exports = function(grunt) {
         'ngmin',
         'concat',
         'uglify',
-        'copy:dist',
-        'copy:dist-modules'
+        'copy:dist'
     ]);
 
     /**
