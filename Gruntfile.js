@@ -144,7 +144,7 @@ module.exports = function(grunt) {
                 files: {
                     '<%= config.dirs.dist %>/<%= bwr.name %>.js': [
                         '<%= config.dirs.src %>/index.js',
-                        '<%= config.dirs.src %>/**/*/index.js',
+                        '<%= config.dirs.src %>/**/index.js',
                         '<%= config.dirs.src %>/**/*.js',
                         '!<%= config.dirs.src %>/**/*.spec.js',
                         '!<%= config.dirs.src %>/**/*.mock.js'

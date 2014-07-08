@@ -6,7 +6,7 @@ angular
         'truelab.loadImage',
         'truelab.debounce',
         'truelab.countdown',
-        'truelab.strings.filters'
+        'truelab.strings'
     ]);
 
 /**
@@ -17,7 +17,7 @@ angular
  * @requires truelab.loadImage
  * @requires truelab.debounce
  * @requires truelab.countdown
- * @requires truelab.strings.filters
+ * @requires truelab.strings
  *
  * @description
  *
@@ -36,7 +36,7 @@ angular
  *
  *   -  {@link truelab.countdown}
  *
- *   -  {@link truelab.strings.filters}
+ *   -  {@link truelab.strings}
  *
  * --------------
  *

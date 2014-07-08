@@ -14,6 +14,8 @@ module.exports = function(config){
             'node_modules/jasmine-expect/dist/jasmine-matchers.js',
 
             // source code, mocks, and jasmine tests
+            'src/index.js',
+            'src/**/index.js',
             'src/**/*.js'
         ],
 
