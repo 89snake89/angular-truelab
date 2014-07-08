@@ -1,7 +1,7 @@
 /**
  * @name angular-truelab
  * @description angular-truelab - Truelab angular modules
- * @version v0.0.0 - 2014-07-08 10:43
+ * @version v0.0.0 - 2014-07-08 10:45
  * @link http://truelab.github.io/angular-truelab
  * @license MIT License, http://www.opensource.org/licenses/MIT
  **/
@@ -1363,7 +1363,7 @@ angular
     /**
      * @ngdoc service
      * @name truelab.strings.service:$tlStringUtils
-     * @requires _
+     * @requires truelab._.service:_
      * @description
      *
      * A service that allows developers to manipulate strings
