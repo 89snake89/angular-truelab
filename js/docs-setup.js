@@ -11,7 +11,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab",
       "shortDescription": "truelab",
-      "keywords": "add angular api countdown debounce dependency html included includes js loadimage main min module modules myapp ng-app overview src strings sub-modules truelab var"
+      "keywords": "add angular api countdown debounce dependency html included includes jquery js loadimage lodash main min module modules myapp ng-app overview src strings sub-modules truelab usage var"
     },
     {
       "section": "api",

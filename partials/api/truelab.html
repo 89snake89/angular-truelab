@@ -31,18 +31,22 @@
 </li>
 </ul>
 <hr>
+<h3 id="truelab_usage">Usage</h3>
 <pre class="prettyprint linenums">
 &lt;!doctype html&gt;
 &lt;html ng-app="myApp"&gt;
-&lt;head&gt;
-  &lt;script src="js/angular.js"&gt;&lt;/script&gt;
+&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;script src="js/jquery.min.js"&gt;&lt;/script&gt;&lt;!-- !!! includes jquery !!! --&gt;
+  &lt;script src="js/lodash.min.js"&gt;&lt;/script&gt;&lt;!-- !!! includes lodash !!! --&gt;
+
+  &lt;script src="js/angular.min.js"&gt;&lt;/script&gt;
   &lt;script src="js/angular-truelab.min.js"&gt;&lt;/script&gt;
+
   &lt;script&gt;
     // ...and add 'truelab' as a dependency
     var myApp = angular.module('myApp', ['truelab']);
   &lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
