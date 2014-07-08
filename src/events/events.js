@@ -148,7 +148,7 @@
      *     </doc:source>
      * </doc:example>
      */
-    ngModule.directive('tlClickout',['$parse', function ($parse) {
+    ngModule.directive('tlClickout', function ($parse) {
 
         function bind(fn) {
             angular
@@ -188,7 +188,7 @@
                 bind(bindFn);
             });
         };
-    }]);
+    });
 
 
 })(angular.module('truelab.events', []));

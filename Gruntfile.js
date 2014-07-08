@@ -124,7 +124,10 @@ module.exports = function(grunt) {
                 ]
             }
         },
-        ngmin: {
+        ngAnnotate: {
+            options: {
+                singleQuotes: true
+            },
             all : {
                 expand: true,
                 cwd: '<%= config.dirs.src %>',
@@ -294,7 +297,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'clean:tmp',
         'clean:dist',
-        'ngmin',
+        'ngAnnotate',
         'concat',
         'uglify',
         'copy:dist'
