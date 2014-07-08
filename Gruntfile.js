@@ -207,6 +207,7 @@ module.exports = function(grunt) {
                     '<%= config.dirs.dist %>/<%= bwr.name %>.min.js'
                 ],
                 navTemplate: './ngdocs_assets/docnav.html',
+                favicon : './ngdocs_assets/favicon.png',
                 html5Mode: false,
                 discussions: {
                     shortName: 'angulartruelab',
