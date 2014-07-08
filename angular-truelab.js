@@ -1,7 +1,7 @@
 /**
  * @name angular-truelab
  * @description angular-truelab - Truelab angular modules
- * @version v0.0.0 - 2014-07-08 10:45
+ * @version v0.0.0 - 2014-07-08 14:19
  * @link http://truelab.github.io/angular-truelab
  * @license MIT License, http://www.opensource.org/licenses/MIT
  **/
@@ -823,7 +823,7 @@ angular
      *     </doc:source>
      * </doc:example>
      */
-    ngModule.directive('tlClickout',['$parse', function ($parse) {
+    ngModule.directive('tlClickout', function ($parse) {
 
         function bind(fn) {
             angular
@@ -863,7 +863,7 @@ angular
                 bind(bindFn);
             });
         };
-    }]);
+    });
 
 
 })(angular.module('truelab.events', []));
