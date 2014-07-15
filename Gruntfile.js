@@ -21,8 +21,46 @@ module.exports = function(grunt) {
             dist : 'dist',
             docs : 'docs',
             src  : 'src',
-            tmp  : '.tmp'
+            tmp  : '.tmp',
+            vendors : 'bower_components',
+            devVendors : 'node_modules'
         }
+    };
+
+    config.source = {
+        vendors : [
+            config.dirs.vendors + '/angular/angular.js',
+            config.dirs.vendors + '/angular-mocks/angular-mocks.js',
+            config.dirs.vendors + '/lodash/dist/lodash.js'
+        ],
+        testHelpers : [
+            config.dirs.devVendors + '/jasmine-expect/dist/jasmine-matchers.js'
+        ],
+        src : [
+            config.dirs.src + '/index.js',
+            config.dirs.src + '/**/index.js',
+            config.dirs.src + '/**/*.js'
+        ],
+        mocks : [
+            config.dirs.src + '/**/*.mock.js'
+        ],
+        specs : [
+            config.dirs.src + '/**/*.spec.js'
+        ],
+        dist : [
+            config.dirs.dist + '/<%= bwr.name %>.min.js'
+        ]
+    };
+
+    config.source.karmaFiles = {
+        src : config.source.vendors
+            .concat(config.source.testHelpers)
+            .concat(config.source.src),
+        dist : config.source.vendors
+            .concat(config.source.testHelpers)
+            .concat(config.source.dist)
+            .concat(config.source.specs)
+            .concat(config.source.mocks)
     };
 
     grunt.initConfig({
@@ -58,7 +96,8 @@ module.exports = function(grunt) {
         },
         karma : {
             options : {
-                configFile: 'karma.conf.js'
+                configFile: 'karma.conf.js',
+                files : config.source.karmaFiles.src
             },
             continuous: {
                 singleRun: true,
@@ -88,6 +127,12 @@ module.exports = function(grunt) {
             },
             unit: {
                 background: true
+            },
+            dist : {
+                singleRun: true,
+                options : {
+                    files : config.source.karmaFiles.dist
+                }
             }
         },
         watch: {
@@ -311,7 +356,8 @@ module.exports = function(grunt) {
         'ngAnnotate',
         'concat',
         'uglify',
-        'copy:dist'
+        'copy:dist',
+        'karma:dist'
     ]);
 
     /**
