@@ -127,10 +127,10 @@ angular
          * @constructor
          */
         function TlCountdownLifecycle() {
-            this.$$onStartFns = [];
-            this.$$onStopFns = [];
+            this.$$onStartFns  = [];
+            this.$$onStopFns   = [];
             this.$$onExpireFns = [];
-            this.$$onTickFns  = [];
+            this.$$onTickFns   = [];
         }
 
         TlCountdownLifecycle.prototype = {
@@ -189,6 +189,21 @@ angular
             tick : function (fn) {
                 this.$$onTickFns.push(fn);
                 return this;
+            },
+            /**
+             * Execute all fns associated with countdown phase
+             *
+             * @param {string} phase    - countdown event/phase {'onStart','onTick','onStop','onExpire'}
+             * @param {object} argument - argument to pass
+             *
+             * @private
+             */
+            $$execute : function (phase, argument) {
+                var fns = this['$$' + phase + 'Fns'];
+
+                angular.forEach(fns, function (fn) {
+                    fn.call(argument);
+                });
             }
 
         };
@@ -214,20 +229,6 @@ angular
      */
     .factory('$$TlCountdown', function ($$TlCountdownLifecycle, $timeout, $log) {
 
-        /**
-         * Execute all fns associated with countdown phase
-         *
-         * @param {TlCountdown} countdown - countdown instance
-         * @param {string} phase - countdown event/phase {'onStart','onTick','onStop','onExpire'}
-         * @private
-         */
-        function __executeLifecycleFns(countdown, phase) {
-            var fns = countdown.$lifecycle['$$' + phase + 'Fns'];
-
-            angular.forEach(fns, function (fn) {
-                fn.call(countdown);
-            });
-        }
 
         /**
          * Execute a tick on countdown object
@@ -253,14 +254,18 @@ angular
                 countdown.$seconds--;
 
                 if(countdown.$seconds <= 0) {
-                    __executeLifecycleFns(countdown, 'onExpire');
+
+                    countdown.$lifecycle.$$execute('onExpire', countdown);
+
                     countdown.$$expired = true;
-                    countdown.$expired = true;
+                    countdown.$expired  = true;
                     countdown.stop();
+
                     return;
                 }
 
-                __executeLifecycleFns(countdown, 'onTick');
+                countdown.$lifecycle.$$execute('onTick', countdown);
+
                 __tick(countdown);
 
             }, 1000);
@@ -323,7 +328,7 @@ angular
 
             if(self.$$running === false) {
 
-                __executeLifecycleFns(self, 'onStart');
+                self.$lifecycle.$$execute('onStart', self);
                 __tick(self);
 
             }else{
@@ -348,7 +353,7 @@ angular
             self.$$running = false;
             self.$running  = false;
 
-            __executeLifecycleFns(self, 'onStop');
+            self.$lifecycle.$$execute('onStop', self);
 
         };
 
