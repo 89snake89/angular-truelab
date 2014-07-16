@@ -149,7 +149,7 @@ module.exports = function(grunt) {
              */
             js: {
                 files: ['<%= config.dirs.src %>/**/*.js'],
-                tasks: ['jshint', 'karma:unit:run', 'build', 'docs'] //NOTE the :run flag
+                tasks: ['jshint', 'karma:unit:run'] //NOTE the :run flag
             }
         },
         clean : {
