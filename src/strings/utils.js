@@ -65,7 +65,7 @@ angular
                 }
 
                 var capitalizeFirstLetter = function (text) {
-                    var t = text.toLowerCase();
+                    var t = text;
                     return t.charAt(0).toUpperCase() + t.slice(1);
                 };
 
