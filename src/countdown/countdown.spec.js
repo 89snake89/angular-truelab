@@ -17,9 +17,11 @@ describe('truelab.countdown', function () {
     });
 
     describe('$$TlCountdown & $tlCountdown', function () {
-        var countdown, $timeout, seconds = 10;
+        var $tlCountdown, countdown, $timeout, seconds = 10;
 
-        beforeEach(inject(function($tlCountdown, _$timeout_) {
+        beforeEach(inject(function(_$tlCountdown_, _$timeout_) {
+              $tlCountdown = _$tlCountdown_;
+
               countdown = $tlCountdown.$new({
                   seconds : seconds
               });
@@ -71,37 +73,34 @@ describe('truelab.countdown', function () {
         });
 
         describe('$$TlCountdown.$lifecyle', function () {
-            it('works', function () {
-                var startCounter = 0,
+            it('Should works as expected', function () {
+                var firstStartCounter = 0,
                     tickCounter = 0,
                     expireCounter = 0,
                     stopCounter = 0,
-                    expectedStartCounter = 1,
+                    expectedFirstStartCounter = 1,
                     expectedExpireCounter = 1,
                     expectedStopCounter = 1,
                     expectedTickCounter = seconds - 1;
 
                 countdown
                     .$lifecycle
-                    .start(function () {
-
-                        startCounter++;
+                    .onFirstStart(function (c) {
+                        expect(countdown).toEqual(c);
+                        firstStartCounter++;
                     })
-                    .tick(function () {
-
+                    .onTick(function () {
                         tickCounter++;
                     })
-                    .expire(function () {
-
+                    .onExpire(function () {
                         expireCounter++;
                     })
-                    .stop(function () {
-
+                    .onStop(function () {
                         stopCounter++;
                     });
 
                 countdown.start();
-                expect(startCounter).toBe(expectedStartCounter);
+                expect(firstStartCounter).toBe(expectedFirstStartCounter);
 
 
                 for(var i = 0; i < seconds ; i++) {
@@ -113,6 +112,23 @@ describe('truelab.countdown', function () {
                 expect(stopCounter).toBe(expectedStopCounter);
 
             });
+
+            it('Should pass the same countdown into lifecycle phase callbacks like argument', function () {
+                var countdown2 = $tlCountdown.$new({
+                    seconds : seconds
+                });
+
+                countdown
+                    .$lifecycle
+                    .onFirstStart(function (c) {
+                        expect(countdown).toEqual(c);
+                        expect(countdown2).not.toEqual(c);
+                    });
+
+                countdown.start();
+            });
         });
     });
 });
+
+
