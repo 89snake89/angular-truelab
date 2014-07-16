@@ -257,6 +257,16 @@ module.exports = function(grunt) {
     });
 
     /**
+     * @name default
+     */
+    grunt.registerTask('default', [
+        'test',
+        'build',
+        'docs',
+        'connect:docs'
+    ]);
+
+    /**
      * @name dev
      * @description
      *
