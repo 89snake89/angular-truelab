@@ -1,6 +1,6 @@
 {
   "name": "angular-truelab",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "angular-truelab - Truelab angular modules",
   "homepage" : "http://truelab.github.io/angular-truelab",
   "main": "angular-truelab.min.js",

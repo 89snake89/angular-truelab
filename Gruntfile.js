@@ -236,7 +236,7 @@ module.exports = function(grunt) {
             dist : {
                 expand: false,
                 cwd: './',
-                src: ['README.md','bower.json'],
+                src: ['README.md','CHANGELOG.md','bower.json'],
                 dest: '<%= config.dirs.dist %>/',
                 flatten: true,
                 filter: 'isFile'
