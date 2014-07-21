@@ -22,7 +22,7 @@ describe('truelab.countdown', function () {
         beforeEach(inject(function(_$tlCountdown_, _$timeout_) {
               $tlCountdown = _$tlCountdown_;
 
-              countdown = $tlCountdown.$new({
+              countdown = $tlCountdown({
                   seconds : seconds
               });
               $timeout = _$timeout_;
@@ -114,7 +114,7 @@ describe('truelab.countdown', function () {
             });
 
             it('Should pass the same countdown into lifecycle phase callbacks like argument', function () {
-                var countdown2 = $tlCountdown.$new({
+                var countdown2 = $tlCountdown({
                     seconds : seconds
                 });
 

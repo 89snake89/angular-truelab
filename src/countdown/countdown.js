@@ -24,9 +24,31 @@ angular
  * @name truelab.countdown.service:$tlCountdown
  * @requires truelab.countdown.service:$$TlCountdown
  *
+ * @param  {object} config
+ *
+ * - configuration object has the following acceptable properties:
+ *
+ *     * **`seconds`** - {int=} - duration in seconds
+ *
  * @description
  *
  * This service allow developers to instantiate a new countdown object
+ *
+ * -----------
+ * @returns {$$TlCountdown} countdown - a new countdown object
+ *
+ * The ***countdown*** object has the following methods/properties
+ *
+ * - ** `start` **      - {function=}   - start the countdown
+ * - ** `stop` **       - {function=}   - stop the countdown
+ * - ** `$running` **   - {boolean=}    - true when running, false otherwise
+ * - ** `$expired` **   - {boolean=}    - true when expired, false otherwise
+ * - ** `$lifecycle` ** - {object} - a lifecycle object to register callbacks functions
+ *      - ** `onFirstStart` **  - {function=}   - register a callback function fired when countdown starts for the first time
+ *      - ** `onStart` **       - {function=}   - register a callback function fired when countdown starts
+ *      - ** `onStop` **        - {function=}   - register a callback function fired when countdown stops
+ *      - ** `onTick` **        - {function=}   - register a callback function fired when countdown ticks
+ *      - ** `onExpire` **      - {function=}   - register a callback function fired when countdown expires
  *
  * @example
  * <doc:example module="tlCountdownApp">
@@ -35,7 +57,7 @@ angular
  *         angular
  *             .module('tlCountdownApp', ['truelab.countdown'] )
  *             .run(function ($rootScope, $window, $tlCountdown) {
- *                 $rootScope.countdown = $tlCountdown.$new({
+ *                 $rootScope.countdown = $tlCountdown({
  *                     seconds : 10
  *                 });
  *
@@ -86,43 +108,13 @@ angular
  */
     .factory('$tlCountdown', function ($$TlCountdown) {
 
-        return  {
-            /**
-             *
-             * @ngdoc function
-             * @name $tlCountdown#$new
-             * @methodOf truelab.countdown.service:$tlCountdown
-             *
-             * @param  {object} config - configuration object
-             * @returns {$$TlCountdown} countdown - countdown
-             *
-             * @description
-             * Return a new countdown object, the ***config*** object
-             * has the following acceptable properties.
-             *
-             * - **`seconds`** - {int=} - duration in seconds
-             *
-             * -----------
-             *
-             * The ***countdown*** object has the following methods/properties
-             *
-             * - ** `start` **      - {function=}   - start the countdown
-             * - ** `stop` **       - {function=}   - stop the countdown
-             * - ** `$running` **   - {boolean=}    - true when running, false otherwise
-             * - ** `$expired` **   - {boolean=}    - true when expired, false otherwise
-             * - ** `$lifecycle` ** - {object} - a lifecycle object to register callbacks functions
-             *      - ** `onFirstStart` **  - {function=}   - register a callback function fired when countdown starts for the first time
-             *      - ** `onStart` **       - {function=}   - register a callback function fired when countdown starts
-             *      - ** `onStop` **        - {function=}   - register a callback function fired when countdown stops
-             *      - ** `onTick` **        - {function=}   - register a callback function fired when countdown ticks
-             *      - ** `onExpire` **      - {function=}   - register a callback function fired when countdown expires
-             *
-             */
-            $new : function (config) {
-                /*jshint newcap: false */
-                return new $$TlCountdown(config);
-                /*jshint newcap: true */
-            }
+        /**
+         * @param  {object} config - configuration object
+         * @returns {$$TlCountdown} countdown - countdown
+         */
+        return function (config) {
+            /*jshint newcap: false */
+            return new $$TlCountdown(config);
         };
     })
 
@@ -147,11 +139,11 @@ angular
 
 
         /**
-         * TlCountdown
+         * $$TlCountdown
          * @param {Object} config - a configuration object
          * @constructor
          */
-        function TlCountdown (config) {
+        function $$TlCountdown (config) {
             var self = this;
 
             /**
@@ -191,7 +183,7 @@ angular
          * @description
          * Start countdown
          */
-        TlCountdown.prototype.start  = function () {
+        $$TlCountdown.prototype.start  = function () {
             var self = this;
 
             if(self.$$expired === true) {
@@ -232,7 +224,7 @@ angular
          * @description
          * Stop countdown
          */
-        TlCountdown.prototype.stop = function () {
+        $$TlCountdown.prototype.stop = function () {
             var self = this;
 
             $timeout.cancel(self.$$stopped);
@@ -247,7 +239,7 @@ angular
          * Execute a tick
          * @private
          */
-        TlCountdown.prototype.$$tick = function () {
+        $$TlCountdown.prototype.$$tick = function () {
             var self = this;
 
             if(self.$seconds <= 0) {
@@ -285,7 +277,7 @@ angular
             return self.$$stopped;
         };
 
-        return TlCountdown;
+        return $$TlCountdown;
 
     });
 
