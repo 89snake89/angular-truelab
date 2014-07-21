@@ -1,0 +1,72 @@
+<h1><code ng:non-bindable="">$tlLifecycle</code>
+<div><span class="hint">service in module <code ng:non-bindable="">truelab.utils.lifecycle</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="truelab-utils-lifecycle-service-page truelab-utils-lifecycle-service--tllifecycle-page"><p>Low-level factory which creates a lifecycle object that lets you interact with phases by register/unregister
+functions for each phase and execute/clear them.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage"><pre class="prettyprint linenums">$tlLifecycle(...phases);</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>...phases</td><td><a href="" class="label type-hint type-hint-object">...string</a></td><td><div class="truelab-utils-lifecycle-service-page truelab-utils-lifecycle-service--tllifecycle-page"><ul>
+<li>phases</li>
+</ul>
+</div> <p><em>(default: 'start','stop')</em></p></td></tr></tbody></table><h4 id="usage_returns">Returns</h4><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="truelab-utils-lifecycle-service-page truelab-utils-lifecycle-service--tllifecycle-page"><p>A lifecycle &quot;class&quot; object with those base methods:</p>
+<ul>
+<li><strong> <code>clear()</code> </strong> - clear all callbacks for all phases</li>
+<li><strong> <code>execute(phase, ...arguments)</code> </strong> - execute callbacks for <code>phase</code> applying specified <code>arguments</code></li>
+</ul>
+</div></td></tr></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="truelab-utils-lifecycle-service-page truelab-utils-lifecycle-service--tllifecycle-page"><pre><code>// ...
+myApp.factory(&#39;myService&#39;, function ($tlLifecycle) {
+
+    return {
+        lifecycle : $tlLifecycle(&#39;born&#39;,&#39;die&#39;),
+        doBorn : function () {
+            this.lifecycle.execute(&#39;born&#39;,&#39;and pass&#39;,&#39;some&#39;, arguments);
+        },
+        doDie : function () {
+             this.lifecycle.execute(&#39;die&#39;,&#39;and pass&#39;,&#39;some&#39;,&#39;arguments&#39;)
+        }
+    };
+});
+
+// ... later
+myApp.controller(&#39;myController&#39;, function (myService) {
+    myService
+       .lifecycle
+       .onBorn(function(arg1, arg2, arg3) {
+             console.log(arg1, arg2, arg3);
+             // logs =&gt; &#39;and pass&#39;,&#39;some&#39;,&#39;arguments&#39; every time myService.doBorn() is called;
+       })
+       .onBorn(function () {
+             console.log(&#39;You born&#39;);
+             // logs =&gt; &#39;You born&#39; every time myService.doBorn() is called;
+       })
+       .onDie(function () {
+             console.log(&#39;You die&#39;);
+             // logs =&gt; &#39;You die&#39; every time myService.doDie() is called;
+       });
+
+   myService
+     .doBorn();
+
+   myService
+     .lifecycle
+     .clearOnBorn();
+
+   myService.doBorn(); // no more onBorn callbacks fired
+
+   myService.doDie(); // onDie callbacks fired
+
+   myService
+     .lifecycle
+     .clear();
+
+   myService.doDie() // no more callbacks fired at all
+
+});</code></pre>
+</div></div>
+</div>

@@ -11,7 +11,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab",
       "shortDescription": "truelab",
-      "keywords": "add angular api countdown debounce dependency html included includes jquery js loadimage lodash main min module modules myapp ng-app overview src strings sub-modules truelab usage var"
+      "keywords": "add angular api countdown debounce dependency html included includes jquery js loadimage lodash main min module modules myapp ng-app overview src strings sub-modules truelab usage utils var"
     },
     {
       "section": "api",
@@ -38,7 +38,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "truelab.countdown",
       "shortDescription": "truelab.countdown",
-      "keywords": "$tlcountdown api countdown module overview service services truelab"
+      "keywords": "$tlcountdown api countdown lifecycle module overview service services truelab utils"
     },
     {
       "section": "api",
@@ -47,16 +47,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "truelab.countdown",
       "shortDescription": "Private countdown service please see $tlCountdown",
-      "keywords": "$expired $lifecycle $log $running $timeout $tlcountdown api bool class countdown flag function lifecycle object service start truelab truelab-countdown-service--tlcountdown-page truelab-countdown-service-page"
-    },
-    {
-      "section": "api",
-      "id": "truelab.countdown.service:$$TlCountdownLifecycle",
-      "shortName": "$$TlCountdownLifecycle",
-      "type": "service",
-      "moduleName": "truelab.countdown",
-      "shortDescription": "Private countdown lifecycle service, please see $tlCountdown",
-      "keywords": "$tlcountdown api callback countdown expire expires fires fn function lifecycle register service start starts stops tick truelab"
+      "keywords": "$expired $lifecycle $log $running $timeout $tlcountdown api bool class countdown flag function lifecycle object service start truelab truelab-countdown-service--tlcountdown-page truelab-countdown-service-page utils"
     },
     {
       "section": "api",
@@ -65,7 +56,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "truelab.countdown",
       "shortDescription": "This service allow developers to instantiate a new countdown object",
-      "keywords": "$expired $lifecycle $new $rootscope $running $seconds $tlcountdown $window acceptable alert allow angular api btn btn-default btn-primary callback callbacks class config configuration countdown developers duration expire expired expires false fired function functions instantiate lifecycle methods module ng-click ng-disabled ng-show object properties register return running seconds service start started starts stops tick ticks tlcountdownapp true truelab"
+      "keywords": "$expired $lifecycle $rootscope $running $seconds $tlcountdown $window acceptable alert allow angular api btn btn-default btn-primary callback callbacks class config configuration countdown developers duration expired expires expiring false fired firststart function functions instantiate lifecycle methods module ng-click ng-disabled ng-show object onexpire onfirststart onstart onstop ontick properties register restarted running seconds service start starts stopped stops ticks time tlcountdownapp true truelab"
     },
     {
       "section": "api",
@@ -201,6 +192,33 @@ NG_DOCS={
       "moduleName": "truelab.strings",
       "shortDescription": "A service that allows developers to manipulate strings",
       "keywords": "$tlstringutils allows api append capitalize covert desired developers firstupper function length letter manipulate output service string strings text true truelab truncate truncated uppercase word"
+    },
+    {
+      "section": "api",
+      "id": "truelab.utils",
+      "shortName": "truelab.utils",
+      "type": "overview",
+      "moduleName": "truelab.utils",
+      "shortDescription": "truelab.utils",
+      "keywords": "api lifecycle modules overview truelab utils"
+    },
+    {
+      "section": "api",
+      "id": "truelab.utils.lifecycle",
+      "shortName": "truelab.utils.lifecycle",
+      "type": "overview",
+      "moduleName": "truelab.utils.lifecycle",
+      "shortDescription": "truelab.utils.lifecycle",
+      "keywords": "$tllifecycle api lifecycle overview service services strings truelab utils"
+    },
+    {
+      "section": "api",
+      "id": "truelab.utils.lifecycle.service:$tlLifecycle",
+      "shortName": "$tlLifecycle",
+      "type": "service",
+      "moduleName": "truelab.utils.lifecycle",
+      "shortDescription": "Low-level factory which creates a lifecycle object that lets you interact with phases by register/unregister",
+      "keywords": "$tllifecycle api applying arg2 arg3 arguments base born callbacks called class clear clearonborn console controller creates die doborn dodie execute factory fired function functions interact lifecycle log logs low-level methods myapp mycontroller myservice object onborn ondie pass phase phases register return service start string time truelab utils"
     },
     {
       "section": "mocks",
