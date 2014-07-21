@@ -4,7 +4,7 @@
 
 * ***truelab.countdown*** - now requires truelab.utils.lifecycle module ([5e01d27](https://github.com/truelab/angular-truelab/commit/5e01d27))
 
-* ***$tlCountdown.$new*** - $tlCountdown.$new(config) was REMOVED in favor of $tlCountdown(config) ([5dd5d3b](https://github.com/truelab/angular-truelab/commit/5dd5d3b))
+* ***$tlCountdown.$new*** - $tlCountdown.$new(config) was REMOVED in favor of $tlCountdown(config) ([95d062c](https://github.com/truelab/angular-truelab/commit/95d062c))
 
 * ***tlFirstUpperFilter*** - tlFirstUpper filter doesn't normalize anymore input string to lowercase before doing transformation ([7c9279f](https://github.com/truelab/angular-truelab/commit/7c9279f))
 
