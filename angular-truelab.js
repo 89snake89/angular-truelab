@@ -1,7 +1,7 @@
 /**
  * @name angular-truelab
  * @description angular-truelab - Truelab angular modules
- * @version v0.0.0 - 2014-07-16 16:41
+ * @version v0.0.0 - 2014-07-21 23:38
  * @link http://truelab.github.io/angular-truelab
  * @license MIT License, http://www.opensource.org/licenses/MIT
  **/
@@ -15,7 +15,8 @@ angular
         'truelab.loadImage',
         'truelab.debounce',
         'truelab.countdown',
-        'truelab.strings'
+        'truelab.strings',
+        'truelab.utils'
     ]);
 
 /**
@@ -27,6 +28,7 @@ angular
  * @requires truelab.debounce
  * @requires truelab.countdown
  * @requires truelab.strings
+ * @requires truelab.utils
  *
  * @description
  *
@@ -46,6 +48,8 @@ angular
  *   -  {@link truelab.countdown}
  *
  *   -  {@link truelab.strings}
+ *
+ *   -  {@link truelab.utils}
  *
  * --------------
  * ## Usage
@@ -93,6 +97,26 @@ angular
     .module('truelab.strings', ['truelab._']);
 
 
+
+
+
+
+'use strict';
+
+/**
+ * @ngdoc overview
+ * @name truelab.utils
+ * @requires truelab.utils.lifecycle
+ * @description
+ *
+ * # truelab.utils
+ *
+ * ### modules
+ *
+ * - {@link truelab.utils.lifecycle truelab.utils.lifecycle }
+ */
+angular
+    .module('truelab.utils', ['truelab.utils.lifecycle']);
 
 
 
@@ -155,6 +179,7 @@ angular
 /**
  * @ngdoc overview
  * @name truelab.countdown
+ * @requires truelab.utils.lifecycle
  * @description
  *
  * # truelab.countdown
@@ -167,7 +192,7 @@ angular
  *
  */
 angular
-    .module('truelab.countdown', [])
+    .module('truelab.countdown', ['truelab.utils.lifecycle'])
 
 
 /**
@@ -175,9 +200,31 @@ angular
  * @name truelab.countdown.service:$tlCountdown
  * @requires truelab.countdown.service:$$TlCountdown
  *
+ * @param  {object} config
+ *
+ * - configuration object has the following acceptable properties:
+ *
+ *     * **`seconds`** - {int=} - duration in seconds
+ *
  * @description
  *
  * This service allow developers to instantiate a new countdown object
+ *
+ * -----------
+ * @returns {$$TlCountdown} countdown - a new countdown object
+ *
+ * The ***countdown*** object has the following methods/properties
+ *
+ * - ** `start` **      - {function=}   - start the countdown
+ * - ** `stop` **       - {function=}   - stop the countdown
+ * - ** `$running` **   - {boolean=}    - true when running, false otherwise
+ * - ** `$expired` **   - {boolean=}    - true when expired, false otherwise
+ * - ** `$lifecycle` ** - {object} - a lifecycle object to register callbacks functions
+ *      - ** `onFirstStart` **  - {function=}   - register a callback function fired when countdown starts for the first time
+ *      - ** `onStart` **       - {function=}   - register a callback function fired when countdown starts
+ *      - ** `onStop` **        - {function=}   - register a callback function fired when countdown stops
+ *      - ** `onTick` **        - {function=}   - register a callback function fired when countdown ticks
+ *      - ** `onExpire` **      - {function=}   - register a callback function fired when countdown expires
  *
  * @example
  * <doc:example module="tlCountdownApp">
@@ -186,17 +233,29 @@ angular
  *         angular
  *             .module('tlCountdownApp', ['truelab.countdown'] )
  *             .run(function ($rootScope, $window, $tlCountdown) {
- *                 $rootScope.countdown = $tlCountdown.$new({
+ *                 $rootScope.countdown = $tlCountdown({
  *                     seconds : 10
  *                 });
  *
  *                 $rootScope
  *                     .countdown
  *                     .$lifecycle
- *                     .start(function () {
- *                        $window.alert('Started!');
+ *                     .onFirstStart(function (countdown) {
+ *                          $window.alert('First start!')
  *                     })
- *                    .expire(function () {
+ *                     .onStart(function (countdown, firstStart) {
+ *                        if(firstStart === false) {
+ *                          $window.alert('ReStarted!');
+ *                        }
+ *                     })
+ *                     .onStop(function (countdown) {
+ *                        if( countdown.$expired === true ) {
+ *                           $window.alert('Stopped after expiring!');
+ *                        }else{
+ *                           $window.alert('Stopped!');
+ *                        }
+ *                     })
+ *                    .onExpire(function () {
  *                        $window.alert('Expired!');
  *                    });
  *              });
@@ -225,134 +284,22 @@ angular
  */
     .factory('$tlCountdown', function ($$TlCountdown) {
 
-        return  {
-            /**
-             *
-             * @ngdoc function
-             * @name $tlCountdown#$new
-             * @methodOf truelab.countdown.service:$tlCountdown
-             *
-             * @param  {object} config - configuration object
-             * @returns {$$TlCountdown} countdown - countdown
-             *
-             * @description
-             * Return a new countdown object, the ***config*** object
-             * has the following acceptable properties.
-             *
-             * - **`seconds`** - {int=} - duration in seconds
-             *
-             * -----------
-             *
-             * The ***countdown*** object has the following methods/properties
-             *
-             * - ** `start` **      - {function=}   - start the countdown
-             * - ** `stop` **       - {function=}   - stop the countdown
-             * - ** `$running` **   - {boolean=}    - true when running, false otherwise
-             * - ** `$expired` **   - {boolean=}    - true when expired, false otherwise
-             * - ** `$lifecycle` ** - {$$TlCountdownLifecycle=} - a lifecycle object to register callbacks functions
-             *      - ** `start` **  - {function=}   - register a callback function fired when countdown starts
-             *      - ** `stop` **   - {function=}   - register a callback function fired when countdown stops
-             *      - ** `tick` **   - {function=}   - register a callback function fired when countdown ticks
-             *      - ** `expire` ** - {function=}   - register a callback function fired when countdown expires
-             *
-             */
-            $new : function (config) {
-                /*jshint newcap: false */
-                return new $$TlCountdown(config);
-                /*jshint newcap: true */
-            }
-        };
-    })
-
-
-    /**
-     * @ngdoc service
-     * @name truelab.countdown.service:$$TlCountdownLifecycle
-     * @description
-     *
-     * ***Private*** countdown lifecycle service, please see {@link truelab.countdown.service:$tlCountdown $tlCountdown}
-     */
-    .factory('$$TlCountdownLifecycle', function () {
-
         /**
-         * @name TlCountdownLifecycle
-         * @constructor
+         * @param  {object} config - configuration object
+         * @returns {$$TlCountdown} countdown - countdown
          */
-        function TlCountdownLifecycle() {
-            this.$$onStartFns = [];
-            this.$$onStopFns = [];
-            this.$$onExpireFns = [];
-            this.$$onTickFns  = [];
-        }
-
-        TlCountdownLifecycle.prototype = {
-            /**
-             * @ngdoc function
-             * @name $$TlCountdownLifecycle#start
-             * @methodOf truelab.countdown.service:$$TlCountdownLifecycle
-             *
-             * @param {function} fn - callback function
-             *
-             * @description
-             * Register a callback that fires when starts
-             */
-            start : function (fn) {
-                this.$$onStartFns.push(fn);
-                return this;
-            },
-            /**
-             * @ngdoc function
-             * @name $$TlCountdownLifecycle#stop
-             * @methodOf truelab.countdown.service:$$TlCountdownLifecycle
-             *
-             * @param {function} fn - callback function
-             *
-             * @description
-             * Register a callback that fires when stops
-             */
-            stop : function(fn) {
-                this.$$onStopFns.push(fn);
-                return this;
-            },
-            /**
-             * @ngdoc function
-             * @name $$TlCountdownLifecycle#expire
-             * @methodOf truelab.countdown.service:$$TlCountdownLifecycle
-             *
-             * @param {function} fn - callback function
-             *
-             * @description
-             * Register a callback that fires when expires
-             */
-            expire : function (fn) {
-                this.$$onExpireFns.push(fn);
-                return this;
-            },
-            /**
-             * @ngdoc function
-             * @name $$TlCountdownLifecycle#tick
-             * @methodOf truelab.countdown.service:$$TlCountdownLifecycle
-             *
-             * @param {function} fn - callback function
-             *
-             * @description
-             * Register a callback that fires when tick
-             */
-            tick : function (fn) {
-                this.$$onTickFns.push(fn);
-                return this;
-            }
-
+        return function (config) {
+            /*jshint newcap: false */
+            return new $$TlCountdown(config);
         };
-
-        return TlCountdownLifecycle;
     })
+
 
     /**
      * @ngdoc service
      * @name truelab.countdown.service:$$TlCountdown
      *
-     * @requires truelab.countdown.service:$$TlCountdownLifecycle
+     * @requires truelab.utils.lifecycle.service:$tlLifecycle
      * @requires $timeout
      * @requires $log
      *
@@ -364,68 +311,15 @@ angular
      *
      * ***Private*** countdown service please see {@link truelab.countdown.service:$tlCountdown $tlCountdown}
      */
-    .factory('$$TlCountdown', function ($$TlCountdownLifecycle, $timeout, $log) {
+    .factory('$$TlCountdown', function ($tlLifecycle, $timeout, $log) {
+
 
         /**
-         * Execute all fns associated with countdown phase
-         *
-         * @param {TlCountdown} countdown - countdown instance
-         * @param {string} phase - countdown event/phase {'onStart','onTick','onStop','onExpire'}
-         * @private
-         */
-        function __executeLifecycleFns(countdown, phase) {
-            var fns = countdown.$lifecycle['$$' + phase + 'Fns'];
-
-            angular.forEach(fns, function (fn) {
-                fn.call(countdown);
-            });
-        }
-
-        /**
-         * Execute a tick on countdown object
-         *
-         * @param {TlCountdown} countdown
-         * @private
-         */
-        function __tick(countdown) {
-
-            if(countdown.$seconds <= 0) {
-                countdown.stop();
-                return;
-            }
-
-            countdown.$$running = true;
-            countdown.$running = true;
-
-            countdown.$$stopped = $timeout(function() {
-
-                countdown.$$running = true;
-                countdown.$running = true;
-
-                countdown.$seconds--;
-
-                if(countdown.$seconds <= 0) {
-                    __executeLifecycleFns(countdown, 'onExpire');
-                    countdown.$$expired = true;
-                    countdown.$expired = true;
-                    countdown.stop();
-                    return;
-                }
-
-                __executeLifecycleFns(countdown, 'onTick');
-                __tick(countdown);
-
-            }, 1000);
-
-            return countdown.$$stopped;
-        }
-
-        /**
-         * TlCountdown
+         * $$TlCountdown
          * @param {Object} config - a configuration object
          * @constructor
          */
-        function TlCountdown (config) {
+        function $$TlCountdown (config) {
             var self = this;
 
             /**
@@ -442,10 +336,10 @@ angular
              * @name $lifecycle
              * @description
              *
-             * {{@link truelab.countdown.service:$$TlCountdownLifecycle $$TlCountdownLifecycle}} Countdown lifecycle
+             * {{@link truelab.utils.lifecycle.service:$tlLifecycle $tlLifecycle}} lifecycle
              */
             /*jshint newcap: false */
-            self.$lifecycle = new $$TlCountdownLifecycle();
+            self.$lifecycle = $tlLifecycle('firstStart', 'start', 'stop', 'expire', 'tick');
             /*jshint newcap: true */
 
             self.$running  = false;
@@ -465,18 +359,31 @@ angular
          * @description
          * Start countdown
          */
-        TlCountdown.prototype.start  = function () {
+        $$TlCountdown.prototype.start  = function () {
             var self = this;
 
             if(self.$$expired === true) {
+
                 $log.error('can\'t start expired countdown!');
                 return;
+
             }
 
             if(self.$$running === false) {
 
-                __executeLifecycleFns(self, 'onStart');
-                __tick(self);
+                if(angular.isUndefined(self.$$stopped)) {
+
+                    self.$lifecycle.execute('firstStart', self);
+                    self.$lifecycle.execute('start', self, true);
+
+                }else{
+
+                    self.$lifecycle.execute('start', self, false);
+                }
+
+
+
+                self.$$tick();
 
             }else{
 
@@ -493,21 +400,62 @@ angular
          * @description
          * Stop countdown
          */
-        TlCountdown.prototype.stop = function () {
-
+        $$TlCountdown.prototype.stop = function () {
             var self = this;
+
             $timeout.cancel(self.$$stopped);
             self.$$running = false;
             self.$running  = false;
 
-            __executeLifecycleFns(self, 'onStop');
+            self.$lifecycle.execute('stop', self);
 
         };
 
-        return TlCountdown;
+        /**
+         * Execute a tick
+         * @private
+         */
+        $$TlCountdown.prototype.$$tick = function () {
+            var self = this;
+
+            if(self.$seconds <= 0) {
+                self.stop();
+                return self.$$stopped;
+            }
+
+            self.$$running = true;
+            self.$running = true;
+
+            self.$$stopped = $timeout(function() {
+
+                self.$$running = true;
+                self.$running = true;
+
+                self.$seconds--;
+
+                if(self.$seconds <= 0) {
+
+                    self.$lifecycle.execute('expire', self);
+
+                    self.$$expired = true;
+                    self.$expired  = true;
+                    self.stop();
+
+                    return self.$$stopped;
+                }
+
+                self.$lifecycle.execute('tick', self);
+
+                self.$$tick();
+
+            }, 1000);
+
+            return self.$$stopped;
+        };
+
+        return $$TlCountdown;
 
     });
-
 
 
 'use strict';
@@ -1422,7 +1370,7 @@ angular
                 }
 
                 var capitalizeFirstLetter = function (text) {
-                    var t = text.toLowerCase();
+                    var t = text;
                     return t.charAt(0).toUpperCase() + t.slice(1);
                 };
 
@@ -1445,6 +1393,198 @@ angular
             }
         };
     });
+
+
+
+'use strict';
+
+
+/**
+ * @ngdoc overview
+ * @name truelab.utils.lifecycle
+ * @requires truelab.strings
+ * @description
+ *
+ * # truelab.utils.lifecycle
+ *
+ * # services
+ *
+ * - {@link truelab.utils.lifecycle.service:$tlLifecycle $tlLifecycle }
+ */
+angular
+    .module('truelab.utils.lifecycle', ['truelab.strings'])
+
+    /**
+     *
+     * @ngdoc service
+     * @name truelab.utils.lifecycle.service:$tlLifecycle
+     *
+     * @param {...string} [...phases='start','stop'] - phases
+     *
+     * @description
+     * Low-level factory which creates a lifecycle object that lets you interact with phases by register/unregister
+     * functions for each phase and execute/clear them.
+     *
+     * @example
+     * ```
+     * // ...
+     * myApp.factory('myService', function ($tlLifecycle) {
+     *
+     *     return {
+     *         lifecycle : $tlLifecycle('born','die'),
+     *         doBorn : function () {
+     *             this.lifecycle.execute('born','and pass','some', arguments);
+     *         },
+     *         doDie : function () {
+     *              this.lifecycle.execute('die','and pass','some','arguments')
+     *         }
+     *     };
+     * });
+     *
+     * // ... later
+     * myApp.controller('myController', function (myService) {
+     *     myService
+     *        .lifecycle
+     *        .onBorn(function(arg1, arg2, arg3) {
+     *              console.log(arg1, arg2, arg3);
+     *              // logs => 'and pass','some','arguments' every time myService.doBorn() is called;
+     *        })
+     *        .onBorn(function () {
+     *              console.log('You born');
+     *              // logs => 'You born' every time myService.doBorn() is called;
+     *        })
+     *        .onDie(function () {
+     *              console.log('You die');
+     *              // logs => 'You die' every time myService.doDie() is called;
+     *        });
+     *
+     *    myService
+     *      .doBorn();
+     *
+     *    myService
+     *      .lifecycle
+     *      .clearOnBorn();
+     *
+     *    myService.doBorn(); // no more onBorn callbacks fired
+     *
+     *    myService.doDie(); // onDie callbacks fired
+     *
+     *    myService
+     *      .lifecycle
+     *      .clear();
+     *
+     *    myService.doDie() // no more callbacks fired at all
+     *
+     * });
+     *
+     * ```
+     *
+     * @returns {Object} A lifecycle "class" object with those base methods:
+     *
+     * * ** `clear()` ** - clear all callbacks for all phases
+     * * ** `execute(phase, ...arguments)` ** - execute callbacks for ```phase``` applying specified ```arguments```
+     *
+     *
+     */
+    .factory('$tlLifecycle', function($tlStringUtils) {
+
+        function clearFnName(phase) {
+            return 'clear' + $tlStringUtils.firstUpper(pushFnName(phase));
+        }
+
+        function pushFnName(phase) {
+            return 'on' + $tlStringUtils.firstUpper(phase);
+        }
+
+        function stackName(phase) {
+            return '$$' + pushFnName(phase) + 'Fns';
+        }
+
+        function pushFnsFactory(stackKey) {
+            return function (fn) {
+                var self = this;
+                self[stackKey].push(fn);
+                return self;
+            };
+        }
+
+        function clearFnsFactory(stackKey) {
+            return function () {
+                var self = this;
+                self[stackKey] = [];
+                return self;
+
+            };
+        }
+
+        function clearFnFactory(phases) {
+            return function () {
+                var self = this;
+                angular.forEach(phases, function(phase) {
+                    self[stackName(phase)] = [];
+                });
+                return self;
+            };
+        }
+
+        function executeFnFactory() {
+            return function () {
+                var self = this,
+                    args  = Array.prototype.slice.call(arguments),
+                    phase = args.shift(),
+                    fns   = self[stackName(phase)];
+
+                angular.forEach(fns, function (fn) {
+                    if(angular.isFunction(fn.apply)) {
+                        fn.apply(fn, args);
+                    }
+                });
+            };
+        }
+
+        function $tlLifecycle() {
+
+            var phases = arguments.length > 0 ? Array.prototype.slice.call(arguments) : ['start', 'stop'];
+
+            /**
+             * @description
+             *
+             * Dynamic lifecycle instance object, when instantiated with
+             * the factory ```$tlLifecycle({phases : ['start','stop']})```
+             * the resulting lifecycle instance has:
+             *
+             *  * ```onStart```, ```onStop`` functions to register callbacks for related phase
+             *  * ```clearOnStart```, ```clearOnStop``` functions to clear callbacks for related phase
+             *
+             *
+             * @property {function} clear - clear all function stacks
+             * @property {function} execute
+             *     @param {string}    phase - phase name
+             *     @param {...object} args  - arguments to apply
+             */
+            var lifecycle = {
+                execute : executeFnFactory(),
+                clear : clearFnFactory(phases)
+            };
+
+            // adds "private" stacks and prototypes method
+            angular.forEach(phases, function (phase) {
+
+                var stackKey    = stackName(phase);
+                var pushFnKey   = pushFnName(phase);
+                var clearFnKey  = clearFnName(phase);
+
+                lifecycle[stackKey]   = [];
+                lifecycle[pushFnKey]  = pushFnsFactory(stackKey);
+                lifecycle[clearFnKey] = clearFnsFactory(stackKey);
+            });
+
+            return lifecycle;
+        }
+
+        return $tlLifecycle;
+    });
+
 
 
 
