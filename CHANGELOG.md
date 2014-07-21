@@ -8,7 +8,7 @@
 
 * ***tlFirstUpperFilter*** - tlFirstUpper filter doesn't normalize anymore input string to lowercase before doing transformation ([7c9279f](https://github.com/truelab/angular-truelab/commit/7c9279f))
 
-### feature
+### features
 
 * ***truelab.utils*** - new module ([82ff8a9](https://github.com/truelab/angular-truelab/commit/82ff8a9))
 * ***truelab.utils.lifecycle*** - new module ([82ff8a9](https://github.com/truelab/angular-truelab/commit/82ff8a9))
